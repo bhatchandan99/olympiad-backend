@@ -353,17 +353,31 @@ class QuizTake(TemplateView):
 
                 bro = 0
                 for ques in allquestion:
-                    guess =request.POST['%s'%ques.id]
+                    # if(request.POST==None):
+                    #     self.question = ques
+                    #     answer = Answer.objects.get(id=guess)
+                    #     self.sitting.add_incorrect_question(self.question)
+                    #     progress.update_score(self.question, 0, 1)
+                    # else:
+                    guess =request.POST.get('%s'%ques.id,00)
+                    print(guess)
                     self.question = ques
-                    answer = Answer.objects.get(id=guess)
-
-                    if answer.correct is True:
-                        bro = bro+1
-                        self.sitting.add_to_score(1)
-                        progress.update_score(self.question, 1, 1)
+                    if(guess==00):
+                        print("*************************************")
+                        # self.sitting.add_incorrect_question(self.question)
+                        # progress.update_score(self.question, 0, 1)
                     else:
-                        self.sitting.add_incorrect_question(self.question)
-                        progress.update_score(self.question, 0, 1)
+                        answer = Answer.objects.get(id=guess)
+                        print(answer)
+                        print("*************************************")
+
+                        if answer.correct is True:
+                            bro = bro+1
+                            self.sitting.add_to_score(1)
+                            progress.update_score(self.question, 1, 1)
+                        else:
+                            self.sitting.add_incorrect_question(self.question)
+                            progress.update_score(self.question, 0, 1)
 
                     self.previous = {}
 
