@@ -68,24 +68,20 @@ def subscribe(request):
         reasoningolym=request.POST.get('reasoningolym', False)
         cyberolym=request.POST.get('cyberolym', False)
         internationalspell=request.POST.get('internationalspell', False)
-        sub.mathsolym=mathsolym
-        sub.scienceolym=scienceolym
-        sub.englisholym=englisholym
-        sub.reasoningolym=reasoningolym
-        sub.cyberolym= cyberolym
-        sub.internationalspell=internationalspell
-        # sub=Student(mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
+        if(sub.mathsolym==False):
+            sub.mathsolym=mathsolym
+        if(sub.scienceolym==False):
+            sub.scienceolym=scienceolym
+        if(sub.englisholym==False):
+            sub.englisholym=englisholym
+        if(sub.reasoningolym==False):
+            sub.reasoningolym=reasoningolym
+        if(sub.cyberolym==False):
+            sub.cyberolym= cyberolym
+        if(sub.internationalspell==False):
+            sub.internationalspell=internationalspell
         sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
-        # else:
-        #     mathsolym=request.POST.get('mathsolym', False)
-        #     scienceolym=request.POST.get('scienceolym',False )
-        #     englisholym=request.POST.get('englisholym', False)
-        #     reasoningolym=request.POST.get('reasoningolym', False)
-        #     cyberolym=request.POST.get('cyberolym', False)
-        #     internationalspell=request.POST.get('internationalspell', False)
-        #     sub=Subscription(student=student, mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
-        #     sub.save()
-            
+        
 
 
     return render(request,"subscriptions.html")
