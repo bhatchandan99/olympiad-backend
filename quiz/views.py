@@ -62,15 +62,20 @@ def subscribe(request):
     if(request.method=='POST'):
         student = request.user
         sub=Student.objects.get(pk=student.id)
-        if(sub):
-            mathsolym=request.POST.get('mathsolym', False)
-            scienceolym=request.POST.get('scienceolym',False )
-            englisholym=request.POST.get('englisholym', False)
-            reasoningolym=request.POST.get('reasoningolym', False)
-            cyberolym=request.POST.get('cyberolym', False)
-            internationalspell=request.POST.get('internationalspell', False)
-            sub=Student(mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
-            sub.save()
+        mathsolym=request.POST.get('mathsolym', False)
+        scienceolym=request.POST.get('scienceolym',False )
+        englisholym=request.POST.get('englisholym', False)
+        reasoningolym=request.POST.get('reasoningolym', False)
+        cyberolym=request.POST.get('cyberolym', False)
+        internationalspell=request.POST.get('internationalspell', False)
+        sub.mathsolym=mathsolym
+        sub.scienceolym=scienceolym
+        sub.englisholym=englisholym
+        sub.reasoningolym=reasoningolym
+        sub.cyberolym= cyberolym
+        sub.internationalspell=internationalspell
+            # sub=Student(mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
+        sub.save()
         # else:
         #     mathsolym=request.POST.get('mathsolym', False)
         #     scienceolym=request.POST.get('scienceolym',False )
