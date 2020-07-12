@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import QuizListView, CategoriesListView,\
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake, index, login_user, logout_user,contact,examdates,faqs,coordinator,register_school
+    QuizMarkingDetail, QuizDetailView, QuizTake, index, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz
 from django.urls import path
 from django.urls import path
 from . import views
@@ -25,7 +25,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         # url(regex=r'^login/$', view=login_user, name='login'),
                         # url(regex=r'^logout/$', view=logout_user, name='logout'),
                        url(regex=r'^quizzes/$',
-                           view= QuizListView.as_view(),
+                           view= views.myquiz,
                            name='quiz_index'),
 
                        url(regex=r'^category/$',

@@ -8,6 +8,8 @@
 
 {% block body %}
 
+{% comment %}
+
   {% if cat_scores %}
 
   <h1>{% trans "Question Category Scores" %}</h1>
@@ -42,6 +44,8 @@
 
 
   {% endif %}
+
+  {% endcomment %}
 
   {% if exams %}
 
