@@ -61,7 +61,7 @@ my_ques= []
 def subscribe(request):
     if(request.method=='POST'):
         student = request.user
-        sub=Subscription.objects.filter(student=student).exists()
+        sub=Student.objects.get(pk=student.id)
         if(sub):
             mathsolym=request.POST.get('mathsolym', False)
             scienceolym=request.POST.get('scienceolym',False )
@@ -69,17 +69,18 @@ def subscribe(request):
             reasoningolym=request.POST.get('reasoningolym', False)
             cyberolym=request.POST.get('cyberolym', False)
             internationalspell=request.POST.get('internationalspell', False)
-            sub=Subscription(student=student, mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
+            sub=Student(mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
             sub.save()
-        else:
-            mathsolym=request.POST.get('mathsolym', False)
-            scienceolym=request.POST.get('scienceolym',False )
-            englisholym=request.POST.get('englisholym', False)
-            reasoningolym=request.POST.get('reasoningolym', False)
-            cyberolym=request.POST.get('cyberolym', False)
-            internationalspell=request.POST.get('internationalspell', False)
-            context=Subscription(student=student, mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
-            context.save()
+        # else:
+        #     mathsolym=request.POST.get('mathsolym', False)
+        #     scienceolym=request.POST.get('scienceolym',False )
+        #     englisholym=request.POST.get('englisholym', False)
+        #     reasoningolym=request.POST.get('reasoningolym', False)
+        #     cyberolym=request.POST.get('cyberolym', False)
+        #     internationalspell=request.POST.get('internationalspell', False)
+        #     sub=Subscription(student=student, mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
+        #     sub.save()
+            
 
 
     return render(request,"subscriptions.html")

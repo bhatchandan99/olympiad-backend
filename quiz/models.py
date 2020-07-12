@@ -38,6 +38,12 @@ class Student(AbstractUser):
     email_confirmed = models.BooleanField(default=False)
     first_name = models.CharField(null=False,max_length=150,default="abc")
     last_name= models.CharField(max_length=150)
+    mathsolym=models.BooleanField(default=False,null=True)
+    scienceolym=models.BooleanField(default=False,null=True)
+    englisholym=models.BooleanField(default=False,null=True)
+    reasoningolym=models.BooleanField(default=False,null=True)
+    cyberolym=models.BooleanField(default=False,null=True)
+    internationalspell=models.BooleanField(default=False,null=True)
 
 
     USERNAME_FIELD = 'username'
