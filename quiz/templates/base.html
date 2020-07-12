@@ -621,6 +621,8 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       {% if user.is_authenticated %}
+                                      
+                                      <a  class="dropdown-item" href="{% url 'subscriptions' %}">Subscriptions</a>
                                       <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                                       {% else %}
                                       <a class="dropdown-item" href="{% url 'applyindividual' %}">Apply Individually</a>
