@@ -43,7 +43,7 @@ class Student(AbstractUser):
     englisholym=models.BooleanField(default=False,null=True)
     reasoningolym=models.BooleanField(default=False,null=True)
     cyberolym=models.BooleanField(default=False,null=True)
-    internationalspell=models.BooleanField(default=False,null=True)
+    internationalspell=models.BooleanField(default=False,null= True)
 
 
     USERNAME_FIELD = 'username'
@@ -80,7 +80,7 @@ class Subscription(models.Model):
     englisholym=models.BooleanField(default=False,null=True)
     reasoningolym=models.BooleanField(default=False,null=True)
     cyberolym=models.BooleanField(default=False,null=True)
-    internationalspell=models.BooleanField(default=False,null=True)
+    internationalspell=models.BooleanField(default=False,null= True)
 
     def __str__(self):
         return str(self.id)

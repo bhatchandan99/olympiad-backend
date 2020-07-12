@@ -6,13 +6,13 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
 from .forms import QuestionForm
-from .models import Quiz, Category, Progress, Sitting, Question
+from .models import Quiz, Category, Progress, Sitting, Question, Subscription
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from django.shortcuts import render,redirect
-from .models import Student, Contact, Coordinator, School_register, Subscription
+from .models import Student, Contact, Coordinator, School_register
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -63,7 +63,7 @@ def subscribe(request):
         student = request.user
         sub=Student.objects.get(pk=student.id)
         mathsolym=request.POST.get('mathsolym', False)
-        scienceolym=request.POST.get('scienceolym',False )
+        scienceolym=request.POST.get('scienceolym',False)
         englisholym=request.POST.get('englisholym', False)
         reasoningolym=request.POST.get('reasoningolym', False)
         cyberolym=request.POST.get('cyberolym', False)
@@ -74,8 +74,8 @@ def subscribe(request):
         sub.reasoningolym=reasoningolym
         sub.cyberolym= cyberolym
         sub.internationalspell=internationalspell
-            # sub=Student(mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
-        sub.save()
+        # sub=Student(mathsolym=mathsolym, scienceolym=scienceolym, englisholym=englisholym, reasoningolym=reasoningolym, cyberolym=cyberolym, internationalspell=internationalspell)
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
         # else:
         #     mathsolym=request.POST.get('mathsolym', False)
         #     scienceolym=request.POST.get('scienceolym',False )
