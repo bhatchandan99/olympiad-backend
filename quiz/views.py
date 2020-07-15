@@ -81,11 +81,11 @@ def subscribe(request):
         if(sub.internationalspell==False):
             sub.internationalspell=internationalspell
         sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
-        
+
 
 
     return render(request,"subscriptions.html")
-    
+
 
 def examdates(request):
     return render(request,"examdates.html")
@@ -251,9 +251,52 @@ class QuizListView(ListView):
     model = Quiz
     # @login_required
     def get_queryset(self):
+
+        bro = Quiz.objects.all()
+        print(bro)
+        print("wd2d")
+        print(self)
         queryset = super(QuizListView, self).get_queryset()
-        return queryset.filter(draft=False)
-        
+
+
+def myquiz(request):
+
+    all_quizzes = Quiz.objects.all()
+    print(all_quizzes)
+
+    quizlist=[]
+    for quiz in all_quizzes:
+
+        if quiz.title.find('_')!=-1:
+            _,quiz_title = quiz.title.split('_', 1)
+        else:
+            quiz_title= quiz.title
+
+        #print(quiz)
+        #print(quiz.title[0:2])
+
+        #print(quiz_title[0:2])
+        b = quiz_title[2:]
+
+        #print(request.user.b)
+        print(quiz_title[2:])
+        if str(request.user.standard)==str(quiz_title[0:2]):
+
+            if quiz_title[2:]=='mathsolym' and request.user.mathsolym==True:
+                quizlist.append(quiz)
+            if quiz_title[2:]=='scienceolym' and request.user.scienceolym==True:
+                quizlist.append(quiz)
+            if quiz_title[2:]=='englisholym' and request.user.englisholym==True:
+                quizlist.append(quiz)
+            if quiz_title[2:]=='internationalspell' and request.user.internationalspell==True:
+                quizlist.append(quiz)
+            if quiz_title[2:]=='cyberolym' and request.user.cyberolym==True:
+                quizlist.append(quiz)
+            if quiz_title[2:]=='reasoningolym' and request.user.reasoningolym==True:
+                quizlist.append(quiz)
+
+    return render(request, 'quiz_list.html', {"quiz_list": quizlist})
+
 
 
 class QuizDetailView(DetailView):
