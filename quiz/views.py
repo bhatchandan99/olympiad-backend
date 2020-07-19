@@ -1,4 +1,6 @@
 import random
+import csv, io
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
@@ -6,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
 from .forms import QuestionForm
-from .models import Quiz, Category, Progress, Sitting, Question, Subscription
+from .models import Quiz, Category, Progress, Sitting, Question, Subscription, Paper
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -562,6 +564,34 @@ def logout_user(request):
 
 
 
+@permission_required('admin.can_add_log_entry')
+def paper(request):
+    template="paper.html"
+    prompt={
+        'order':'Order of CSV should be quiz_name,questions,answer,correct'
+    }
+
+    if(request.method=='GET'):
+        return render(request,template,prompt)
+    csv_file=request.FILES['files']
+    if(not csv_file.anme.endwith('.csv')):
+        messages.error(request,"not csv")
+    data_set=csv.file.read().decode('UTF-8')
+    io_string=io.StringIO(data_set)
+    next(io_string)
+    for column in csv.reader(io_string,delimiter=","):
+        _,created=Paper.objects.update_or_create(
+            id=column[0],
+            quiz_name=column[1],
+            question=column[2],
+            option_1=column[3],
+            option_2=column[4],
+            option_3=column[5],
+            option_4=column[6],
+            correct=column[7]
+        )
+        context={}
+        return render(request,template,context)
 
 
 

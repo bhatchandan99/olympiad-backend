@@ -356,6 +356,7 @@ class Progress(models.Model):
 
             # swap old score for the new one
             self.score = self.score.replace(match.group(), new_score)
+            
             self.save()
 
         else:
@@ -435,7 +436,7 @@ class Sitting(models.Model):
     Question_order is a list of integer pks of all the questions in the
     quiz, in order.
     Question_list is a list of integers which represent id's of
-    the unanswered questions in csv format.
+    the unanswered questions in  format.
     Incorrect_questions is a list in the same format.
     Sitting deleted when quiz finished unless quiz.exam_paper is true.
     User_answers is a json object in which the question PK is stored
@@ -748,3 +749,16 @@ def csv_upload_post_save(sender, instance, created, *args, **kwargs):
 
 
 post_save.connect(csv_upload_post_save, sender=CSVUpload)
+
+class Paper(models.Model):
+    id=models.AutoField(primary_key=True)
+    quiz_name=models.CharField(max_length=250)
+    question=models.TextField(null=True)
+    option_1= models.TextField(null=True)
+    option_2=models.TextField(null=True)
+    option_3=models.TextField(null=True)
+    option_4=models.TextField(null=True)
+    correct=models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.quiz.name
