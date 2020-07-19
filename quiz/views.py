@@ -580,18 +580,58 @@ def paper(request):
         io_string=io.StringIO(data_set)
         print("+++++++++++++++++++++++++++++++")
         # next(io_string)
+        print(data_set)
         for column in csv.reader(io_string,delimiter=","):
-            pap=Paper(
+
+
+            my = Quiz.objects.filter(title=column[2])
+            print(my[0].category)
+            print(my[0].id)
+            pap= MCQQuestion(
                 # id=column[0],
-                quiz_name=column[0],
-                question=column[1],
-                option_1=column[2],
-                option_2=column[3],
-                option_3=column[4],
-                option_4=column[5],
-                correct=column[6]
+                content=column[0],
+                category=my[0].category,
+                #quiz=my[0].title,
+                explanation=column[3],
+                answer_order= "content"
             )
+
+
+            #pap.quiz.set(my[0].id)
             pap.save()
+            pap.quiz.set(my)
+            is_corr = False
+            if column[4]=="TRUE":
+                is_corr=True
+
+
+            one = Answer(question =pap , content = column[3] ,correct= is_corr)
+            one.save()
+
+            is_corr = False
+            if column[6]=="TRUE":
+                is_corr=True
+
+
+            two = Answer(question =pap , content = column[5] ,correct= is_corr)
+            two.save()
+
+            is_corr = False
+            if column[8]=="TRUE":
+                is_corr=True
+
+
+            three = Answer(question =pap , content = column[7] ,correct= is_corr)
+            three.save()
+
+            is_corr = False
+            if column[10]=="TRUE":
+                is_corr=True
+
+
+            four = Answer(question =pap , content = column[9] ,correct= is_corr)
+            four.save()
+
             # context={}
     return render(request,"paper.html")
 
