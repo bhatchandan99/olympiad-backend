@@ -12,6 +12,7 @@
 <form action="" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 <label>upload file</label>
+<input type="text" name="quiz_name">
 <input type="file" name="file">
 <input type="submit" value="UPLOAD">
 </form>

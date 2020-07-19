@@ -578,7 +578,6 @@ def paper(request):
         csv_file=request.FILES['file']
         data_set=csv_file.read().decode('UTF-8')
         io_string=io.StringIO(data_set)
-        print("+++++++++++++++++++++++++++++++")
         # next(io_string)
         for column in csv.reader(io_string,delimiter=","):
             pap=Paper(
