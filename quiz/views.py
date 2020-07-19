@@ -568,7 +568,7 @@ def logout_user(request):
 def paper(request):
     template="paper.html"
     prompt={
-        'order':'Order of CSV should be quiz_name,questions,answer,correct'
+        'order':'Order of CSV should be id,quiz_name,questions,option_1,option_2,option_3,option4,correct'
     }
 
     if(request.method=='GET'):
