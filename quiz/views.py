@@ -566,32 +566,34 @@ def logout_user(request):
 
 @permission_required('admin.can_add_log_entry')
 def paper(request):
-    template="paper.html"
-    prompt={
-        'order':'Order of CSV should be id,quiz_name,questions,option_1,option_2,option_3,option_4,correct'
-    }
+    # template="paper.html"
+    # prompt={
+    #     'order':'Order of CSV should be quiz_name,questions,option_1,option_2,option_3,option_4,correct'
+    # }
 
-    if(request.method=='GET'):
-        return render(request,template,prompt)
-    csv_file=request.FILES['files']
-    if(not csv_file.anme.endwith('.csv')):
-        messages.error(request,"not csv")
-    data_set=csv.file.read().decode('UTF-8')
-    io_string=io.StringIO(data_set)
-    next(io_string)
-    for column in csv.reader(io_string,delimiter=","):
-        _,created=Paper.objects.update_or_create(
-            id=column[0],
-            quiz_name=column[1],
-            question=column[2],
-            option_1=column[3],
-            option_2=column[4],
-            option_3=column[5],
-            option_4=column[6],
-            correct=column[7]
-        )
-        context={}
-        return render(request,template,context)
+    # if(request.method=='POST'):
+    #     return render(request,template,prompt)
+    if(request.method=='POST'):
+        print("==========================================")
+        csv_file=request.FILES['file']
+        data_set=csv_file.read().decode('UTF-8')
+        io_string=io.StringIO(data_set)
+        print("+++++++++++++++++++++++++++++++")
+        # next(io_string)
+        for column in csv.reader(io_string,delimiter=","):
+            pap=Paper(
+                # id=column[0],
+                quiz_name=column[0],
+                question=column[1],
+                option_1=column[2],
+                option_2=column[3],
+                option_3=column[4],
+                option_4=column[5],
+                correct=column[6]
+            )
+            pap.save()
+            # context={}
+    return render(request,"paper.html")
 
 
 

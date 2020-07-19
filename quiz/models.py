@@ -761,4 +761,4 @@ class Paper(models.Model):
     correct=models.CharField(max_length=150)
 
     def __str__(self):
-        return self.quiz.name
+        return self.quiz_name

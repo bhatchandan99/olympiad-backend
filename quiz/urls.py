@@ -12,7 +12,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path('examdates/',view =  views.examdates, name="examdates"),
                         path('faqs/',view =  views.faqs, name="faqs"),
                         path('coordinator/',view =  views.coordinator, name="coordinator"),
-                        path('paper/',view =  views.paper, name="paer"),
+                        path('paper/',view =  views.paper, name="paper"),
 
                         # path("loginhandle/",views.loginhandle, name="loginhandle"),
                         path("loginhandle/",views.login_user, name="loginhandle"),
