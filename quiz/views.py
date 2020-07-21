@@ -584,8 +584,8 @@ def paper(request):
 
 
             my = Quiz.objects.filter(title=column[2])
-            print(my[0].category)
-            print(my[0].id)
+            # print(my[0].category)
+            # print(my[0].id)
             pap= MCQQuestion(
                 # id=column[0],
                 content=column[0],
