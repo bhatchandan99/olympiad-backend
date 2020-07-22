@@ -281,7 +281,10 @@
     
       <div class="radio">
       <ul class="list-unstyled">{% csrf_token %}
-    
+    {% if i.question.figure %}
+        <img src="{{ i.question.figure.url }}" alt="{{ i.question.content }}" />
+
+        {% endif %}
     <label for="{{i.question}}">{{i.question}}</label>
     
     {% for ans in i.answers %}
