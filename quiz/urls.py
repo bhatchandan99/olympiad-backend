@@ -5,6 +5,8 @@ from .views import QuizListView, CategoriesListView,\
 from django.urls import path
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [         path('applyindividual/',view =  views.register, name="applyindividual"),
@@ -13,6 +15,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path('faqs/',view =  views.faqs, name="faqs"),
                         path('coordinator/',view =  views.coordinator, name="coordinator"),
                         path('paper/',view =  views.paper, name="paper"),
+
+                #        patterns('',) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
                         # path("loginhandle/",views.loginhandle, name="loginhandle"),
                         path("loginhandle/",views.login_user, name="loginhandle"),
@@ -60,4 +64,4 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                            name='quiz_question'),
 
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

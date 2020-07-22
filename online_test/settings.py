@@ -126,6 +126,9 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
 AUTH_USER_MODEL = 'quiz.Student'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 #for gmail
 #EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
