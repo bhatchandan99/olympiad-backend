@@ -4,7 +4,15 @@
 
 <form action="" method="post" class="third" >
     {% csrf_token %}
-    <input id="student_email" name="student_email">
+    <!--input id="student_email" name="student_email"-->
+    <!--div class="form-group">
+      <label>Order ID:</label><br>
+      <input class="form-control" name="orderId" placeholder="Enter Order ID here (Ex. order00001)"/>
+    </div-->
+    <div class="form-group">
+      <label>Order Amount:</label><br>
+      <input class="form-control" name="orderAmount" placeholder="Enter Order Amount here (Ex. 100)"/>
+    </div>
 
     <label for="mathsolym">MATHS OLYMPIAD(150)</label>
     <input type="checkbox" value="True" id="mathsolym" name="mathsolym">
@@ -27,5 +35,4 @@
     <input type="submit" name="submit" value="Submit">
    </form>
 
- {% endblock %} 
-  
+ {% endblock %}

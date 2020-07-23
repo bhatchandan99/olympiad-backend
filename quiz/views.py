@@ -12,7 +12,7 @@ from .models import Quiz, Category, Progress, Sitting, Question, Subscription, P
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect
 from .models import Student, Contact, Coordinator, School_register
 from django.contrib import messages
@@ -60,8 +60,150 @@ my_ques= []
 #def home(request):
 #    return render(request,"home.html")
 
+
+import hashlib
+import hmac
+import base64
+def home(request):
+
+
+
+
+
+    return render(request,'start.html')
+
+secretKey = "9be8e477e0c70b0b63b654e2e95e2d2219e318ee"
+#@app.route('/request', methods=["POST"])
+def handlerequest(request):
+
+    mode = "TEST" # <-------Change to TEST for test server, PROD for production
+    print('win')
+
+    if request.method =='POST':
+        print('lost')
+
+        postData = {
+                  "appId" : '21845d9c06b478a19ac3040ce54812',
+                  "orderId" : request.POST['orderId'],
+                  "orderAmount" : request.POST['orderAmount'],
+                  "orderCurrency" : 'INR',
+                  "orderNote" : "payment",
+                  "customerName" : request.user.first_name,
+                  "customerPhone" : request.user.number,
+                  "customerEmail" : request.user.email,
+                  "returnUrl" : 'http://127.0.0.1:8000/response/',
+                  "notifyUrl" : 'https://github.com/'
+        }
+        print(postData)
+        sortedKeys = sorted(postData)
+        signatureData = ""
+        for key in sortedKeys:
+
+            signatureData += key+postData[key]
+        message = signatureData.encode('utf-8')
+          #get secret key from your config
+        secret = secretKey.encode('utf-8')
+        signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
+        if mode == 'PROD':
+
+            url = "https://www.cashfree.com/checkout/post/submit"
+        else:
+            url = "https://test.cashfree.com/billpay/checkout/post/submit"
+
+        context = {
+            'postData' : postData,
+            'url' : url,
+            'signature' :signature
+        }
+    #    context
+    #    context['url']= url
+    #    context['signature']= signature
+        return render(request,'request.html', context)
+
+
+    return render(request,"sub.html")
+
+
+#@app.route('/response', methods=["GET","POST"])
+@csrf_exempt
+def handleresponse(request):
+
+    postData = {
+    "orderId" : request.POST['orderId'],
+    "orderAmount" : request.POST['orderAmount'],
+    "referenceId" : request.POST['referenceId'],
+    "txStatus" : request.POST['txStatus'],
+    "paymentMode" : request.POST['paymentMode'],
+    "txMsg" : request.POST['txMsg'],
+    "signature" : request.POST['signature'],
+    "txTime" : request.POST['txTime']
+    }
+
+    print(postData)
+    signatureData = ""
+    signatureData = postData['orderId'] + postData['orderAmount'] + postData['referenceId'] + postData['txStatus'] + postData['paymentMode'] + postData['txMsg'] + postData['txTime']
+
+    message = signatureData.encode('utf-8')
+  # get secret key from your config
+    secret = secretKey.encode('utf-8')
+    computedsignature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode('utf-8')
+
+    context = {
+    'postData':postData,
+    'computedsignature':computedsignature,
+    'is_paid':False,
+    }
+
+
+    print(request)
+    if computedsignature==postData['signature']:
+
+        context['is_paid']= True
+        """
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+        if(sub.mathsolym==True):
+            sub.final_mathsolym=mathsolym
+        if(sub.scienceolym==True):
+            sub.final_scienceolym=scienceolym
+        if(sub.englisholym==True):
+            sub.final_englisholym=englisholym
+        if(sub.reasoningolym==True):
+            sub.final_reasoningolym=reasoningolym
+        if(sub.cyberolym==True):
+            sub.final_cyberolym= cyberolym
+        if(sub.internationalspell==True):
+            sub.final_internationalspell=internationalspell
+        print ("hi")
+        print(request.user.first_name)
+        sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_internationalspell'])
+
+
+        sub.mathsolym = False;
+        sub.scienceolym = False;
+        sub.englisholym = False;
+        sub.reasoningolym = False;
+        sub.cyberolym = False;
+        sub.internationalspell = False;
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
+        """
+
+
+
+
+
+
+    return render(request,'response.html', context)
+
+
+
+
 def subscribe(request):
-    if(request.method=='POST'):
+    print ("hibhai")
+    mode = "TEST"
+
+    if request.method=='POST':
+        print ("hibhaiji")
         student = request.user
         sub=Student.objects.get(pk=student.id)
         mathsolym=request.POST.get('mathsolym', False)
@@ -82,11 +224,68 @@ def subscribe(request):
             sub.cyberolym= cyberolym
         if(sub.internationalspell==False):
             sub.internationalspell=internationalspell
+        print ("hi")
+        print(request.user.first_name)
         sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
 
+        print('lost')
+
+        temp = str(request.user.username)+str('_')+str(request.user.order_number)
+
+        print(temp)
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+
+        sub.order_number = sub.order_number+1
+        sub.save(update_fields=['order_number'])
 
 
-    return render(request,"subscriptions.html")
+
+        postData = {
+                  "appId" : '21845d9c06b478a19ac3040ce54812',
+                  "orderId" : temp,
+                  "orderAmount" : request.POST['orderAmount'],
+                  "orderCurrency" : 'INR',
+                  "orderNote" : "payment",
+                  "customerName" : str(request.user.first_name),
+                  "customerPhone" : str(request.user.number),
+                  "customerEmail" : str(request.user.email),
+                  "returnUrl" : 'http://127.0.0.1:8000/response/',
+                  "notifyUrl" : 'https://github.com/'
+        }
+        print(postData)
+        sortedKeys = sorted(postData)
+        signatureData = ""
+        for key in sortedKeys:
+
+            signatureData += key+postData[key]
+        message = signatureData.encode('utf-8')
+          #get secret key from your config
+        secret = secretKey.encode('utf-8')
+        signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
+        if mode == 'PROD':
+
+            url = "https://www.cashfree.com/checkout/post/submit"
+        else:
+            url = "https://test.cashfree.com/billpay/checkout/post/submit"
+
+        context = {
+            'postData' : postData,
+            'url' : url,
+            'signature' :signature,
+            'mathsolym':mathsolym,
+            'scienceolym':scienceolym,
+            'englisholym':englisholym,
+            'reasoningolym':reasoningolym,
+            'cyberolym':cyberolym,
+            'internationalspell': internationalspell
+
+        }
+
+        return render(request,'request.html', context)
+
+
+    return render(request,"sub.html")
 
 
 def examdates(request):
@@ -284,17 +483,17 @@ def myquiz(request):
         print(quiz_title[2:])
         if str(request.user.standard)==str(quiz_title[0:2]):
 
-            if quiz_title[2:]=='mathsolym' and request.user.mathsolym==True:
+            if quiz_title[2:]=='mathsolym' and request.user.final_mathsolym==True:
                 quizlist.append(quiz)
-            if quiz_title[2:]=='scienceolym' and request.user.scienceolym==True:
+            if quiz_title[2:]=='scienceolym' and request.user.final_scienceolym==True:
                 quizlist.append(quiz)
-            if quiz_title[2:]=='englisholym' and request.user.englisholym==True:
+            if quiz_title[2:]=='englisholym' and request.user.final_englisholym==True:
                 quizlist.append(quiz)
-            if quiz_title[2:]=='internationalspell' and request.user.internationalspell==True:
+            if quiz_title[2:]=='internationalspell' and request.user.final_internationalspell==True:
                 quizlist.append(quiz)
-            if quiz_title[2:]=='cyberolym' and request.user.cyberolym==True:
+            if quiz_title[2:]=='cyberolym' and request.user.final_cyberolym==True:
                 quizlist.append(quiz)
-            if quiz_title[2:]=='reasoningolym' and request.user.reasoningolym==True:
+            if quiz_title[2:]=='reasoningolym' and request.user.final_reasoningolym==True:
                 quizlist.append(quiz)
 
     return render(request, 'quiz_list.html', {"quiz_list": quizlist})
@@ -537,6 +736,34 @@ class QuizTake(TemplateView):
 
 
 def index(request):
+
+    student = request.user
+    print(student)
+    sub=Student.objects.get(pk=student.id)
+    if(sub.mathsolym==True):
+        sub.final_mathsolym=sub.mathsolym
+    if(sub.scienceolym==True):
+        sub.final_scienceolym=sub.scienceolym
+    if(sub.englisholym==True):
+        sub.final_englisholym=sub.englisholym
+    if(sub.reasoningolym==True):
+        sub.final_reasoningolym=sub.reasoningolym
+    if(sub.cyberolym==True):
+        sub.final_cyberolym= sub.cyberolym
+    if(sub.internationalspell==True):
+        sub.final_internationalspell=sub.internationalspell
+    print ("hi")
+    print(request.user.first_name)
+    sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_internationalspell'])
+
+
+    sub.mathsolym = False;
+    sub.scienceolym = False;
+    sub.englisholym = False;
+    sub.reasoningolym = False;
+    sub.cyberolym = False;
+    sub.internationalspell = False;
+    sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
     return render(request, 'index.html', {})
 
 

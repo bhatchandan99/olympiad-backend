@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import QuizListView, CategoriesListView,\
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake, index, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz
+    QuizMarkingDetail, QuizDetailView, QuizTake, index, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz,home,handlerequest,handleresponse
 from django.urls import path
 from django.urls import path
 from . import views
@@ -16,8 +16,10 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path('coordinator/',view =  views.coordinator, name="coordinator"),
                         path('paper/',view =  views.paper, name="paper"),
 
-                #        patterns('',) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+                        path("request/",views.handlerequest, name="request"),
+                        path("response/",views.handleresponse, name="response"),
+                        path("home/",views.home, name="home"),
                         # path("loginhandle/",views.loginhandle, name="loginhandle"),
                         path("loginhandle/",views.login_user, name="loginhandle"),
                         #path("loginhandle/subscriptions/", views.subscriptions, name="subscriptions"),
