@@ -14,53 +14,63 @@
       <input class="form-control" name="orderAmount" placeholder="Enter Order Amount here (Ex. 100)"/>
     </div>
 {% if stud.final_mathsolym %}
-<label for="mathsolymm" >MATHS OLYMPIAD(150)</label>
+
+<label for="mathsolymm" ><p style="color: grey;"> MATHS OLYMPIAD(150)</p></label>
     <input type="checkbox" value="True" id="mathsolymm" name="mathsolymm" disabled="true">
+  
     {% else %}
-    <label for="mathsolym">MATHS OLYMPIAD(150)</label>
+    <label for="mathsolym"><p style="color: black;"><strong>MATHS OLYMPIAD(150)</strong></p></label>
     <input type="checkbox" value="True" id="mathsolym" name="mathsolym">
    {% endif %}
 
 {% if stud.final_englisholym %}
-<label for="englisholymm">ENGLISH OLYMPIAD(150)</label>
+
+<label for="englisholymm"><p style="color: grey;">ENGLISH OLYMPIAD(150)</p></label>
     <input type="checkbox" value="True" id="englisholymm" name="englisholymm" disabled="true">
+   
     {% else %}
-    <label for="englisholym">ENGLISH OLYMPIAD(150)</label>
+    <label for="englisholym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
     <input type="checkbox" value="True" id="englisholym" name="englisholym">
     {% endif %}
 
 {% if stud.final_scienceolym %}
-<label for="scienceolymm">SCIENCE OLYMPIAD(150)</label>
+
+<label for="scienceolymm"><p style="color: grey;">SCIENCE OLYMPIAD(150)</p></label>
     <input type="checkbox" value="True" id="scienceolymm" name="englisholymm" disabled="true" >
     {% else %}
-    <label for="scienceolym">SCIENCE OLYMPIAD(150)</label>
+    <label for="scienceolym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
     <input type="checkbox" value="True" id="scienceolym" name="scienceolym">
     {% endif %}
 
 {% if stud.final_cyberolym %}
-<label for="cyberolymm">CYBER OLYMPIAD(150)</label>
+<label for="cyberolymm"><p style="color: grey;">CYBER OLYMPIAD(150)</p></label>
     <input type="checkbox" value="True" id="cyberolymm" name="cyberolymm" disabled="true">
+   
     {% else %}
-    <label for="cyberolym">CYBER OLYMPIAD(150)</label>
+    <label for="cyberolym"><p style="color: black;"><strong>CYBER OLYMPIAD(150)</strong></p></label>
     <input type="checkbox" value="True" id="cyberolym" name="cyberolym">
     {% endif %}
 
 {% if stud.final_reasoningolym %}
-  <label for="reasoningolymm">REASONONG OLYMPIAD(150)</label>
+
+  <label for="reasoningolymm"><p style="color: grey;">REASONONG OLYMPIAD(150)</p></label>
     <input type="checkbox" value="True" id="reasoningolymm" name="reasoningolymm" disabled="true">
+ 
     {% else %}
-    <label for="reasoningolym">REASONONG OLYMPIAD(150)</label>
+    <label for="reasoningolym"><p style="color: black;"><strong>REASONONG OLYMPIAD(150)</strong></p></label>
     <input type="checkbox" value="True" id="reasoningolym" name="reasoningolym">
     {% endif %}
 
 {% if stud.final_internationalspell %}
-<label for="internationalspelll">INTERNATIONAL SPELL BEE(150)</label>
+
+<label for="internationalspelll"><p style="color: grey;">INTERNATIONAL SPELL BEE(150)</p></label>
     <input type="checkbox" value="True" id="internationalspelll" name="internationalspelll" disabled="true">
+   
     {% else %}
-    <label for="internationalspell">INTERNATIONAL SPELL BEE(150)</label>
+    <label for="internationalspell"><p style="color: black;"> <strong> INTERNATIONAL SPELL BEE(150)</strong></p></label>
     <input type="checkbox" value="True" id="internationalspell" name="internationalspell">
     {% endif %}
-
+<hr>
     <input type="submit" name="submit" value="Submit">
    </form>
 
