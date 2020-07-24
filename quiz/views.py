@@ -286,7 +286,7 @@ def subscribe(request):
         return render(request,'request.html', context)
 
 
-    return render(request,"sub.html",{'stud':stud})
+    return render(request,"sub1.html",{'stud':stud})
 
 
 def examdates(request):
@@ -738,33 +738,35 @@ class QuizTake(TemplateView):
 
 def index(request):
 
-    student = request.user
-    print(student)
-    sub=Student.objects.get(pk=student.id)
-    if(sub.mathsolym==True):
-        sub.final_mathsolym=sub.mathsolym
-    if(sub.scienceolym==True):
-        sub.final_scienceolym=sub.scienceolym
-    if(sub.englisholym==True):
-        sub.final_englisholym=sub.englisholym
-    if(sub.reasoningolym==True):
-        sub.final_reasoningolym=sub.reasoningolym
-    if(sub.cyberolym==True):
-        sub.final_cyberolym= sub.cyberolym
-    if(sub.internationalspell==True):
-        sub.final_internationalspell=sub.internationalspell
-    print ("hi")
-    print(request.user.first_name)
-    sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_internationalspell'])
+    if request.user.is_authenticated:
+
+        student = request.user
+        print(student)
+        sub=Student.objects.get(pk=student.id)
+        if(sub.mathsolym==True):
+            sub.final_mathsolym=sub.mathsolym
+        if(sub.scienceolym==True):
+            sub.final_scienceolym=sub.scienceolym
+        if(sub.englisholym==True):
+            sub.final_englisholym=sub.englisholym
+        if(sub.reasoningolym==True):
+            sub.final_reasoningolym=sub.reasoningolym
+        if(sub.cyberolym==True):
+            sub.final_cyberolym= sub.cyberolym
+        if(sub.internationalspell==True):
+            sub.final_internationalspell=sub.internationalspell
+        print ("hi")
+        print(request.user.first_name)
+        sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_internationalspell'])
 
 
-    sub.mathsolym = False;
-    sub.scienceolym = False;
-    sub.englisholym = False;
-    sub.reasoningolym = False;
-    sub.cyberolym = False;
-    sub.internationalspell = False;
-    sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
+        sub.mathsolym = False;
+        sub.scienceolym = False;
+        sub.englisholym = False;
+        sub.reasoningolym = False;
+        sub.cyberolym = False;
+        sub.internationalspell = False;
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
     return render(request, 'index.html', {})
 
 
