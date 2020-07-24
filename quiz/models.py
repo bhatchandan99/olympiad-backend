@@ -45,6 +45,15 @@ class Student(AbstractUser):
     cyberolym=models.BooleanField(default=False,null=True)
     internationalspell=models.BooleanField(default=False,null= True)
 
+    order_number = models.IntegerField(null=True, default=0)
+
+    final_mathsolym=models.BooleanField(default=False,null=True)
+    final_scienceolym=models.BooleanField(default=False,null=True)
+    final_englisholym=models.BooleanField(default=False,null=True)
+    final_reasoningolym=models.BooleanField(default=False,null=True)
+    final_cyberolym=models.BooleanField(default=False,null=True)
+    final_internationalspell=models.BooleanField(default=False,null= True)
+
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -82,6 +91,16 @@ class Subscription(models.Model):
     cyberolym=models.BooleanField(default=False,null=True)
     internationalspell=models.BooleanField(default=False,null= True)
 
+    final_mathsolym=models.BooleanField(default=False,null=True)
+    final_scienceolym=models.BooleanField(default=False,null=True)
+    final_englisholym=models.BooleanField(default=False,null=True)
+    final_reasoningolym=models.BooleanField(default=False,null=True)
+    final_cyberolym=models.BooleanField(default=False,null=True)
+    final_internationalspell=models.BooleanField(default=False,null= True)
+
+
+
+
     def __str__(self):
         return str(self.id)
 
@@ -118,8 +137,8 @@ class CategoryManager(models.Manager):
         return new_category
 
 
-	
-	
+
+
 
 class Category(models.Model):
 
@@ -356,7 +375,7 @@ class Progress(models.Model):
 
             # swap old score for the new one
             self.score = self.score.replace(match.group(), new_score)
-            
+
             self.save()
 
         else:
@@ -518,7 +537,7 @@ class Sitting(models.Model):
         dividend = float(self.current_score)
         divisor = len(self._question_ids())
         if divisor < 1:
-            return 0           
+            return 0
 
         if dividend > divisor:
             return 100
@@ -594,9 +613,9 @@ class Sitting(models.Model):
 
         # for que in question_order:
         #     lst.append(que)
-        
 
-            
+
+
 
 
         return questions
