@@ -286,7 +286,7 @@ def subscribe(request):
         return render(request,'request.html', context)
 
 
-    return render(request,"sub1.html",{'stud':stud})
+    return render(request,"subscriptions1.html",{'stud':stud})
 
 
 def examdates(request):
