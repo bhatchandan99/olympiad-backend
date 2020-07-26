@@ -64,13 +64,13 @@ my_ques= []
 import hashlib
 import hmac
 import base64
+
+
 def home(request):
-
-
-
-
-
     return render(request,'start.html')
+
+def profile(request):
+    return render(request,'dashboard.html')
 
 secretKey = "9be8e477e0c70b0b63b654e2e95e2d2219e318ee"
 #@app.route('/request', methods=["POST"])
@@ -326,6 +326,30 @@ def change_password(request):
 
     return render(request,'subscriptions1.html')
 
+
+def update_student(request):
+    student = request.user
+    print(student)
+    sub=Student.objects.get(pk=student.id)
+    if(request.method=="POST"):
+
+        print(request.POST)
+
+        sub.country =request.POST['country']
+        sub.address = request.POST['address']
+        sub.street= request.POST['street']
+        sub.country= request.POST['country']
+        sub.state=request.POST['state']
+        sub.school=request.POST['school']
+        sub.school_state = request.POST['school_state']
+        sub.school_address=request.POST['school_address']
+        sub.school_city=request.POST['school_city']
+        sub.pincode = request.POST['pincode']
+        sub.number=request.POST['number']
+
+        sub.save(update_fields=['country','address',"street",'state','school','school_state',"school_address",'school_city','pincode','number'])
+
+    return render(request,"subscriptions1.html")
 
 
 
