@@ -22,6 +22,14 @@
 
 
                       <!-- hero -->
+
+                     {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong>
+
+                  </div>
+                  {% endfor %}
+
                       <dsectioniv class="container-fluid p-0" >
                         <div class="site-content" style="height: 450px; background-image: url('Stock/download (1).jpg');">
                           <div class="d-flex justify-content-center" >
@@ -103,39 +111,45 @@
                             <h1 class="register-title">Change Password</h1>
                           </center><br>
 
-                          
-
+                          <form action="change-password/" method="POST">
+                          {% csrf_token %}
                           <div class="row">
                             <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
                             <div class="group col-md-11">
-                              <input type="password" required>
+              
                               <span class="highlight"></span>
                               <span class="bar"></span>
-                              <label class="form-label">Old Password *</label>
+                              
+                              {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
+                              <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
                             </div >
                           </div>
 
                           <div class="row">
                             <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
                             <div class="group col-md-5">
-                              <input type="password" required>
+                            
                               <span class="highlight"></span>
                               <span class="bar"></span>
-                              <label class="form-label">New Password *</label>
+                              {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
+                              <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
                             </div >
                             <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
                             <div class="group col-md-5">
-                              <input type="password" required>
+                              
                               <span class="highlight"></span>
                               <span class="bar"></span>
-                              <label class="form-label">Confirm Password *</label>
+                              {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
+                              <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
+
                             </div >
                             </div>
 
                             <center>
-                              <button class="review-btn">UPDATE </button>
+                              <input type="submit" value='UPDATE' class="review-btn">
                               </center>
                         </div>
+                        </form>
 
 
 

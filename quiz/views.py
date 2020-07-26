@@ -295,11 +295,24 @@ def examdates(request):
 def faqs(request):
     return render(request,"faqs.html")
 
+def change_password(request):
+    if(request.method=="POST"):
+        student=request.user
+        oldpass=request.POST['oldpass']
+        newpass=request.POST['newpass']
+        newpass2=request.POST['newpass2']
+
+        if(newpass==newpass2):
+            student.set_password(newpass)
+            student.save(update_fields=['password'])
+            messages.success(request, 'Password changed successful')
+    return render(request,'subscriptions1.html')
+
+
+
 
 def contact(request):
-
     if(request.method=='POST'):
-
         name=request.POST['name']
         email=request.POST['email']
         phonenum=request.POST['phonenum']
