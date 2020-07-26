@@ -7,6 +7,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+# from django.contrib.auth.views import password_reset,password_reset_done
 
 
 urlpatterns = [         path('applyindividual/',view =  views.register, name="applyindividual"),
@@ -16,7 +17,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path('coordinator/',view =  views.coordinator, name="coordinator"),
                         path('paper/',view =  views.paper, name="paper"),
 
-
+                        # path('reset-passowrd/', views=views.password_reset,name="reset_password"),
+                        # path('reset_password_done/', views=views.password_reset_done, name="reset_password_done"),
                         path("request/",views.handlerequest, name="request"),
                         path("response/",views.handleresponse, name="response"),
                         path("home/",views.home, name="home"),
