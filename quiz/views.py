@@ -306,6 +306,9 @@ def change_password(request):
             student.set_password(newpass)
             student.save(update_fields=['password'])
             messages.success(request, 'Password changed successful')
+        else:
+            messages.error(request, 'Please enter password again')
+
     return render(request,'subscriptions1.html')
 
 
