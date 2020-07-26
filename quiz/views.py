@@ -295,6 +295,10 @@ def examdates(request):
 def faqs(request):
     return render(request,"faqs.html")
 
+
+
+from django.contrib.auth.hashers import check_password
+
 def change_password(request):
     if(request.method=="POST"):
         student=request.user
@@ -302,12 +306,23 @@ def change_password(request):
         newpass=request.POST['newpass']
         newpass2=request.POST['newpass2']
 
+        print( request.user.password)
+        matchcheck= check_password(oldpass, request.user.password)
+        print(matchcheck)
+        print(oldpass)
+
         if(newpass==newpass2):
-            student.set_password(newpass)
-            student.save(update_fields=['password'])
-            messages.success(request, 'Password changed successful')
+
+            if matchcheck:
+
+                student.set_password(newpass)
+                student.save(update_fields=['password'])
+                messages.success(request, 'Password changed successful')
+            else:
+                messages.error(request, 'Wrong user password ')
+
         else:
-            messages.error(request, 'Please enter password again')
+            messages.error(request, 'Password entered do not match')
 
     return render(request,'subscriptions1.html')
 
