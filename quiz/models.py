@@ -59,7 +59,7 @@ class Student(AbstractUser):
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
-        return str(self.id)
+        return str(self.email)
 
 class Contact(models.Model):
     id=models.AutoField(primary_key=True)
