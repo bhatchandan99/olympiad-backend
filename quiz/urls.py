@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import QuizListView, CategoriesListView,\
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake, index,profile, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz,home,handlerequest,handleresponse
+    QuizMarkingDetail, QuizDetailView, QuizTake,change_password,uploadfiles, index,profile, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz,home,handlerequest,handleresponse
 from django.urls import path
 from django.urls import path
 from . import views
@@ -16,8 +16,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path('faqs/',view =  views.faqs, name="faqs"),
                         path('coordinator/',view =  views.coordinator, name="coordinator"),
                         path('paper/',view =  views.paper, name="paper"),
-                        path('subscriptions/profile/',view =  views.profile, name="profile"),
-                        path('subscriptions/change-password/' ,view=views.change_password, name="change_password"),
+                        path('profile/',view =  views.profile, name="profile"),
+                        path('change_password/' ,view=views.change_password, name="change_password"),
                         path('loginhandle/reset_password/', auth_views.PasswordResetView.as_view(template_name="password_reset.html"),name="reset_password"),
                         path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="password_reset_sent.html"), name="password_reset_done"),
                         path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_form.html"), name="password_reset_confirm"),
@@ -25,6 +25,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("request/",views.handlerequest, name="request"),
                         path("response/",views.handleresponse, name="response"),
                         path("home/",views.home, name="home"),
+                        path("uploadfiles/",views.uploadfiles, name="uploadfiles"),
+
                         path("update_student/",views.update_student, name="update_student"),
 
                         # path("loginhandle/",views.loginhandle, name="loginhandle"),

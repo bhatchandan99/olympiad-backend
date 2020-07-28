@@ -286,7 +286,7 @@ def subscribe(request):
         return render(request,'request.html', context)
 
 
-    return render(request,"subscriptions1.html",{'stud':stud})
+    return render(request,"subscriptions2.html",{'stud':stud})
 
 
 def examdates(request):
@@ -324,7 +324,7 @@ def change_password(request):
         else:
             messages.error(request, 'Password entered do not match')
 
-    return render(request,'subscriptions1.html')
+    return render(request,'changepassword.html')
 
 
 def update_student(request):
@@ -349,7 +349,26 @@ def update_student(request):
 
         sub.save(update_fields=['country','address',"street",'state','school','school_state',"school_address",'school_city','pincode','number'])
 
-    return render(request,"subscriptions1.html")
+    return render(request,"subscriptions2.html")
+
+@csrf_exempt
+def uploadfiles(request):
+
+
+    if(request.method=='POST'):
+        student = request.user
+        print(student)
+        sub=Student.objects.get(pk=student.id)
+
+        sub.idproof = request.FILES['idproof']
+        sub.marksheet = request.FILES['marksheet']
+        sub.photograph = request.FILES['photograph']
+
+        sub.save(update_fields=['marksheet','idproof','photograph'])
+
+    return render(request,"dashboard.html")
+
+
 
 
 

@@ -99,12 +99,15 @@
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Support
                             </button>
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="subscriptions.html">Subscriptions</a>
                               <a class="dropdown-item" href="#" onclick="show('invoice')">Invoice</a>
                               <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
                             </div>
                           </div>
+
+
                           <a href="" class="menu-link">LOGOUT</a>
                     </section>
                     <br><br><br>
@@ -261,50 +264,61 @@
 
                         </div>
                           <center>
-                          <input type="submit" value='UPDAsTE' class="review-btn">
+                          <input type="submit" value='UPDATE' class="review-btn">
                           </center>
+
+                          </form>
                         </div>
 
-                        </form>
 
 
 
-                        <div class="container hide" id="changepassword">
-                          <center><br>
-                            <h1 class="register-title">Change Password</h1>
-                          </center><br>
 
-                          <div class="row">
-                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                            <div class="group col-md-11">
-                              <input type="password" required>
-                              <span class="highlight"></span>
-                              <span class="bar"></span>
-                              <label class="form-label">Old Password *</label>
-                            </div >
-                          </div>
+                                                <div class="container hide" id="changepassword">
+                                                  <center><br>
+                                                    <h1 class="register-title">Change Password</h1>
+                                                  </center><br>
 
-                          <div class="row">
-                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                            <div class="group col-md-5">
-                              <input type="password" required>
-                              <span class="highlight"></span>
-                              <span class="bar"></span>
-                              <label class="form-label">New Password *</label>
-                            </div >
-                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                            <div class="group col-md-5">
-                              <input type="password" required>
-                              <span class="highlight"></span>
-                              <span class="bar"></span>
-                              <label class="form-label">Confirm Password *</label>
-                            </div >
-                            </div>
+                                                  <form action="change-password/" method="POST">
+                                                  {% csrf_token %}
+                                                  <div class="row">
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-11">
 
-                            <center>
-                              <button class="review-btn">UPDATE </button>
-                              </center>
-                        </div>
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+
+                                                      {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
+                                                      <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
+                                                    </div >
+                                                  </div>
+
+                                                  <div class="row">
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-5">
+
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+                                                      {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
+                                                      <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
+                                                    </div >
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-5">
+
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+                                                      {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
+                                                      <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
+
+                                                    </div >
+                                                    </div>
+
+                                                    <center>
+                                                      <input type="submit" value='UPDATE' class="review-btn">
+                                                      </center>
+                                                      </form>
+                                                </div>
+
 
 
 
@@ -314,40 +328,83 @@
                           </center><br>
 
                           <ol>
+
+
+                            {% if request.user.marksheet %}
                             <li>
-                              Make sure you submit the required documents before the exam.
+                              <strong>Your Marksheet has been submitted.</strong>
+
                             </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Marksheet has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+
+                            {% if request.user.idproof %}
+                            <li>
+                          <strong>Your Id Proof has been submitted.</strong>
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Id has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+                            {% if request.user.idproof %}
+                            <li>
+                              <strong>Your Photograph has been submitted </strong>
+
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Photograph has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+
+
+
+
+
                             <li>
                               Only jpeg/jpg and png images are allowed with a maximum size of 200 KB. In case the file size is more than 200 KB, <a href="https://compressimage.toolur.com/">click here</a> to compress image. (supported format – jpeg/jpg and png)
                             </li>
+                            <li>
+
+
+
+                            </li>
                           </ol><br>
-                          <form action="" method="POST">
+                          <form action="{% url 'uploadfiles' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                               <div class="row mt-3">
                             <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
-                            <div class="col-md-4"><input type="file"></div>
+                            <div class="col-md-4"><input type="file" name= "idproof"></div>
                             <div class="col-md-4">
                                   <embed src="1.jpg" width="100%" height="auto" />
                             </div>
                           </div>
+
+
                           <div class="row mt-3">
                           <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
-                          <div class="col-md-4"><input type="file"></div>
+                          <div class="col-md-4"><input type="file" name = "marksheet"></div>
                           <div class="col-md-4">
                                 <embed src="1.jpg" width="100%" height="auto" />
                           </div>
                         </div>
                         <div class="row mt-3">
                         <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
-                        <div class="col-md-4"><input type="file"></div>
+                        <div class="col-md-4"><input type="file" name = "photograph"></div>
                         <div class="col-md-4">
                               <embed src="1.jpg" width="100%" height="auto" />
                         </div>
                       </div>
 
                         <center>
-                          <button class="review-btn">UPDATE </button>
+                          <input type="submit" value='Upload' class="review-btn">
                           </center>
                         </form>
+
                         </div>
 
 

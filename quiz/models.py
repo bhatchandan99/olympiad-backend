@@ -54,12 +54,22 @@ class Student(AbstractUser):
     final_cyberolym=models.BooleanField(default=False,null=True)
     final_internationalspell=models.BooleanField(default=False,null= True)
 
+    idproof = models.ImageField(upload_to='idproof',blank=True,null=True,)
+
+    marksheet = models.ImageField(upload_to='marksheet',
+                               blank=True,
+                               null=True,
+                               )
+    photograph = models.ImageField(upload_to='photo',
+                               blank=True,
+                               null=True,
+                               )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
-        return str(self.id)
+        return str(str(self.id)+":"+self.username)
 
 class Contact(models.Model):
     id=models.AutoField(primary_key=True)
@@ -102,7 +112,7 @@ class Subscription(models.Model):
 
 
     def __str__(self):
-        return str(self.id)
+        return str(self.username+" "+self.email)
 
 class School_register(models.Model):
     id=models.AutoField(primary_key=True)
