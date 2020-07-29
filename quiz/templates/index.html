@@ -4,19 +4,22 @@
 {% load static %}
 <section style="padding-top: 0; margin-bottom: 0">
 
-  <div id="div_left" class="d-none d-lg-block " >
+  <!-- <div id="div_left" class="d-none d-lg-block " > -->
     <div class="container-fluid p-0">
       <div class="site-content" style="height: 640px;">
         <div class="d-flex justify-content-center" >
           <div class="d-flex flex-column" style="padding-top: 80px">
-            <h1 class="site-title" style="text-align: center;">International Olympiad Foundation
+            <h1 class="site-title" style="text-align: center;">International Student Olympiad Foundation
             </h1>
             <p class="site-desc"></p>
 
             <div class="d-flex flex-row" style="display: flex; justify-content: center;">
-              <!-- <a href="contact.html" class="btn fancy-btn fancy-active " style="align-content: center;">Login</a> -->
-              <button type="button" class="btn fancy-btn fancy-active " data-toggle="modal" data-target="#exampleModalLong">Login</button>
 
+              {% if  not request.user.is_authenticated %}
+
+              <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal"  data-target="#exampleModalLong">Login</a>
+              <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal" data-target="#exampleModala">Register</button>
+              {% endif %}
               <!-- Modal -->
               <div class="modal fade bd-example-modal-sm" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -28,14 +31,16 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form action="index.html" class="login-form">
+                      <form action="{% url 'loginhandle' %}" class="login-form" method= "post">
+
+                        {% csrf_token %}
                         <div class="txtb">
-                          <input type="text" placeholder="Username">
+                          <input type="text" name = "username" placeholder="Username">
                           <span data-placeholder="Username"></span>
                         </div>
 
                         <div class="txtb">
-                          <input type="password" placeholder="Password">
+                          <input type="password" name = "password" placeholder="Password">
                           <span data-placeholder="Password"></span>
                         </div>
 
@@ -45,110 +50,41 @@
                         </div>
 
 
-                      </form>
+
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Login</button>
+                      <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                   </div>
+                    </form>
                 </div>
               </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+<!-- <button type="button" class="btn fancy-btn" data-toggle="modal" data-target="#exampleModal">
+Register
+</button>
+
+Modal -->
+<div class="modal fade bd-example-modal-sm" id="exampleModala" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal-dialog modal-sm" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLongTitle">Register Individually / For School</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
 </div>
-
-<!-- Hero right -->
-  <div class="container-fluid p-0" id="div-right" >
-    <div class="site-content" style="height: 640px; ">
-      <div class="d-flex justify-content-center" >
-        <div class="d-flex flex-column justify-content-left justify-content-md-start d-none d-lg-block" style="padding-top: 60px">
-          <div class="container" id="form-group" >
-            <ul class="nav nav-tabs" >
-              <li class="nav-item">
-                <a class="nav-link active" href="#" style="font-size:20px; padding-left: 4px;padding-right: 4px">Apply Individually</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="regsiter/" style="font-size:20px; border: 1px solid white;padding-left: 4px;padding-right: 4px" >Register Your School</a>
-              </li>
-
-            </ul>
-            <form>
-              <div class="form-group row" style="padding-top: 13px">
-                <label for="staticEmail" class="col-sm-2 col-form-label"><i class="fa fa-user-circle d-none d-lg-block" style="font-size:30px; color: white; text-align: center;"></i></label>
-                <div class="col-sm-10">
-
-                  <input type="password" class="form-control" id="inputStudentName" placeholder="Student Name">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label"><i class="fa fa-cube d-none d-lg-block" style="font-size:30px; color: white; text-align: center;"></i></label>
-                <div class="form-group col-md-10">
-                  <select id="inputState" class="form-control">
-                    <option selected>Select Class</option>
-                    <option>Class 1 (2020-2021)</option>
-                    <option>Class 2 (2020-2021) / Class 1 (2019-2020)</option>
-                    <option>Class 3 (2020-2021) / Class 2 (2019-2020)</option>
-                    <option>Class 4 (2020-2021) / Class 3 (2019-2020)</option>
-                    <option>Class 5 (2020-2021) / Class 4 (2019-2020) </option>
-                    <option>Class 6 (2020-2021) / Class 5 (2019-2020)</option>
-                    <option>Class 7 (2020-2021) / Class 6 (2019-2020)</option>
-                    <option>Class 8 (2020-2021) / Class 7 (2019-2020)</option>
-                    <option>Class 9 (2020-2021) / Class 8 (2019-2020)</option>
-                    <option>Class 10 (2020-2021) / Class 9 (2019-2020)</option>
-                    <option>Class 11 (2020-2021) / Class 10 (2019-2020) </option>
-                  </select>
-                </div>
-
-              </div>
-              <div class="form-group row" >
-                <label  class="col-sm-2 col-form-label"><i class="fa fa-id-card d-none d-lg-block" style="font-size:30px; color: white; text-align: center;"></i></label>
-                <div class="col-sm-10">
-
-                  <input class="form-control" id="inputSchoolName" placeholder="School Name">
-                </div>
-              </div>
-              <div class="form-group row" >
-                <label  class="col-sm-2 col-form-label"><i class="fa fa-envelope d-none d-lg-block" style="font-size:30px; color: white; text-align: center;"></i></label>
-                <div class="col-sm-10">
-
-                  <input class="form-control" id="inputEmail" placeholder="E-mail">
-                </div>
-              </div>
-              <div class="form-group row" >
-                <label  class="col-sm-2 col-form-label"><i class="fa fa-phone d-none d-lg-block" style="font-size:30px; color: white; text-align: center;"></i></label>
-                <div class="col-sm-10">
-
-                  <input class="form-control" id="inputContact" placeholder="Contact Number">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label"><i class="fa fa-cube d-none d-lg-block" style="font-size:30px;color: white; text-align: center;"></i></label>
-                <div class="form-group col-md-10">
-                  <select id="inputState" class="form-control">
-                    <option selected>Select Country</option>
-                    <option>India (+91)</option>
-                    <option>Algeria (+213)</option>
-                    <option>Andorra (+376)</option>
-                    <option>Angola (+244)</option>
-                    <option>Anguilla (+1264)</option>
-                    <option>Antigua & Barbuda (+1268)</option>
-                    <option>Argentina (+54)</option>
-                  </select>
-                </div>
-                <!--
-<div style="text-align:center;"><button type="button" class="btn btn-danger" style=" margin: 0 auto;
-  display: block;">Danger</button></div> -->
-  <button type="button" class="btn fancy-btn fancy-active " onclick="location.href='profile.html'" style= "margin: 0 auto;
-  display: block;">Register</button>
-
+<div class="modal-body">
+<a class="btn fancy-btn fancy-active" href="{% url 'applyindividual' %}">
+Individually
+</a><a class="btn fancy-btn fancy-active"  href="{% url 'applyschool' %}">
+School
+</a>
 </div>
-</form>
-
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 </div>
 </div>
 </div>
@@ -271,8 +207,77 @@
 
     </section>
     <!-- =========================================================================================================================== -->
+  </section>
 
+  {% if user.is_authenticated %}
+  {% else %}
+  <section class="steps">
+    <div class="container-fluid">
+      <div class="row">
+      <div class="col-md-3">
+        <div class="step">
+        <center>
+        <div class="step-count">
+          1
+        </div>
+      </center>
+        <div class="step-content">
+          After registration and payment, go to the Dashboard and book your preferred slot
+        </div>
+      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="step">
+        <center>
+          <div class="step-count">
+            2
+          </div>
+        </center>
+        <div class="step-content">
+          Go to My Details and click Submit Documents. Then upload all the required documents
+        </div>
+      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="step">
+        <center>
+          <div class="step-count">
+            3
+          </div>
+        </center>
+        <div class="step-content">
+          To give Mock Test, go to Take Exam and click Mock Test. You can check the performance in the Results section.
+        </div>
+      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="step">
+        <center>
+          <div class="step-count">
+            4
+          </div>
+        </center>
+        <div class="step-content">
+          To give exam as per your booked slot, go to Take Exam and click Main Exam. You can check the results in the Results section.
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="step-go col-md-4">
+        <center><a href="{% url 'applyindividual' %}" class="step-btn">
+          Start Now
+        </a>
+      </center>
 
+      </div>
+    </div>
+
+    </div>
+
+  </section>
+{% endif %}
 
     <!--  Demos -->
     <section id="demos" style="padding: 0;  text-align: center;" >
@@ -340,6 +345,8 @@
           </div>
       </div>
         </div>
+    </section>
+
 {% endblock %}
 {% block js %}
         <script>

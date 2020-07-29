@@ -67,7 +67,7 @@ class MCQuestionAdmin(admin.ModelAdmin):
     list_display = ('content', 'category', )
     list_filter = ('category',)
     fields = ('content', 'category',
-              'figure', 'quiz', 'explanation', 'answer_order')
+              'figure', 'img1','img2','img3','img4','quiz', 'explanation', 'answer_order')
 
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
@@ -98,4 +98,3 @@ admin.site.register(Coordinator)
 admin.site.register(School_register)
 admin.site.register(Subscription)
 admin.site.register(Paper)
-
