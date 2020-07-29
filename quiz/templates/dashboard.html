@@ -99,12 +99,15 @@
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Support
                             </button>
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="subscriptions.html">Subscriptions</a>
                               <a class="dropdown-item" href="#" onclick="show('invoice')">Invoice</a>
                               <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
                             </div>
                           </div>
+
+
                           <a href="" class="menu-link">LOGOUT</a>
                     </section>
                     <br><br><br>
@@ -268,56 +271,59 @@
                           <center>
                           <input type="submit" value='UPDATE' class="review-btn">
                           </center>
+
+                          </form>
                         </div>
 
-                        </form>
 
 
 
-                        <div class="container hide" id="changepassword">
-                          <center><br>
-                            <h1 class="register-title">Change Password</h1>
-                          </center><br>
 
-                          <form action="change-password/" method="POST">
-                          {% csrf_token %}
-                          <div class="row">
-                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                            <div class="group col-md-11">
+                                                <div class="container hide" id="changepassword">
+                                                  <center><br>
+                                                    <h1 class="register-title">Change Password</h1>
+                                                  </center><br>
 
-                              <span class="highlight"></span>
-                              <span class="bar"></span>
+                                                  <form action="change-password/" method="POST">
+                                                  {% csrf_token %}
+                                                  <div class="row">
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-11">
 
-                              {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
-                              <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
-                            </div >
-                          </div>
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
 
-                          <div class="row">
-                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                            <div class="group col-md-5">
+                                                      {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
+                                                      <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
+                                                    </div >
+                                                  </div>
 
-                              <span class="highlight"></span>
-                              <span class="bar"></span>
-                              {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
-                              <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
-                            </div >
-                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                            <div class="group col-md-5">
+                                                  <div class="row">
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-5">
 
-                              <span class="highlight"></span>
-                              <span class="bar"></span>
-                              {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
-                              <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+                                                      {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
+                                                      <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
+                                                    </div >
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-5">
 
-                            </div >
-                            </div>
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+                                                      {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
+                                                      <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
 
-                            <center>
-                              <input type="submit" value='UPDATE' class="review-btn">
-                              </center>
-                        </div>
-                        </form>
+                                                    </div >
+                                                    </div>
+
+                                                    <center>
+                                                      <input type="submit" value='UPDATE' class="review-btn">
+                                                      </center>
+                                                      </form>
+                                                </div>
+
 
 
 
@@ -327,28 +333,67 @@
                           </center><br>
 
                           <ol>
+
+
+                            {% if request.user.marksheet %}
                             <li>
-                              Make sure you submit the required documents before the exam.
+                              <strong>Your Marksheet has been submitted.</strong>
+
                             </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Marksheet has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+
+                            {% if request.user.idproof %}
+                            <li>
+                          <strong>Your Id Proof has been submitted.</strong>
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Id has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+                            {% if request.user.idproof %}
+                            <li>
+                              <strong>Your Photograph has been submitted </strong>
+
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Photograph has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+
+
+
+
+
                             <li>
                               Only jpeg/jpg and png images are allowed with a maximum size of 200 KB. In case the file size is more than 200 KB, <a href="https://compressimage.toolur.com/">click here</a> to compress image. (supported format – jpeg/jpg and png)
                             </li>
+                            <li>
+
+
+
+                            </li>
                           </ol><br>
-                          <form action="{% url "doc_upload" %}" method="POST" enctype="multipart/form-data">
+                          <form action="{% url 'uploadfiles' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                               <div class="row mt-3">
-                             
-                            <div class="col-md-4">School ID Proof (jpg and png formats accepted):</div>
-                            <div class="col-md-4"><input type="file" name="school_id" id="school_id"></div>
+                            <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
+                            <div class="col-md-4"><input type="file" name= "idproof"></div>
                             <div class="col-md-4">
                                {% comment %} <input type="file" name="school_id" id="school_id"> {% endcomment %}
                                   {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
                             </div>
                           </div>
-                          
+
+
                           <div class="row mt-3">
-                          <div class="col-md-4">Previous Year Marksheet ( jpg and png formats accepted):</div>
-                          <div class="col-md-4"><input type="file" name="prev_marksheet" id="prev_marksheet"></div>
+                          <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
+                          <div class="col-md-4"><input type="file" name = "marksheet"></div>
                           <div class="col-md-4">
                           
                                 {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
@@ -356,7 +401,7 @@
                         </div>
                         <div class="row mt-3">
                         <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
-                        <div class="col-md-4"><input type="file" name="photo" id="photo"></div>
+                        <div class="col-md-4"><input type="file" name = "photograph"></div>
                         <div class="col-md-4">
                         
                               {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
@@ -364,10 +409,10 @@
                       </div>
 
                         <center>
-                        <input type="submit" name="update" id="update" value="UPDATE">
-                          {% comment %} <button class="review-btn">UPDATE </button> {% endcomment %}
+                          <input type="submit" value='Upload' class="review-btn">
                           </center>
-                       
+                        </form>
+
                         </div>
                          </form>
 

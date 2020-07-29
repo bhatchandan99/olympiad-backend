@@ -237,7 +237,7 @@
 
   {% if i %}
 
-
+<p>{{forloop.counter}}</p>
   {% comment %} <p>
     <small class="muted">{% trans "Question category" %}:</small>
     <strong>{{ question.category }}</strong>
@@ -277,15 +277,38 @@
     {% comment %} <p class="question lead" style="font-size: 2rem;">{{ question.content }}</p> {% endcomment %}
 
      {% if i.question.figure %}
-     {{ i.question.figure }}
-        <img src="{{ i.question.figure.url }}" alt="{{ i.question.content }}" />
-
+     {% comment %} {{ i.question.figure }} {% endcomment %}
+        <img src="{{ i.question.figure.url }}" />
+          <br>
         {% endif %}
+        {% if i.question.img1 %}
+        <img src="{{ i.question.img1.url }}" />
+        {% endif %}
+
+        {% if i.question.img2 %}
+        <img src="{{ i.question.img2.url }}" />
+        <br>
+    
+        {% endif %}
+        
+        {% if i.question.img3 %}
+        <img src="{{ i.question.img3.url }}" />
+        <br>
+    
+        {% endif %}
+
+        {% if i.question.img4 %}
+        <img src="{{ i.question.img4.url }}" />
+        <br>
+        
+        {% endif %}
+
       <div class="radio">
       <ul class="list-unstyled">{% csrf_token %}
-
-    <label for="{{i.question}}">{{i.question}} </label>
-
+<p></p>
+    <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
+<br>
+{% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
     {% for ans in i.answers %}
     <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name='{{ i.question.id }}' onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
 

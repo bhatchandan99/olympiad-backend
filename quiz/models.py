@@ -53,15 +53,23 @@ class Student(AbstractUser):
     final_reasoningolym=models.BooleanField(default=False,null=True)
     final_cyberolym=models.BooleanField(default=False,null=True)
     final_internationalspell=models.BooleanField(default=False,null= True)
-    school_id=models.ImageField(upload_to='school_id/',max_length=255,null=True)
-    prev_marksheet=models.ImageField(upload_to='previous_marksheet/',max_length=255,null=True)
-    photo=models.ImageField(upload_to='photograph/',max_length=255,null=True)
+
+    idproof = models.ImageField(upload_to='idproof',blank=True,null=True,)
+
+    marksheet = models.ImageField(upload_to='marksheet',
+                               blank=True,
+                               null=True,
+                               )
+    photograph = models.ImageField(upload_to='photo',
+                               blank=True,
+                               null=True,
+                               )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
-        return str(self.email)
+        return str(str(self.id)+":"+self.username)
 
 class Contact(models.Model):
     id=models.AutoField(primary_key=True)
@@ -104,7 +112,7 @@ class Subscription(models.Model):
 
 
     def __str__(self):
-        return str(self.id)
+        return str(self.username+" "+self.email)
 
 class School_register(models.Model):
     id=models.AutoField(primary_key=True)
@@ -661,15 +669,11 @@ class Question(models.Model):
                                blank=True,
                                null=True,
                                verbose_name=_("Figure"))
-
-    # random=models.IntegerField(null=True)
-
-
-    img1=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image1"))
-    img2=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image2"))
-    img3=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image3"))
-    img4=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image4"))
-
+    img1=models.ImageField(upload_to="option1/",null=True,verbose_name=_("Image1"))
+    img2=models.ImageField(upload_to="option2/",null=True,verbose_name=_("Image2"))
+    img3=models.ImageField(upload_to="option3/",null=True,verbose_name=_("Image3"))
+    img4=models.ImageField(upload_to="option4/",null=True,verbose_name=_("Image4"))
+                             
     content = models.CharField(max_length=1000,
                                blank=False,
                                help_text=_("Enter the question text that "
