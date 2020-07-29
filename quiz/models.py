@@ -662,6 +662,14 @@ class Question(models.Model):
                                null=True,
                                verbose_name=_("Figure"))
 
+    # random=models.IntegerField(null=True)
+
+
+    img1=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image1"))
+    img2=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image2"))
+    img3=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image3"))
+    img4=models.ImageField(upload_to="option/",null=True,verbose_name=_("Image4"))
+
     content = models.CharField(max_length=1000,
                                blank=False,
                                help_text=_("Enter the question text that "
@@ -674,8 +682,11 @@ class Question(models.Model):
                                                "after the question has "
                                                "been answered."),
                                    verbose_name=_('Explanation'))
+    
+    
 
     objects = InheritanceManager()
+    
 
     class Meta:
         verbose_name = _("Question")
