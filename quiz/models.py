@@ -53,7 +53,9 @@ class Student(AbstractUser):
     final_reasoningolym=models.BooleanField(default=False,null=True)
     final_cyberolym=models.BooleanField(default=False,null=True)
     final_internationalspell=models.BooleanField(default=False,null= True)
-
+    school_id=models.ImageField(upload_to='school_id/',max_length=255,null=True)
+    prev_marksheet=models.ImageField(upload_to='previous_marksheet/',max_length=255,null=True)
+    photo=models.ImageField(upload_to='photograph/',max_length=255,null=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

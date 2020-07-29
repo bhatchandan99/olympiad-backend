@@ -64,13 +64,13 @@ my_ques= []
 import hashlib
 import hmac
 import base64
+
+
 def home(request):
-
-
-
-
-
     return render(request,'start.html')
+
+def profile(request):
+    return render(request,'dashboard.html')
 
 secretKey = "9be8e477e0c70b0b63b654e2e95e2d2219e318ee"
 #@app.route('/request', methods=["POST"])
@@ -295,6 +295,23 @@ def examdates(request):
 def faqs(request):
     return render(request,"faqs.html")
 
+def doc_upload(request):
+    print(')))))))))))))))))))))))')
+    if(request.method=='POST'):
+        stud=request.user
+        stud.school_id=request.POST['school_id']
+        print("*******************")
+        print(request.POST)
+        stud.prev_marksheet=request.POST['prev_marksheet']
+        stud.photo=request.POST['photo']
+        stud.save(update_fields=['school_id','prev_marksheet','photo'])
+        messages.success(request, 'Documents successfully uploaded')
+    return render(request,"dashboard.html")
+        
+
+
+from django.contrib.auth.hashers import check_password
+
 def change_password(request):
     if(request.method=="POST"):
         student=request.user
@@ -302,15 +319,50 @@ def change_password(request):
         newpass=request.POST['newpass']
         newpass2=request.POST['newpass2']
 
+        print( request.user.password)
+        matchcheck= check_password(oldpass, request.user.password)
+        print(matchcheck)
+        print(oldpass)
+
         if(newpass==newpass2):
-            student.set_password(newpass)
-            student.save(update_fields=['password'])
-            messages.success(request, 'Password changed successful')
+
+            if matchcheck:
+
+                student.set_password(newpass)
+                student.save(update_fields=['password'])
+                messages.success(request, 'Password changed successful')
+            else:
+                messages.error(request, 'Wrong user password ')
+
         else:
-            messages.error(request, 'Please enter password again')
+            messages.error(request, 'Password entered do not match')
 
-    return render(request,'subscriptions1.html')
+    return render(request,'dashboard.html')
 
+
+def update_student(request):
+    student = request.user
+    print(student)
+    sub=Student.objects.get(pk=student.id)
+    if(request.method=="POST"):
+
+        print(request.POST)
+
+        sub.country =request.POST['country']
+        sub.address = request.POST['address']
+        sub.street= request.POST['street']
+        sub.country= request.POST['country']
+        sub.state=request.POST['state']
+        sub.school=request.POST['school']
+        sub.school_state = request.POST['school_state']
+        sub.school_address=request.POST['school_address']
+        sub.school_city=request.POST['school_city']
+        sub.pincode = request.POST['pincode']
+        sub.number=request.POST['number']
+
+        sub.save(update_fields=['country','address',"street",'state','school','school_state',"school_address",'school_city','pincode','number'])
+
+    return render(request,"dashboard.html")
 
 
 
