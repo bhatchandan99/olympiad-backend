@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block title %} Login {% endblock %}
 {% block body %}
-
+{% load static %}
 <section style="padding:0; margin-bottom: 0;">
 
   <div id="div_left" class="d-none d-lg-block " >
     <div class="container-fluid p-0" >
-      <div class="site-content" style="height: 640px;background-image: url('stock/Login_bg.jpg')" >
+      <div class="site-content" style="height: 640px;background-image: url({% static 'stock/Login_bg.jpg' %})" >
         <div class="d-flex justify-content-center"  >
           <div class="d-flex flex-column" style="padding-top: 20px">
-            <h1 class="site-title" style="text-align: center;">Welcome back to International Olympiad Foundation
+            <h1 class="site-title" style="text-align: center;">Welcome back to International Student Olympiad Foundation
             </h1>
             <p class="site-desc"></p>
 
@@ -23,13 +23,13 @@
   <!-- Hero right -->
   <!-- <div id="div_right" class="d-flex justify-content-center justify-content-md-start  d-none d-lg-block "> -->
     <div class="container-fluid p-0" id="div-right" >
-      <div class="site-content" style="height: 640px; background-image: url('stock/Login_bg.jpg')">
+      <div class="site-content" style="height: 640px; background-image: url({% static 'stock/Login_bg.jpg' %})">
         <div class="d-flex justify-content-center" >
-          <div class="d-flex flex-column justify-content-left justify-content-md-start d-none d-lg-block" >
-            <div class="container" id="form-group"  >
+          <div class="d-flex flex-column justify-content-left justify-content-md-start d-none d-lg-block" style="box-shadow: 0px 7px 10px #0009;border-radius: 10px;">
+            <br><br><br><div class="container" id="form-group">
               <center><h2 style="color: white; font-family: 'sriracha',cursive;">LOGIN</h2></center>
               {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="color: #43CEC9;">
                     <strong>{{message}}</strong>
 
                   </div>
@@ -62,8 +62,8 @@
                 </div>
                 <div>
                   <center>
-                  <input  style="padding:10px ; margin: 20px; background-color: #43CEC9" type="submit" name="login" value="Login">
-                   {% comment %} <button class="btn-success" style="padding:10px ; margin: 20px; background-color: #43CEC9">Submit</button> {% endcomment %}
+                  <input class="review-btn" style="border-radius: 3px;"  type="submit" name="login" value="Login"><br>
+                   {% comment %} <button  style="padding:10px ; margin: 20px; background-color: #43CEC9">Submit</button> {% endcomment %}
                  </center>
 
                </div>

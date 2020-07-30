@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 {% block title %} Apply Individual {% endblock %}
 {% block body %}
+{% load static %}
 
+<div class="container-fluid p-0" >
+  <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (2).jpg' %});">
+    <div class="d-flex justify-content-center" >
+      <div class="d-flex flex-column" style="padding-top: 120px">
+        <h1 class="site-title  justify-content-center" style="text-align: center;">Apply Individual
+        </h1>
+        <p class="site-desc"></p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<br><br>
 
 <div class="container">
   <center><br>
@@ -243,10 +258,9 @@
       <span class="check-label"> I acknowledge that I have read all the above instructions</span>
       <br><br>
       <center>
-      <button class="review-btn">REVIEW AND PAY</button>
-      <input type="submit" name="submit" value="Submit">
+      <input class="review-btn" type="submit" name="submit" value="Submit">
 
-      </form>s
+      </form>
       </center>
     </div>
 

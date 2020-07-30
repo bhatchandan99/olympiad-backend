@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %} Coordinator {% endblock %}
 {% block body %}
-
+{% load static %}
 <!-- hero -->
 <div class="container-fluid p-0" >
-  <div class="site-content" style="height: 400px; background-image: url('Stock/coord_bg.jpg');">
+  <div class="site-content" style="height: 400px; background-image: url({% static 'Stock/coord_bg.jpg' %});">
     <div class="d-flex justify-content-center" >
       <div class="d-flex flex-column" style="padding-top: 80px">
         <h1 class="site-title  justify-content-center" style="text-align: center;">Become A Coordinator
@@ -85,7 +85,7 @@
                   </div>
                   <!-- Single Input Area -->
                   <div class="col-12">
-                  <input class="btn fancy-btn fancy-dark" style="background-color: ()" type="submit" name="submit" value="Submit">
+                  <input class="btn review-btn"  type="submit" name="submit" value="Submit">
                     {% comment %} <button type="submit" class="btn fancy-btn fancy-dark" style="background-color: ()">Send Message</button> {% endcomment %}
                   </div>
                 </div>

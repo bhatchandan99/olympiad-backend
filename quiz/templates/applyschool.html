@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block title %} Apply School {% endblock %}
 {% block body %}
+{% load static %}
+<div class="container-fluid p-0" >
+  <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (2).jpg' %});">
+    <div class="d-flex justify-content-center" >
+      <div class="d-flex flex-column" style="padding-top: 120px">
+        <h1 class="site-title  justify-content-center" style="text-align: center;">Apply School
+        </h1>
+        <p class="site-desc"></p>
 
+      </div>
+
+    </div>
+  </div>
+</div>
     <div class="container-new">
         <div class="row school-left">
             <div class="col-md-6">
@@ -164,7 +177,7 @@
                           <textarea name="" class="school-textarea" placeholder="Your message..."></textarea>
                       </div>
                       <center>
-                        <input type="submit" name="submit" value="Submit">
+                        <input type="submit" name="submit" value="Submit" class="review-btn">
                         </center>
                 </form>
             </div>

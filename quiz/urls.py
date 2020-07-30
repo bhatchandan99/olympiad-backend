@@ -38,6 +38,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path('activate/<uidb64>/<token>/', views.ActivateAccount.as_view(), name='activate'),
                         path("contact/",views.contact, name="contact"),
                         path("subscriptions/",view = views.subscribe , name="subscriptions"),
+                        path("awards/",view = views.awards , name="awards"),
+                        path("samplepaper/<sub>/<std>",view = views.samplepaper,name='samplepaper'),
 
                         url(regex=r'^$', view=index, name='index'),
                         # url(regex=r'^login/$', view=login_user, name='login'),

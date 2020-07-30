@@ -62,7 +62,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="#">Profile</a>
-                              <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a>
+                              {% comment %} <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a> {% endcomment %}
                               <a class="dropdown-item" href="#" onclick="show('submitdocuments')">Submit Documents</a>
                               <a class="dropdown-item" href="#">Preview Certificate</a>
                             </div>
@@ -101,7 +101,7 @@
                             </button>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="subscriptions.html">Subscriptions</a>
+                              <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
                               <a class="dropdown-item" href="#" onclick="show('invoice')">Invoice</a>
                               <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
                             </div>
@@ -118,7 +118,7 @@
                     <strong>{{message}}</strong>
 
                   </div>
-                  {% endfor %}
+                  {% endfor %} <br><br><br>
                         <form action="{% url 'update_student' %}" method="POST">
                           {% csrf_token %}
                         <div class="row">
@@ -127,14 +127,14 @@
                             <input type="text" value = "{{ request.user.first_name}}" readonly="true">
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label class="form-label"> Name</label>
+                            <label class="form-label-profile"> Name</label>
                           </div>
                           <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
                           <div class="group col-md-5">
                             <input type="text" value="{{ request.user.parent_name }}" readonly="true">
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label class="form-label">Parent / Guardian Name *</label>
+                            <label class="form-label-profile">Parent / Guardian Name *</label>
                           </div>
 
                         </div>

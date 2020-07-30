@@ -959,6 +959,16 @@ def paper(request):
 
 
 
+
+def samplepaper(request,sub,std):
+    tem = 'sample'+sub+std+'.html'
+    return render(request,tem)
+
+
+
+
+
+
 # def loginhandle(request):
 #     if(request.method=='POST'):
 #         username=request.POST['email']
@@ -981,3 +991,7 @@ def paper(request):
 # 	logout(request)
 # 	messages.success(request,"Successfully logged out")
 # 	return redirect('/')
+
+
+def awards(request):
+    return render(request,'awards.html')
