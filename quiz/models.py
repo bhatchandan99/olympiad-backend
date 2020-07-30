@@ -69,7 +69,7 @@ class Student(AbstractUser):
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
-        return str(str(self.id)+":"+self.username)
+        return str(str(self.email)+":"+self.username)
 
 class Contact(models.Model):
     id=models.AutoField(primary_key=True)
@@ -673,7 +673,7 @@ class Question(models.Model):
     img2=models.ImageField(upload_to="option2/",null=True,verbose_name=_("Image2"))
     img3=models.ImageField(upload_to="option3/",null=True,verbose_name=_("Image3"))
     img4=models.ImageField(upload_to="option4/",null=True,verbose_name=_("Image4"))
-                             
+
     content = models.CharField(max_length=1000,
                                blank=False,
                                help_text=_("Enter the question text that "
@@ -686,11 +686,11 @@ class Question(models.Model):
                                                "after the question has "
                                                "been answered."),
                                    verbose_name=_('Explanation'))
-    
-    
+
+
 
     objects = InheritanceManager()
-    
+
 
     class Meta:
         verbose_name = _("Question")

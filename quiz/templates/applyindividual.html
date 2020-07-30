@@ -270,32 +270,56 @@
 {% block js %}
 <script>
 
-            function regEx()
-            {
-            function testName()
-            {
-                var name = document.form4.name.value;
-                var letters = /^[a-zA-Z_ ]+$/;
-                if (!name.match(letters)){
-                alert("Name can have only letters.");
-                return false;
-                }
-                return true;
-            }
-            function testZip()
-            {
-                var zip = document.form4.phonenum.value;
+  function regEx()
+  {
+  function testName()
+  {
+      var name = document.form4.first_name.value;
+      var letters = /^[a-zA-Z_ ]+$/;
+      if (!name.match(letters)){
+      alert("Name can have only letters.");
+      return false;
+      }
+      return true;
+  }
+
+  function testName1()
+  {
+      var name = document.form4.last_name.value;
+      var letters = /^[a-zA-Z_ ]+$/;
+      if (!name.match(letters)){
+      alert("Name can have only letters.");
+      return false;
+      }
+      return true;
+  }
+  function testZip()
+  {
+      var zip = document.form4.number.value;
 
 
-                if (!zip.match(/^\d{10}$/)){
-                alert("A number has 10 integers.");
-                return false;
-                }
-                return true;
-            }
-            return testName()&&testZip();
+      if (!zip.match(/^\d{10}$/)){
+      alert("A number has 10 integers.");
+      return false;
+      }
+      return true;
+  }
+  function pincode()
+  {
+      var zip = document.form4.pincode.value;
 
-            }
+
+      if (!zip.match(/^\d{6}$/)){
+      alert("A pincode has 6 integers.");
+      return false;
+      }
+      return true;
+  }
+
+
+  return testName()&&testZip()&&pincode()&&testName1();
+
+  }
 
 
 </script>

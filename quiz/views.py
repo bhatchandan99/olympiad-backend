@@ -316,7 +316,7 @@ def doc_upload(request):
         # stud.save(update_fields=['school_id','prev_marksheet','photo'])
         messages.success(request, 'Documents successfully uploaded')
     return render(request,"dashboard.html")
-        
+
 
 
 from django.contrib.auth.hashers import check_password
@@ -489,18 +489,18 @@ def register(request):
                 print("okkkkkkk")
 
 
-                # current_site = get_current_site(request)
-                # subject = 'Activate Your MySite Account'
-                # message = render_to_string('account_activation_email.html', {
-                # 'user': context,
-                # 'domain': current_site.domain,
-                # 'uid': urlsafe_base64_encode(force_bytes(context.pk)),
-                # 'token': account_activation_token.make_token(context),
-                # })
-                # send_mail(subject, message,settings.EMAIL_HOST_USER,email,fail_silently=False,)
+                current_site = get_current_site(request)
+                subject = 'Activate Your Crest Olympiad Account'
+                message = render_to_string('account_activation_email.html', {
+                'user': student_context,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(student_context.pk)),
+                'token': account_activation_token.make_token(student_context),
+                 })
+                send_mail(subject, message,settings.EMAIL_HOST_USER,[student_context.email,],fail_silently=False,)
 
 
-                # messages.success(request, ('Please Confirm your email to complete registration.'))
+                messages.success(request, ('Please Confirm your email to complete registration.'))
                 return render(request,"login.html")
 
 
@@ -879,9 +879,13 @@ def login_user(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
-            messages.success(request, 'You have successfully logged in')
-            return render(request, 'index.html')
+            if user.email_confirmed:
+
+                login(request, user)
+                messages.success(request, 'You have successfully logged in')
+                return render(request, 'index.html')
+            else:
+                messages.error(request, 'Email not confirmed yet!')
         else:
             messages.error(request,"User is not registered")
 
