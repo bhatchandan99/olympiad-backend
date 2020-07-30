@@ -56,7 +56,7 @@
           </div>
           <div class="contact-form">
 
-            <form name = "form1" action="" method="post" onsubmit="return regEx()" >
+            <form name = "form1" action="{% url 'contact' %}" method="post" onsubmit="return regEx()" >
             {% csrf_token %}
               <!-- Message Input Area Start -->
               <div class="contact_input_area">
