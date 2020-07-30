@@ -47,6 +47,12 @@
                           </div>
                         </div>
                       </section>
+                      {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong>
+                    </div>
+          
+                  {% endfor %}
 
                       <section class="menu" id="menu">
                         <div class="menu-btn" onclick="menuOpen()" id="menu-ion-icon">
@@ -113,12 +119,7 @@
                     <br><br><br>
                     <div class="container shown" id="profile">
 
- {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    <strong>{{message}}</strong>
-
-                  </div>
-                  {% endfor %} <br><br><br>
+  <br><br><br>
                         <form action="{% url 'update_student' %}" method="POST">
                           {% csrf_token %}
                         <div class="row">

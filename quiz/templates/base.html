@@ -697,6 +697,7 @@
                 <div class="row" style="font: yellow">
                  <div class="col-md-6">
                   <div class="form-group">
+                  <form action="contact/" method="post">
                     <input class="form-control form-control-name" name="name" id="name" placeholder="Name" type="text" required>
                   </div>
                 </div>
@@ -719,7 +720,9 @@
                <textarea class="form-control form-control-message" name="message" id="message" placeholder="Message" rows="3" required></textarea>
              </div>
              <div class="text-right"><br>
-              <a href="#" class="btn fancy-btn">Send Message</a>
+             <input type="submit" class="btn fancy-btn" value="Send Message">
+              {% comment %} <a href="#" class="btn fancy-btn">Send Message</a> {% endcomment %}
+              </form>
             </div>
           </form>
         </div>

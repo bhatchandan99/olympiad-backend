@@ -299,12 +299,21 @@ def doc_upload(request):
     print(')))))))))))))))))))))))')
     if(request.method=='POST'):
         stud=request.user
-        stud.school_id=request.POST['school_id']
+        school_id=request.POST.get('school_id'," ")
         print("*******************")
         print(request.POST)
-        stud.prev_marksheet=request.POST['prev_marksheet']
-        stud.photo=request.POST['photo']
-        stud.save(update_fields=['school_id','prev_marksheet','photo'])
+        prev_marksheet=request.POST.get('prev_marksheet'," ")
+        photo=request.POST.get('photo'," ")
+        if(school_id!=" "):
+            stud.idproof=school_id
+            stud.save(update_fields=['idproof'])
+        if(prev_marksheet!=" "):
+            stud.marksheet=prev_marksheet
+            stud.save(update_fields=['marksheet'])
+        if(photo!=" "):
+            stud.photograph=photo
+            stud.save(update_fields=['photograph'])
+        # stud.save(update_fields=['school_id','prev_marksheet','photo'])
         messages.success(request, 'Documents successfully uploaded')
     return render(request,"dashboard.html")
         
@@ -369,18 +378,24 @@ def uploadfiles(request):
 
 
     if(request.method=='POST'):
-        student = request.user
-        print(student)
-        sub=Student.objects.get(pk=student.id)
-
-        sub.idproof = request.FILES['idproof']
-        sub.marksheet = request.FILES['marksheet']
-        sub.photograph = request.FILES['photograph']
-
-        sub.save(update_fields=['marksheet','idproof','photograph'])
-
+        stud=request.user
+        school_id=request.POST.get('school_id'," ")
+        print("*******************")
+        print(request.POST)
+        prev_marksheet=request.POST.get('prev_marksheet'," ")
+        photo=request.POST.get('photo'," ")
+        if(school_id!=" "):
+            stud.idproof=school_id
+            stud.save(update_fields=['idproof'])
+        if(prev_marksheet!=" "):
+            stud.marksheet=prev_marksheet
+            stud.save(update_fields=['marksheet'])
+        if(photo!=" "):
+            stud.photograph=photo
+            stud.save(update_fields=['photograph'])
+        # stud.save(update_fields=['school_id','prev_marksheet','photo'])
+        messages.success(request, 'Documents successfully uploaded')
     return render(request,"dashboard.html")
-
 
 
 

@@ -29,7 +29,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
 
                         path("update_student/",views.update_student, name="update_student"),
 
-                        path("subscriptions/doc_upload/" , view=views.doc_upload, name="doc_upload"),
+                        # path("subscriptions/doc_upload/" , view=views.doc_upload, name="doc_upload"),
                         # path("loginhandle/",views.loginhandle, name="loginhandle"),
                         path("loginhandle/",views.login_user, name="loginhandle"),
                         #path("loginhandle/subscriptions/", views.subscriptions, name="subscriptions"),
