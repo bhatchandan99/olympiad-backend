@@ -485,7 +485,7 @@ def register(request):
                 student_context=Student(ref_code = ref_code ,first_name=first_name,username=username, last_name=last_name,parent_name = parent_name,dob = dob,country= country,address= address,street=street,state=state,school=school,school_state= school_state,school_address= school_address,school_city= school_city,pincode=pincode,number=number,email=email,standard= standard)
                 student_context.set_password(password)
                 student_context.save()
-                messages.success(request, 'Registration successful')
+                # messages.success(request, 'Registration successful')
                 print("okkkkkkk")
 
 
