@@ -69,6 +69,278 @@ import base64
 def home(request):
     return render(request,'start.html')
 
+def changeslot(request):
+
+
+    if request.method=='POST':
+        print ("hibhaiji")
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+
+        change = request.POST['change']
+
+
+        if change=='gk':
+
+            return render(request,'gk.html')
+        if change=='math':
+
+            return render(request,'math.html')
+        if change=='english':
+
+            return render(request,'english.html')
+        if change=='reasoning':
+
+            return render(request,'reasoning.html')
+        if change=='science':
+
+            return render(request,'science.html')
+        if change=='cyber':
+
+            return render(request,'cyber.html')
+
+        #return render(request,'bookafterchange.html',context)
+
+    return render(request,'changeslot.html')
+
+@csrf_exempt
+def response_changeslot(request):
+
+
+        postData = {
+        "orderId" : request.POST['orderId'],
+        "orderAmount" : request.POST['orderAmount'],
+        "referenceId" : request.POST['referenceId'],
+        "txStatus" : request.POST['txStatus'],
+        "paymentMode" : request.POST['paymentMode'],
+        "txMsg" : request.POST['txMsg'],
+        "signature" : request.POST['signature'],
+        "txTime" : request.POST['txTime']
+        }
+
+        print(postData)
+        signatureData = ""
+        signatureData = postData['orderId'] + postData['orderAmount'] + postData['referenceId'] + postData['txStatus'] + postData['paymentMode'] + postData['txMsg'] + postData['txTime']
+
+        message = signatureData.encode('utf-8')
+      # get secret key from your config
+        secret = secretKey.encode('utf-8')
+        computedsignature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode('utf-8')
+
+        context = {
+        'postData':postData,
+        'computedsignature':computedsignature,
+        'is_paid':False,
+        }
+
+
+        print(request)
+        if computedsignature==postData['signature']:
+
+            context['is_paid']= True
+
+
+        return render(request,'response2.html', context)
+
+
+
+
+def changeafterbook(request):
+
+    if request.method=='POST':
+        mode = "TEST"
+
+        quiz = request.POST['slot']
+
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+
+        sub.quiz_to_change = quiz
+        sub.save(update_fields=['quiz_to_change'])
+
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+
+        sub.order_number = sub.order_number+1
+        sub.save(update_fields=['order_number'])
+
+        temp = str(request.user.username)+str('_')+str(request.user.order_number)
+
+        postData = {
+                  "appId" : '21845d9c06b478a19ac3040ce54812',
+                  "orderId" : temp,
+                  "orderAmount" : '30',
+                  "orderCurrency" : 'INR',
+                  "orderNote" : "payment",
+                  "customerName" : str(request.user.first_name),
+                  "customerPhone" : str(request.user.number),
+                  "customerEmail" : str(request.user.email),
+                  "returnUrl" : 'http://127.0.0.1:8000/response_changeslot/',
+                  "notifyUrl" : 'https://github.com/'
+        }
+        print(postData)
+        sortedKeys = sorted(postData)
+        signatureData = ""
+        for key in sortedKeys:
+
+            signatureData += key+postData[key]
+        message = signatureData.encode('utf-8')
+          #get secret key from your config
+        secret = secretKey.encode('utf-8')
+        signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
+        if mode == 'PROD':
+
+            url = "https://www.cashfree.com/checkout/post/submit"
+        else:
+            url = "https://test.cashfree.com/billpay/checkout/post/submit"
+
+        context = {
+            'postData' : postData,
+            'url' : url,
+            'signature' :signature,
+
+        }
+
+        return render(request,'request.html', context)
+
+
+
+
+
+
+
+
+
+        print(quiz)
+
+    return render(request,'changeslot.html')
+
+def bookslot(request):
+
+
+    student = request.user
+    print(student)
+    sub=Student.objects.get(pk=student.id)
+    if(sub.mathsolym==True):
+        sub.final_mathsolym=sub.mathsolym
+    if(sub.scienceolym==True):
+        sub.final_scienceolym=sub.scienceolym
+    if(sub.englisholym==True):
+        sub.final_englisholym=sub.englisholym
+    if(sub.reasoningolym==True):
+        sub.final_reasoningolym=sub.reasoningolym
+    if(sub.cyberolym==True):
+        sub.final_cyberolym= sub.cyberolym
+    if(sub.generalolym==True):
+        sub.final_generalolym=sub.generalolym
+    print ("hi")
+    print(request.user.first_name)
+    sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
+
+
+
+
+
+    if request.method=='POST':
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+        if   'scienceslot' in request.POST:
+
+
+            scienceslot = request.POST['scienceslot']
+        else:
+            scienceslot='nil'
+
+
+        if  'englishslot'  in request.POST:
+
+            englishslot = request.POST['englishslot']
+        else:
+            englishslot='nil'
+
+        if  'cyberslot' in  request.POST:
+
+            cyberslot = request.POST['cyberslot']
+        else:
+            cyberslot='nil'
+
+        if  'mathslot' in request.POST:
+
+            mathslot = request.POST['mathslot']
+        else:
+            mathslot='nil'
+
+        if 'reasoningslot' in  request.POST:
+
+            reasoningslot = request.POST['reasoningslot']
+        else:
+            reasoningslot='nil'
+
+        if  'gkslot' in  request.POST:
+
+            gkslot = request.POST['gkslot']
+        else:
+            gkslot='nil'
+
+        print(scienceslot,mathslot,reasoningslot,gkslot,englishslot,cyberslot)
+
+        if scienceslot !='nil':
+            sq,st =scienceslot.split('@', 1)
+
+            sub.sciencequiz = sq
+            sub.sciencetime= st
+            sub.save(update_fields=['sciencequiz','sciencetime'])
+
+        print(englishslot)
+        if str(englishslot) != str("nil"):
+
+            sq,st = englishslot.split('@', 1)
+            sub.englishquiz = sq
+            sub.englishtime= st
+            sub.save(update_fields=['englishquiz','englishtime'])
+
+        if cyberslot !='nil':
+            sq,st = cyberslot.split('@', 1)
+            sub.cyberquiz = sq
+            sub.cybertime= st
+            sub.save(update_fields=['cyberquiz','cybertime'])
+
+        if mathslot !='nil':
+            sq,st = mathslot.split('@', 1)
+            sub.mathquiz = sq
+            sub.mathtime= st
+            sub.save(update_fields=['mathquiz','mathtime'])
+
+        if gkslot !='nil':
+            sq,st = gkslot.split('@', 1)
+            sub.gkquiz = sq
+            sub.gktime= st
+            sub.save(update_fields=['gkquiz','gktime'])
+
+        if reasoningslot !='nil':
+            sq,st = reasoningslot.split('@', 1)
+            sub.reasoningquiz = sq
+            sub.reasoningtime= st
+            sub.save(update_fields=['reasoningquiz','reasoningtime'])
+
+
+        sub.mathsolym = False;
+        sub.scienceolym = False;
+        sub.englisholym = False;
+        sub.reasoningolym = False;
+        sub.cyberolym = False;
+        sub.generalolym = False;
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])            
+
+
+
+        messages.success(request, 'Slot booked successfully')
+        return render(request,'index.html')
+
+
+
+    return render(request,'book.html')
+
 def profile(request):
     return render(request,'dashboard.html')
 
@@ -172,11 +444,11 @@ def handleresponse(request):
             sub.final_reasoningolym=reasoningolym
         if(sub.cyberolym==True):
             sub.final_cyberolym= cyberolym
-        if(sub.internationalspell==True):
-            sub.final_internationalspell=internationalspell
+        if(sub.generalolym==True):
+            sub.final_generalolym=generalolym
         print ("hi")
         print(request.user.first_name)
-        sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_internationalspell'])
+        sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
 
 
         sub.mathsolym = False;
@@ -184,8 +456,8 @@ def handleresponse(request):
         sub.englisholym = False;
         sub.reasoningolym = False;
         sub.cyberolym = False;
-        sub.internationalspell = False;
-        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
+        sub.generalolym = False;
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
         """
 
 
@@ -212,7 +484,8 @@ def subscribe(request):
         englisholym=request.POST.get('englisholym', False)
         reasoningolym=request.POST.get('reasoningolym', False)
         cyberolym=request.POST.get('cyberolym', False)
-        internationalspell=request.POST.get('internationalspell', False)
+        generalolym=request.POST.get('generalolym', False)
+
         if(sub.mathsolym==False):
             sub.mathsolym=mathsolym
         if(sub.scienceolym==False):
@@ -223,11 +496,12 @@ def subscribe(request):
             sub.reasoningolym=reasoningolym
         if(sub.cyberolym==False):
             sub.cyberolym= cyberolym
-        if(sub.internationalspell==False):
-            sub.internationalspell=internationalspell
+        if(sub.generalolym==False):
+            sub.generalolym= generalolym
+
         print ("hi")
         print(request.user.first_name)
-        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
 
         print('lost')
 
@@ -279,7 +553,7 @@ def subscribe(request):
             'englisholym':englisholym,
             'reasoningolym':reasoningolym,
             'cyberolym':cyberolym,
-            'internationalspell': internationalspell
+            'generalolym': generalolym
 
         }
 
@@ -592,7 +866,7 @@ def myquiz(request):
                 quizlist.append(quiz)
             if quiz_title[2:]=='englisholym' and request.user.final_englisholym==True:
                 quizlist.append(quiz)
-            if quiz_title[2:]=='internationalspell' and request.user.final_internationalspell==True:
+            if quiz_title[2:]=='generalolym' and request.user.final_generalolym==True:
                 quizlist.append(quiz)
             if quiz_title[2:]=='cyberolym' and request.user.final_cyberolym==True:
                 quizlist.append(quiz)
@@ -840,35 +1114,62 @@ class QuizTake(TemplateView):
 
 def index(request):
 
+
     if request.user.is_authenticated:
 
         student = request.user
         print(student)
         sub=Student.objects.get(pk=student.id)
-        if(sub.mathsolym==True):
-            sub.final_mathsolym=sub.mathsolym
-        if(sub.scienceolym==True):
-            sub.final_scienceolym=sub.scienceolym
-        if(sub.englisholym==True):
-            sub.final_englisholym=sub.englisholym
-        if(sub.reasoningolym==True):
-            sub.final_reasoningolym=sub.reasoningolym
-        if(sub.cyberolym==True):
-            sub.final_cyberolym= sub.cyberolym
-        if(sub.internationalspell==True):
-            sub.final_internationalspell=sub.internationalspell
-        print ("hi")
-        print(request.user.first_name)
-        sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_internationalspell'])
 
 
-        sub.mathsolym = False;
-        sub.scienceolym = False;
-        sub.englisholym = False;
-        sub.reasoningolym = False;
-        sub.cyberolym = False;
-        sub.internationalspell = False;
-        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','internationalspell'])
+        if sub.quiz_to_change != "nil":
+            temp1 = sub.quiz_to_change
+            sq,st = temp1.split('@', 1)
+
+            print (sq)
+            print(st)
+            temp = sq
+            _,quiz = temp.split('_', 1)
+            print(quiz)
+
+            if ( quiz[2:]=='mathsolym'):
+
+                sub.mathquiz = sq
+                sub.mathtime= st
+                sub.save(update_fields=['mathquiz','mathtime'])
+
+
+            elif (quiz[2:]=='englisholym'):
+
+                sub.englishquiz = sq
+                sub.englishtime= st
+                sub.save(update_fields=['englishquiz','englishtime'])
+
+            elif (quiz[2:]=='scienceolym'):
+                sub.sciencequiz = sq
+                sub.sciencetime= st
+                sub.save(update_fields=['sciencequiz','sciencetime'])
+
+
+            elif (quiz[2:]=='generalolym'):
+                sub.gkquiz = sq
+                sub.gktime= st
+                sub.save(update_fields=['gkquiz','gktime'])
+
+            elif (quiz[2:]=='reasoningolym'):
+                sub.reasoningquiz = sq
+                sub.reasoningtime= st
+                sub.save(update_fields=['reasoningquiz','reasoningtime'])
+
+            elif (quiz[2:]=='cyberolym'):
+                sub.cyberquiz = sq
+                sub.cybertime= st
+                sub.save(update_fields=['cyberquiz','cybertime'])
+
+            sub.quiz_to_change = 'nil'
+            sub.save(update_fields=['quiz_to_change'])
+
+
     return render(request, 'index.html', {})
 
 

@@ -43,6 +43,91 @@
                               <!--legend>
                 Select The Subscriptions And Read The Below Instructions Before Purchasing
             </legend-->
+
+            <center>
+
+              Your Subscriptions
+
+              </center>
+
+            <table>
+            <tr>
+              <th>Quiz Name </th>
+              <th>Date & Time</th>
+
+            </tr>
+
+              {% csrf_token %}
+
+            {% if request.user.final_cyberolym %}
+
+
+            <tr>
+              <td>Cyber Olympiad</td>
+              <td>{{ request.user.cybertime }}</td>
+
+
+
+            </tr>
+
+            {% endif %}
+
+
+            {% if request.user.final_mathsolym %}
+
+
+            <tr>
+              <td>Maths Olympiad</td>
+              <td>{{ request.user.mathtime }}</td>
+
+            {% endif %}
+
+
+            {% if request.user.final_scienceolym %}
+
+
+            <tr>
+              <td>Science Olympiad</td>
+              <td>{{ request.user.sciencetime }}</td>
+
+            {% endif %}
+
+            {% if request.user.final_generalolym %}
+
+
+            <tr>
+
+              <td>Gk Olympiad</td>
+              <td>{{ request.user.gktime }}</td>
+
+
+            {% endif %}
+
+            {% if request.user.final_reasoningolym %}
+
+
+            <tr>
+
+              <td>Reasoning Olympiad</td>
+              <td>{{ request.user.reasoningtime }}</td>
+
+
+            {% endif %}
+
+            {% if request.user.final_englisholym %}
+
+
+            <tr>
+              <td>English Olympiad</td>
+              <td>{{ request.user.englishtime }}</td>
+
+
+            {% endif %}
+
+
+
+
+          </table>
             <form action="" method="post" class="third" >
 
 
@@ -64,13 +149,14 @@
         <input type="checkbox" value="True" id="mathsolym" name="mathsolym" onchange="Update(this)">
        {% endif %}
 
+
     {% if stud.final_englisholym %}
 
     <label for="englisholym"><p style="color: grey;">ENGLISH OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="englisholym" name="englisholym" disabled="true">
 
         {% else %}
-        <label for="englisholym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
+        <label for="englisholym"><p style="color: black;"><strong>ENGLISH OLYMPIAD(150)</strong></p></label>
         <input type="checkbox" value="True" id="englisholym" name="englisholym" onchange="Update(this)">
         {% endif %}
 
@@ -83,9 +169,10 @@
         <input type="checkbox" value="True" id="scienceolym" name="scienceolym" onchange="Update(this)">
         {% endif %}
 
+
     {% if stud.final_cyberolym %}
     <label for="cyberolymm"><p style="color: grey;">CYBER OLYMPIAD(150)</p></label>
-        <input type="checkbox" value="True" id="cyberolymm" name="cyberolymm" disabled="true" >
+        <input type="checkbox" value="True" id="cyberolymm" name="cyberolym" disabled="true" >
 
         {% else %}
         <label for="cyberolym"><p style="color: black;"><strong>CYBER OLYMPIAD(150)</strong></p></label>
@@ -95,22 +182,23 @@
     {% if stud.final_reasoningolym %}
 
       <label for="reasoningolymm"><p style="color: grey;">REASONONG OLYMPIAD(150)</p></label>
-        <input type="checkbox" value="True" id="reasoningolymm" name="reasoningolymm" disabled="true">
+        <input type="checkbox" value="True" id="reasoningolymm" name="reasoningolym" disabled="true">
 
         {% else %}
         <label for="reasoningolym"><p style="color: black;"><strong>REASONONG OLYMPIAD(150)</strong></p></label>
         <input type="checkbox" value="True" id="reasoningolym" name="reasoningolym" onchange="Update(this)">
         {% endif %}
 
-    {% if stud.final_internationalspell %}
+    {% if stud.final_generalolym %}
 
-    <label for="internationalspelll"><p style="color: grey;">INTERNATIONAL SPELL BEE(150)</p></label>
-        <input type="checkbox" value="True" id="internationalspelll" name="internationalspelll" disabled="true">
+    <label for="generalolym"><p style="color: grey;">GENERAL OLYMPIAD(150)</p></label>
+        <input type="checkbox" value="True" id="generalolym" name="generalolym" disabled="true">
 
         {% else %}
-        <label for="internationalspell"><p style="color: black;"> <strong> INTERNATIONAL SPELL BEE(150)</strong></p></label>
-        <input type="checkbox" value="True" id="internationalspell" name="internationalspell" onchange="Update(this)">
+        <label for="generalolym"><p style="color: black;"> <strong>GENERAL OLYMPIAD(150)</strong></p></label>
+        <input type="checkbox" value="True" id="generalolym" name="generalolym" onchange="Update(this)">
         {% endif %}
+
 
     <div class="row instructions">
       <p><b>Important Instructions : </b></p>
