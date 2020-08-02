@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import QuizListView, CategoriesListView,\
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake,change_password,uploadfiles, index,profile, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz,home,handlerequest,handleresponse
+    QuizMarkingDetail, QuizDetailView, QuizTake,change_password,uploadfiles, index,changeslot,profile,bookslot, login_user, logout_user,contact,examdates,faqs,coordinator,register_school,myquiz,home,handlerequest,handleresponse
 from django.urls import path
 from django.urls import path
 from . import views
@@ -28,7 +28,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("uploadfiles/",views.uploadfiles, name="uploadfiles"),
 
                         path("update_student/",views.update_student, name="update_student"),
-
+                        path("bookslot/",views.bookslot, name="bookslot"),
+                        path("changeslot/",views.changeslot, name="changeslot"),
                         # path("subscriptions/doc_upload/" , view=views.doc_upload, name="doc_upload"),
                         # path("loginhandle/",views.loginhandle, name="loginhandle"),
                         path("loginhandle/",views.login_user, name="loginhandle"),
@@ -40,6 +41,11 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("subscriptions/",view = views.subscribe , name="subscriptions"),
                         path("awards/",view = views.awards , name="awards"),
                         path("samplepaper/<sub>/<std>",view = views.samplepaper,name='samplepaper'),
+                        path("changeafterbook/",view = views.changeafterbook , name="changeafterbook"),
+                        path("response_changeslot/",view = views.response_changeslot , name="response_changeslot"),
+
+
+
 
                         url(regex=r'^$', view=index, name='index'),
                         # url(regex=r'^login/$', view=login_user, name='login'),

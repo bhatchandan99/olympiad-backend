@@ -1113,7 +1113,7 @@ input[type="radio"]{
 .step{
     
     padding: 30px;
-    min-height: 350px;
+    min-height: 430px;
     border-radius: 10px;
     margin-bottom: 40px;
     transition: 0.5s;
@@ -1207,50 +1207,26 @@ input[type="radio"]{
         border: none;
     }
 }
-
-.samplepaper{
-    transform-origin: top;
-    transform: scaleY(0);
-    height: 0;
-    transition: 0.3s;
-    font-size: 15px;
-    background-color: #ff6798;
-    width: 100%;
-    border-radius: 3px;
-    box-shadow: 2px 3px 4px #0004;
+.book-modal{
+    box-shadow: 5px 7px 10px #0005;
+    padding: 20px;
+    transition: 0.7s;
+    border-radius: 5px;
 }
-.samplepaper a{
-    width: 100%;
-    margin-left: 20px;
-    color: #FFF;
+.show-book-modal{
+    top: 20%;
     transition: 0.3s;
 }
-.samplepaper a:hover{
-    color: #FFF;
-    margin-left: 25px;
-    text-decoration: none;
+.book-btn{
+    margin-left: 30px;
 }
-.spshow{
-    transform: scaleY(1);
-    height: auto;
+@media (max-width:499px){
+.book-modal{
+    width: 95%;
+    margin-left: 2.5%;
+    left: 0;
 }
-
-.sphead{
-    width: 100%;
-    background: #F50905;
-    padding: 10px 20px 10px 20px;
-    border-radius: 3px;
-    box-shadow: 2px 3px 4px #0004;
-    margin-bottom: 10px;
-    transition: 0.5s ease;
-    cursor: pointer;
+.book-btn{
+    margin-left: 0;
 }
-.sphead a{
-    background: #F50905;
-    font-size: 1rem;
-}
-.sphead a span{
-    position: absolute;
-    right: 30px;
-    color: #FFF;
 }

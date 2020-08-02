@@ -38,12 +38,16 @@ class Student(AbstractUser):
     email_confirmed = models.BooleanField(default=False)
     first_name = models.CharField(null=False,max_length=150,default="abc")
     last_name= models.CharField(max_length=150)
+
     mathsolym=models.BooleanField(default=False,null=True)
     scienceolym=models.BooleanField(default=False,null=True)
     englisholym=models.BooleanField(default=False,null=True)
     reasoningolym=models.BooleanField(default=False,null=True)
     cyberolym=models.BooleanField(default=False,null=True)
-    internationalspell=models.BooleanField(default=False,null= True)
+    generalolym=models.BooleanField(default=False,null=True)
+
+
+
 
     order_number = models.IntegerField(null=True, default=0)
 
@@ -52,18 +56,38 @@ class Student(AbstractUser):
     final_englisholym=models.BooleanField(default=False,null=True)
     final_reasoningolym=models.BooleanField(default=False,null=True)
     final_cyberolym=models.BooleanField(default=False,null=True)
-    final_internationalspell=models.BooleanField(default=False,null= True)
+    final_generalolym=models.BooleanField(default=False,null= True)
 
-    idproof = models.ImageField(upload_to='idproof',blank=True,null=True,)
+    mathquiz = models.CharField(max_length=100,null=True,default="nil")
+    sciencequiz = models.CharField(max_length=100,null=True,default="nil")
+    gkquiz = models.CharField(max_length=100,null=True,default="nil")
+    cyberquiz = models.CharField(max_length=100,null=True,default="nil")
+    reasoningquiz = models.CharField(max_length=100,null=True,default="nil")
+    englishquiz = models.CharField(max_length=100,null=True,default="nil")
 
+    mathtime = models.CharField(max_length=100,null=True,default="nil")
+    sciencetime = models.CharField(max_length=100,null=True,default="nil")
+    gktime = models.CharField(max_length=100,null=True,default="nil")
+    cybertime = models.CharField(max_length=100,null=True,default="nil")
+    reasoningtime = models.CharField(max_length=100,null=True,default="nil")
+    englishtime = models.CharField(max_length=100,null=True,default="nil")
+
+    quiz_to_change = models.CharField(max_length=100,null=True,default="nil")
+
+
+
+    idproof = models.ImageField(upload_to='idproof',blank=True,null=True)
+    idproof_date=models.CharField(max_length=50)
     marksheet = models.ImageField(upload_to='marksheet',
                                blank=True,
                                null=True,
                                )
+    marksheet_date=models.CharField(max_length=50)
     photograph = models.ImageField(upload_to='photo',
                                blank=True,
                                null=True,
                                )
+    photograph_date=models.CharField(max_length=50)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -99,14 +123,14 @@ class Subscription(models.Model):
     englisholym=models.BooleanField(default=False,null=True)
     reasoningolym=models.BooleanField(default=False,null=True)
     cyberolym=models.BooleanField(default=False,null=True)
-    internationalspell=models.BooleanField(default=False,null= True)
+    generalolym=models.BooleanField(default=False,null= True)
 
     final_mathsolym=models.BooleanField(default=False,null=True)
     final_scienceolym=models.BooleanField(default=False,null=True)
     final_englisholym=models.BooleanField(default=False,null=True)
     final_reasoningolym=models.BooleanField(default=False,null=True)
     final_cyberolym=models.BooleanField(default=False,null=True)
-    final_internationalspell=models.BooleanField(default=False,null= True)
+    final_generalolym=models.BooleanField(default=False,null= True)
 
 
 
@@ -238,6 +262,12 @@ class Quiz(models.Model):
                     " in the quiz list and can only be"
                     " taken by users who can edit"
                     " quizzes."))
+
+    ispaid =  models.BooleanField(blank=True, default=False, help_text=_("If yes, than  quiz is subscribed by user"))
+
+
+    ispaid_final =  models.BooleanField(blank=True, default=False, help_text=_("If yes, than  quiz is subscribed by user"))
+
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
         self.url = re.sub('\s+', '-', self.url).lower()
