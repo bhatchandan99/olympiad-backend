@@ -673,9 +673,9 @@ def change_password(request):
 
 
 def update_student(request):
-    student = request.user
-    print(student)
-    sub=Student.objects.get(pk=student.id)
+    sub = request.user
+    # print(student)
+    # sub=Student.objects.get(pk=student.id)
     if(request.method=="POST"):
 
         print(request.POST)
@@ -705,7 +705,7 @@ def uploadfiles(request):
         
         idproof=request.POST.get('idproof'," ")
         print("*******************")
-        print(request.POST)
+        # print(request.POST)
         marksheet=request.POST.get('marksheet'," ")
         photograph=request.POST.get('photograph'," ")
         print(marksheet)
