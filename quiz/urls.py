@@ -44,6 +44,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("changeafterbook/",view = views.changeafterbook , name="changeafterbook"),
                         path("response_changeslot/",view = views.response_changeslot , name="response_changeslot"),
 
+                        # path('pdf_save/' ,view=views.ViewPDF.as_view(), name='pdf_save'),
+                        # path
 
 
 

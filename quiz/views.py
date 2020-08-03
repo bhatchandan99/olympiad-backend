@@ -1,5 +1,8 @@
 import random
 import csv, io
+from io import BytesIO
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
@@ -431,6 +434,7 @@ def handleresponse(request):
     if computedsignature==postData['signature']:
 
         context['is_paid']= True
+        
         """
         student = request.user
         sub=Student.objects.get(pk=student.id)
@@ -466,6 +470,9 @@ def handleresponse(request):
 
 
     return render(request,'response.html', context)
+
+from django.http import HttpResponse
+
 
 
 
@@ -529,6 +536,8 @@ def subscribe(request):
                   "notifyUrl" : 'https://github.com/'
         }
         print(postData)
+        # lst2=[]
+        # lst.append(postData)
         sortedKeys = sorted(postData)
         signatureData = ""
         for key in sortedKeys:
@@ -568,6 +577,46 @@ def examdates(request):
 
 def faqs(request):
     return render(request,"faqs.html")
+
+
+
+
+
+# def render_to_pdf(template_src,postData):
+#     template=get_template(template_src)
+#     html=template.render(postData)
+#     result=BytesIO()
+#     pdf=pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")),result)
+#     if not pdf.err:
+#         return HttpResponse(result.getvalue(),content_type="application/pdf")
+#     return None
+
+# data={
+#     'Order ID': postData["orderId"],
+#     'Order Amount': postData["orderAmount"],
+#     'Reference ID': postData["referenceId"],
+#     'Transaction Status': postData["txStatus"],
+#     'Payment Mode': postData["paymentMode"],
+#     'Message': postData["txMsg"],
+#     'Transaction Time': postData["txTime"],
+# }
+
+
+# class ViewPDF(View):
+#     def get(self, request , *args, **kwargs):
+#         pdf=render_to_pdf('response.html',data)
+#         return HttpResponse(pdf, content_type='application/pdf')
+
+
+# class DownloadPDF(View):
+#     def get(Self, request, *args, **kwargs):
+#         pdf=render_to_pdf('response.html', data)
+#         response= HttpResponse(pdf, content_type='application/pdf')
+#         filename= "Invoice_%s.pdf" %("12341231")
+#         content = "attachment; filename='%s'" %(filename)
+#         response['Content-Disposition'] = content
+#         return response
+
 
 # def doc_upload(request):
 #     print(')))))))))))))))))))))))')
@@ -644,34 +693,37 @@ def update_student(request):
         sub.number=request.POST['number']
 
         sub.save(update_fields=['country','address',"street",'state','school','school_state',"school_address",'school_city','pincode','number'])
+        return render(request,"dashboard.html")
 
     return render(request,"subscriptions2.html")
 
 @csrf_exempt
 def uploadfiles(request):
 
-
+    stud=request.user
     if(request.method=='POST'):
-        stud=request.user
+        
         idproof=request.POST.get('idproof'," ")
         print("*******************")
         print(request.POST)
         marksheet=request.POST.get('marksheet'," ")
         photograph=request.POST.get('photograph'," ")
+        print(marksheet)
+        print(idproof)
+        print(photograph)
+        print("4444444444444444444444444444")
         if(idproof!=" "):
             stud.idproof=idproof
-            stud.idproof_date="idproof"
-            stud.save(update_fields=['idproof','idproof_date'])
+            stud.save(update_fields=['idproof'])
         if(marksheet!=" "):
             stud.marksheet=marksheet
-            stud.marksheet_date="marksheet_date"
-            stud.save(update_fields=['marksheet','marksheet_date'])
+            stud.save(update_fields=['marksheet'])
         if(photograph!=" "):
             stud.photograph=photograph
-            stud.photograph_date="photograph_date"
-            stud.save(update_fields=['photograph','photograph_date'])
+            stud.save(update_fields=['photograph'])
+        # stud.save(update_fields=['school_id','prev_marksheet','photo'])
         messages.success(request, 'Documents successfully uploaded')
-    return render(request,"dashboard.html",{'stud':stud})
+    return render(request,"dashboard.html")
 
 
 

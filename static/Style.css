@@ -113,18 +113,18 @@ header{
     font-size: 1.2rem;
   }
 }
-
+/*
 #div_left{
   width: 50%;
    height: 50%;
   float: left;
-}
+}*/
 
-#div_right{
+/*#div_right{
   width: 50%; 
   height: 50%;
 }
-
+*/
 #form-group{
   padding: 10px;
   background: rgba(4, 21, 51);
@@ -139,6 +139,11 @@ header{
 
 
 
+@media screen and (max-width: 600px) {
+  .d-flex.site-title {
+    font-size: 35px;
+  }
+}
 
 /*=================================*/
 /*button!*/
@@ -176,6 +181,9 @@ header{
 	font-family: 'Lato';
 }
 
+.margin{
+  margin: 30px;
+}
 
 .fancy-btn {
     color: #fff;
@@ -186,14 +194,14 @@ header{
     padding: 0 15px;
     width: 160px;
     height: 46px;
-    border-left: 2px solid #7450fe;
-    border-right: 2px solid #21d397;
+    border-left: 2px solid black;
+    border-right: 2px solid red;
     box-sizing: border-box;
     background-position: 0 0, 0 100%;
     background-repeat: no-repeat;
     background-size: 100% 2px;
-    background-image: -webkit-linear-gradient(left, #7450fe 0%, #21d397 100%), -webkit-linear-gradient(left, #7450fe 0%, #21d397 100%);
-    background-image: linear-gradient(to right, #7450fe 0%, #21d397 100%), linear-gradient(to right, #7450fe 0%, #21d397 100%);
+    background-image: -webkit-linear-gradient(left, black 0%, red 100%), -webkit-linear-gradient(left, black 0%, red 100%);
+    background-image: linear-gradient(to right, black 0%, red 100%), linear-gradient(to right, black 0%, red 100%);
     -webkit-transition-duration: 1000ms;
     transition-duration: 1000ms;
     position: relative;
@@ -205,9 +213,9 @@ header{
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
     background: #7450fe;
-    background: -webkit-linear-gradient(to right, #7450fe, #21d397);
-    background: -webkit-linear-gradient(left, #7450fe, #21d397);
-    background: linear-gradient(to right, #7450fe, #21d397);
+    background: -webkit-linear-gradient(to right, black, red);
+    background: -webkit-linear-gradient(left, black, red);
+    background: linear-gradient(to right, black, red);
     content: '';
     position: absolute;
     width: 100%;
@@ -497,10 +505,13 @@ img{
   height:150px;
   width:100%;
 }
-
+.card{
+  box-shadow: 2px 4px 4px #0004;
+}
 .item{
   padding-left:5px;
   padding-right:5px;
+  min-height: 400px;
 }
 .item-card{
   transition:0.5s;
@@ -527,11 +538,12 @@ img{
   font-weight: 600;
 }
 .card:hover{
+  transition: 0.5s;
   transform: scale(1.05);
   box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
 }
 .card-text{
-  height:80px;  
+  height:180px;  
 }
 
 .card::before, .card::after {
@@ -601,7 +613,7 @@ img{
 
 .site-desc{
 	font-size:50px;
-	padding:center 15%;
+	padding-center: 15%;
 }
 
 .site-btn1{
@@ -1080,4 +1092,7 @@ section .section-title {
     background-color: #0062cc;
     border: none;
     cursor: pointer;
+}
+.footer-ul li a{
+  color: #B5AEB0;
 }

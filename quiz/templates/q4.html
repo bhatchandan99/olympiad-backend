@@ -85,7 +85,7 @@
       }
       </style>
 
-<div class="test-title">
+{% comment %}<div class="test-title">
   <div class="rows upper-bar">
       <div style="background:lightblue;transform:skewX(20deg);min-height:60px;margin-left:10px;margin-right:10px;border-left:20px double white;border-right:20px double white;">
       <div style="transform:skewX(-20deg);">
@@ -100,6 +100,10 @@
       </div>
       </div>
       </div>
+</div>
+{% endcomment %}
+<div class="div" style="background-color: #0005;">
+  <br><br><br><br><br>
 </div>
 {% if previous.answers %}
 
@@ -279,16 +283,11 @@
 <br>
 {% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
   {% for ans in i.answers %}
-  <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name='{{ i.question.id }}' onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
+  <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name={{forloop.parentloop.counter}} onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
 
    {% endfor %}
   </ul>
   </div>
-  {% if progress.0|add:1 == progress.1 %}
-<input type="submit" value={% trans "Submit" %} class="btn btn-large btn-block btn-warning" >
-{% else %}
-  <input type="submit" value={% trans "Next" %} class="btn btn-large btn-block btn-warning" >
-{% endif %}
   {% endif %}
   </div>
 
@@ -304,33 +303,39 @@
 
     {% comment %} <p class="question lead" style="font-size: 2rem;">{{ question.content }}</p> {% endcomment %}
     {{ forloop.counter  }}. )
+    <br>
+    <div class="row">
+      <div class="col-md-6">
      {% if i.question.figure %}
      {% comment %} {{ i.question.figure }} {% endcomment %}
-        <img src="{{ i.question.figure.url }}" />
+        <img src="{{ i.question.figure.url }}" class="question-img"/>
           <br>
         {% endif %}
+      </div>
+      <div class="col-md-6">
         {% if i.question.img1 %}
-        <img src="{{ i.question.img1.url }}" />
+        <img src="{{ i.question.img1.url }} " class="question-img"/>
         {% endif %}
-
+        </div>
+<div class="col-md-6">
         {% if i.question.img2 %}
-        <img src="{{ i.question.img2.url }}" />
-        <br>
-    
+        <img src="{{ i.question.img2.url }} " class="question-img"/>
         {% endif %}
-        
+      </div>
+
+        <div class="col-md-6">
         {% if i.question.img3 %}
-        <img src="{{ i.question.img3.url }}" />
-        <br>
-    
+        <img src="{{ i.question.img3.url }} " class="question-img"/>
         {% endif %}
+      </div>
 
+<div class="col-md-6">
         {% if i.question.img4 %}
-        <img src="{{ i.question.img4.url }}" />
-        <br>
-        
+        <img src="{{ i.question.img4.url }}" class="question-img"/>        
         {% endif %}
+      </div>
 
+      </div>
       <div class="radio">
       <ul class="list-unstyled">{% csrf_token %}
 <p></p>
@@ -338,22 +343,16 @@
 <br>
 {% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
     {% for ans in i.answers %}
-    <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name='{{ i.question.id }}' onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
-
+    <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name={{forloop.parentloop.counter}} onchange="setAnswered('table{{forloop.counter}}');"></input>{{ ans.1 }}</label></li>
      {% endfor %}
     </ul>
     </div>
-    {% if progress.0|add:1 == progress.1 %}
-<input type="submit" value={% trans "Submit" %} class="btn btn-large btn-block btn-warning" >
-{% else %}
-    <input type="submit" value={% trans "Next" %} class="btn btn-large btn-block btn-warning" >
-{% endif %}
+
     {% endif %}
     </div>
 {% endifequal %}
 
 {% endfor %}
-</form>
 <center>
   <ul class="pager row">
     <div class="col-sm-3">
@@ -368,33 +367,36 @@
 <div class="row container-fluid buttons" style="margin-bottom:0;">
   <div class="col-sm-3">
   <center>
-  <button id="submit" type="button" class="btn btn-primary" onclick="submit();" action={% trans "Submit" %}>
-  Submit
-  </button>
-  </center>
-  </div>
-  <div class="col-sm-3">
-  <center>
-  <button id="mark" type="button" class="btn btn-info" onclick="setMarked();">
+  <button id="mark" type="button" class="btn btn-info" onclick="setMarked();" style="box-shadow: 2px 2px 4px #0004;">
   Mark
   </button>
   </center>
   </div>
   <div class="col-sm-3">
   <center>
-  <button id="unmark" type="button" class="btn btn-info" onclick="unmark();">
+  <button id="unmark" type="button" class="btn btn-info" onclick="unmarkbtn();" style="box-shadow: 2px 2px 4px #0004;">
   Unmark
   </button>
   </center>
   </div>
   <div class="col-sm-3">
   <center>
-  <button id="undo" type="button" class="btn btn-warning" onclick="undo();">
+  <button id="undo" type="button" class="btn btn-warning" onclick="undobtn();" style="box-shadow: 2px 2px 4px #0004;">
   Undo
   </button>
   </center>
   </div>
+  <div class="col-md-3">
+    <center>
+    {% if progress.0|add:1 == progress.1 %}
+    <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;">
+    {% else %}
+        <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;">
+    {% endif %}
+  </center>
   </div>
+  </div>
+</form>
 </div>
 
     <div class="col-md-3 question-grid" style="margin:0;">
@@ -409,13 +411,6 @@
       </div>
       </div>
       </div>
-
-      {% if progress.0|add:1 == progress.1 %}
-      <input type="submit" value={% trans "Submit" %} class="btn btn-large btn-block btn-warning" >
-      {% else %}
-          <input type="submit" value={% trans "Next" %} class="btn btn-large btn-block btn-warning" >
-      {% endif %}
-</form>
   </div>
 
 
@@ -478,6 +473,7 @@
       }
       dialoghide();
       }
+
       function showQuestion(id){
           var x = document.getElementsByClassName("question-no");
               var i;
@@ -500,7 +496,7 @@
           }
           function setAnswered(num)
           {
-              x = document.getElementById("table" + num);
+              x = document.getElementById('table' + counter.toString());
               if(x.style.background == "rgb(255, 103, 197)" || x.style.background == "#ff67C5"){
                   x.style.background = "#67c5ff";
               }else if(x.style.background == "rgb(56, 255, 137)" || x.style.background == "rgb(103, 197, 255)"){
@@ -520,7 +516,7 @@
                   x.style.background = "#FF67C5";
               }
           }
-          function unmark(){
+          function unmarkbtn(){
               x = document.getElementById("table" + counter.toString());
               if(x.style.background == "rgb(103, 197, 255)" || x.style.background == "#67c5ff" || x.style.background == "rgb(56, 255, 137)"){
                   x.style.background = "#38FF89"
@@ -528,13 +524,14 @@
                   x.style.background = "#676767";
               }
           }
-          function undo(){
+          function undobtn(){
               options = document.getElementsByName(counter);
+              console.log(options)
               for(var i=0;i<options.length;i++)
               {
                       options[i].checked=false;
               }
-              x = document.getElementById("table" + counter.toString());
+              x = document.getElementById("table" + counter);
               if(x.style.background == "rgb(103, 197, 255)" || x.style.background == "#67c5ff"){
                   x.style.background = "#FF67C5"
               }else if(x.style.background=="rgb(56, 255, 137)"){

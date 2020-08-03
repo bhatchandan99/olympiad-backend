@@ -283,7 +283,7 @@
 <br>
 {% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
   {% for ans in i.answers %}
-  <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name='{{ i.question.id }}' onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
+  <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name={{forloop.parentloop.counter}} onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
 
    {% endfor %}
   </ul>
@@ -343,8 +343,7 @@
 <br>
 {% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
     {% for ans in i.answers %}
-    <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name='{{ i.question.id }}' onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
-
+    <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name={{forloop.parentloop.counter}} onchange="setAnswered('table{{forloop.counter}}');"></input>{{ ans.1 }}</label></li>
      {% endfor %}
     </ul>
     </div>
@@ -375,14 +374,14 @@
   </div>
   <div class="col-sm-3">
   <center>
-  <button id="unmark" type="button" class="btn btn-info" onclick="unmark();" style="box-shadow: 2px 2px 4px #0004;">
+  <button id="unmark" type="button" class="btn btn-info" onclick="unmarkbtn();" style="box-shadow: 2px 2px 4px #0004;">
   Unmark
   </button>
   </center>
   </div>
   <div class="col-sm-3">
   <center>
-  <button id="undo" type="button" class="btn btn-warning" onclick="undo();" style="box-shadow: 2px 2px 4px #0004;">
+  <button id="undo" type="button" class="btn btn-warning" onclick="undobtn();" style="box-shadow: 2px 2px 4px #0004;">
   Undo
   </button>
   </center>
@@ -474,6 +473,7 @@
       }
       dialoghide();
       }
+
       function showQuestion(id){
           var x = document.getElementsByClassName("question-no");
               var i;
@@ -496,7 +496,7 @@
           }
           function setAnswered(num)
           {
-              x = document.getElementById("table" + num);
+              x = document.getElementById('table' + counter.toString());
               if(x.style.background == "rgb(255, 103, 197)" || x.style.background == "#ff67C5"){
                   x.style.background = "#67c5ff";
               }else if(x.style.background == "rgb(56, 255, 137)" || x.style.background == "rgb(103, 197, 255)"){
@@ -516,7 +516,7 @@
                   x.style.background = "#FF67C5";
               }
           }
-          function unmark(){
+          function unmarkbtn(){
               x = document.getElementById("table" + counter.toString());
               if(x.style.background == "rgb(103, 197, 255)" || x.style.background == "#67c5ff" || x.style.background == "rgb(56, 255, 137)"){
                   x.style.background = "#38FF89"
@@ -524,13 +524,14 @@
                   x.style.background = "#676767";
               }
           }
-          function undo(){
+          function undobtn(){
               options = document.getElementsByName(counter);
+              console.log(options)
               for(var i=0;i<options.length;i++)
               {
                       options[i].checked=false;
               }
-              x = document.getElementById("table" + counter.toString());
+              x = document.getElementById("table" + counter);
               if(x.style.background == "rgb(103, 197, 255)" || x.style.background == "#67c5ff"){
                   x.style.background = "#FF67C5"
               }else if(x.style.background=="rgb(56, 255, 137)"){

@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
@@ -47,10 +48,14 @@
                           </div>
                         </div>
                       </section>
+                      {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong>
+                    </div>
+
+                  {% endfor %}
 
                       <section class="menu" id="menu">
-                        <p class="menu-text" id="menu-text"> <<  CLICK TO VIEW MORE</p>
-                        <p class="menu-text-one" id="menu-text-one"> CLICK TO VIEW MORE  >></p>
                         <div class="menu-btn" onclick="menuOpen()" id="menu-ion-icon">
                             <ion-icon class="m-i-i" name="caret-forward-outline"></ion-icon>
                         </div>
@@ -69,7 +74,7 @@
                               <a class="dropdown-item" href="#">Preview Certificate</a>
                             </div>
                           </div>
-                          <a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a>
+                          <!--a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a-->
                           <div class="dropdown nav-item">
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Take Exams
@@ -115,12 +120,7 @@
                     <br><br><br>
                     <div class="container shown" id="profile">
 
- {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    <strong>{{message}}</strong>
-
-                  </div>
-                  {% endfor %} <br><br><br>
+  <br><br><br>
                         <form action="{% url 'update_student' %}" method="POST">
                           {% csrf_token %}
                         <div class="row">
@@ -381,32 +381,30 @@
 
                             </li>
                           </ol><br>
-                          <form action="{% url 'uploadfiles' %}" method="POST" enctype="multipart/form-data">
+                          <form action="{% url 'uploadfiles' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                               <div class="row mt-3">
                             <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
-                            <div class="col-md-4"><input type="file" name= "idproof"></div>
+                            <div class="col-md-4"><input type="file" name= "idproof" id="idproof"></div>
                             <div class="col-md-4">
-                               {% comment %} <input type="file" name="school_id" id="school_id"> {% endcomment %}
-                                  {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
                             </div>
                           </div>
 
 
                           <div class="row mt-3">
                           <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
-                          <div class="col-md-4"><input type="file" name = "marksheet"></div>
+                          <div class="col-md-4"><input type="file" name = "marksheet" id="marksheet"></div>
                           <div class="col-md-4">
+
                           
-                                {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
                           </div>
                         </div>
                         <div class="row mt-3">
                         <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
-                        <div class="col-md-4"><input type="file" name = "photograph"></div>
+                        <div class="col-md-4"><input type="file" name = "photograph" id="photograph"></div>
                         <div class="col-md-4">
-                        
-                              {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
+
+                          
                         </div>
                       </div>
 
@@ -415,8 +413,7 @@
                           </center>
                         </form>
 
-                        </div>
-                         </form>
+                        
 
 
                         <div class="container hide" id="slot">
@@ -1054,13 +1051,21 @@
                                        element.classList.toggle("menu-open");
                                        var elementone = document.getElementById("menu-ion-icon");
                                        elementone.classList.toggle("menu-ion-icon");
-                                       var x = document.getElementById('menu-text');
-                                       var y = document.getElementById('menu-text-one');
-                                       x.classList.toggle('hide-menu-text');
-                                       y.classList.toggle('hide-menu-text');
                                }
                              </script>
                                   <script>
                                     $(window).scroll(function(){$('.menu').toggleClass('menu-scrolled', $(this).scrollTop() > 0);});
                                   </script>
 {% endblock %}
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
