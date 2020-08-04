@@ -386,61 +386,61 @@
                               <div class="row mt-3">
                             <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
                             <div class="col-md-4">
-                            
-                            
-                        
-                            {% if stud.idproof_date %}
-                            <img src="{{stud.idproof.url}}" width="5" height="5">
+
+
+
+                            {% if request.user.idproof_date %}
+                            <img src="{{request.user.idproof.url}}" width="5" height="5">
                             <br>
                             <br>
                         <input type="file" name= "idproof">
                         {% else %}
-                        
+
                          <input type="file" name= "idproof"></div>
-                         
+
                          {% endif %}
                             <div class="col-md-4">
-                              
+
                             </div>
                           </div>
 
 
                           <div class="row mt-3">
                           <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
-                          <div class="col-md-4">{% if stud.marksheet_date %}
-                          <img src="{{stud.marksheet.url}}" width="5" height="5">
+                          <div class="col-md-4">{% if request.user.marksheet_date %}
+                          <img src="{{request.user.marksheet.url}}" width="5" height="5">
                           <br>
                           <br>
                         <input type="file" name = "marksheet">
                         {% else %}
-                        
+
                          <input type="file" name = "marksheet"></div>
-                         
+
                          {% endif %}
                           <div class="col-md-4">
 
-                               
+
                           </div>
                         </div>
                         <div class="row mt-3">
                         <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
                         <div class="col-md-4">
-                        {% if stud.photograph_date %}
-                        <img src="{{stud.photograph.url}}" width="5" height="5">
+                        {% if request.user.photograph_date %}
+                        <img src="{{request.user.photograph.url}}" width="5" height="5">
                         <br>
                         <br>
                         <input type="file" name = "photograph">
                         {% else %}
-                        
+
                          <input type="file" name = "photograph"></div>
-                         
-                         {% endif %} 
-                            
-                            
-                              
-                            
-                            
-                            
+
+                         {% endif %}
+
+
+
+
+
+
                             {% comment %} <input type="file" name= "idproof"></div>
                             <div class="col-md-4">
                                <img src="{{stud.idproof.url}}" width="5" height="5">
@@ -474,7 +474,7 @@
                         </form>
 
                         </div>
-                         
+
 
 
                         <div class="container hide" id="slot">

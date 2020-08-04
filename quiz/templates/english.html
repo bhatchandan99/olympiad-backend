@@ -17,6 +17,7 @@
     <div class="col-md-6"></div><br><br>
 </div>
 <form  action="{% url 'changeafterbook' %}" method="post">
+  {% csrf_token %}
 
 {% if request.user.final_englisholym %}
 
@@ -47,6 +48,7 @@
 
 
 </div>
+{% endif %}
 
 
     <center>
