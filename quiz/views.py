@@ -17,7 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect
-from .models import Student, Contact, Coordinator, School_register
+from .models import Student, Contact, Coordinator, School_register, Invoice
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -36,6 +36,8 @@ from mcq.models import MCQQuestion,Answer
 my_list =[]
 my_answers= []
 my_ques= []
+dict_pdf={}
+lst=[]
 #and user.email_confirmed
 # def loginhandle(request):
 #     if(request.method=='POST'):
@@ -69,6 +71,22 @@ import hmac
 import base64
 
 
+
+def invoice_view(request):
+    p=request.user
+    print(p)
+    print(request.user.username)
+    stud=request.user.username
+    val=Invoice.objects.filter(student=stud)
+    print(val)
+
+    return render(request,"invoice.html",{'val':val})
+    # q=Invoice.objects.get(student=request.user)
+
+def invoice_ind(request,sub_order_id):
+    l=Invoice.objects.get(order_id=sub_order_id)
+    return render(request,"invoice_ind.html",{'l':l})
+    
 def home(request):
     return render(request,'start.html')
 
@@ -181,7 +199,21 @@ def changeafterbook(request):
                   "returnUrl" : 'http://127.0.0.1:8000/response_changeslot/',
                   "notifyUrl" : 'https://github.com/'
         }
+
+        
+        # dict_pdf={"appId" : '21845d9c06b478a19ac3040ce54812',
+        #           "orderId" : temp,
+        #           "orderAmount" : '30',
+        #           "orderCurrency" : 'INR',
+        #           "orderNote" : "payment",
+        #           "customerName" : str(request.user.first_name),
+        #           "customerPhone" : str(request.user.number),
+        #           "customerEmail" : str(request.user.email),
+        #           "returnUrl" : 'http://127.0.0.1:8000/response_changeslot/',
+        #           "notifyUrl" : 'https://github.com/'
+        #           }
         print(postData)
+        # print(dict_pdf)
         sortedKeys = sorted(postData)
         signatureData = ""
         for key in sortedKeys:
@@ -218,6 +250,19 @@ def changeafterbook(request):
 
     return render(request,'changeslot.html')
 
+def invoice(request,dict_pdf):
+    # sub=Student.objects.get(pk=student.id)
+    order_id=dict_pdf['orderId']
+    order_amount=dict_pdf['orderAmount']
+    reference_id=dict_pdf['referenceId']
+    payment_mode=dict_pdf['paymentMode']
+    pay_time=dict_pdf['txTime']
+    k=order_id.split("_")
+    student=k[0]
+    inv=Invoice(student=student,order_id=order_id,order_amount=order_amount,reference_id=reference_id,payment_mode=payment_mode,pay_time=pay_time)
+    # sub.email=request.user.email
+    inv.save()
+
 def bookslot(request):
 
 
@@ -238,6 +283,19 @@ def bookslot(request):
         sub.final_generalolym=sub.generalolym
     print ("hi")
     print(request.user.first_name)
+    # if(mathsolym==True):
+    #     lst.append("ISMO")
+    # if(scienceolym==True):
+    #     lst.append("ISSO")
+    # if(englisholym==True):
+    #     lst.aapend("ISEO")
+    # if(reasoningolym==True):
+    #     lst.append("ISCTO")
+    # if(cyberolym==True):
+    #     lst.append("ISCO")
+    # if(generalolym==True):
+    #     lst.append("ISGKO")
+    # invoice(request,student,lst)
     sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
 
 
@@ -414,7 +472,37 @@ def handleresponse(request):
     "txTime" : request.POST['txTime']
     }
 
+    dict_pdf = {
+    "orderId" : postData['orderId'],
+    "orderAmount" : postData['orderAmount'],
+    "referenceId" : postData['referenceId'],
+    "txStatus" : postData['txStatus'],
+    "paymentMode" : postData['paymentMode'],
+    "txMsg" : postData['txMsg'],
+    "signature" : postData['signature'],
+    "txTime" : postData['txTime']
+    }
+    
+    invoice(request,dict_pdf)
+
+
+
+
+    # dict_pdf = {
+    # "orderId" : request.POST['orderId'],
+    # "orderAmount" : request.POST['orderAmount'],
+    # "referenceId" : request.POST['referenceId'],
+    # "txStatus" : request.POST['txStatus'],
+    # "paymentMode" : request.POST['paymentMode'],
+    # "txMsg" : request.POST['txMsg'],
+    # "signature" : request.POST['signature'],
+    # "txTime" : request.POST['txTime']
+    # }
+
     print(postData)
+
+    print("------------------")
+    print(dict_pdf)
     signatureData = ""
     signatureData = postData['orderId'] + postData['orderAmount'] + postData['referenceId'] + postData['txStatus'] + postData['paymentMode'] + postData['txMsg'] + postData['txTime']
 
@@ -474,7 +562,8 @@ def handleresponse(request):
 from django.http import HttpResponse
 
 
-
+print("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
+print(dict_pdf)
 
 
 def subscribe(request):
@@ -513,7 +602,7 @@ def subscribe(request):
         print('lost')
 
         temp = str(request.user.username)+str('_')+str(request.user.order_number)
-
+        
         print(temp)
         student = request.user
         sub=Student.objects.get(pk=student.id)
@@ -535,7 +624,10 @@ def subscribe(request):
                   "returnUrl" : 'http://127.0.0.1:8000/response/',
                   "notifyUrl" : 'https://github.com/'
         }
+        
+        
         print(postData)
+        
         # lst2=[]
         # lst.append(postData)
         sortedKeys = sorted(postData)
@@ -579,27 +671,17 @@ def faqs(request):
     return render(request,"faqs.html")
 
 
+# print(dict_pdf['orderId'])
 
 
-
-# def render_to_pdf(template_src,postData):
-#     template=get_template(template_src)
-#     html=template.render(postData)
-#     result=BytesIO()
-#     pdf=pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")),result)
-#     if not pdf.err:
-#         return HttpResponse(result.getvalue(),content_type="application/pdf")
-#     return None
-
-# data={
-#     'Order ID': postData["orderId"],
-#     'Order Amount': postData["orderAmount"],
-#     'Reference ID': postData["referenceId"],
-#     'Transaction Status': postData["txStatus"],
-#     'Payment Mode': postData["paymentMode"],
-#     'Message': postData["txMsg"],
-#     'Transaction Time': postData["txTime"],
-# }
+def render_to_pdf(template_src,content_type={}):
+    template=get_template(template_src)
+    html=template.render(content_type)
+    result=BytesIO()
+    pdf=pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")),result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(),content_type="application/pdf")
+    return None
 
 
 # class ViewPDF(View):
@@ -608,14 +690,27 @@ def faqs(request):
 #         return HttpResponse(pdf, content_type='application/pdf')
 
 
-# class DownloadPDF(View):
-#     def get(Self, request, *args, **kwargs):
-#         pdf=render_to_pdf('response.html', data)
-#         response= HttpResponse(pdf, content_type='application/pdf')
-#         filename= "Invoice_%s.pdf" %("12341231")
-#         content = "attachment; filename='%s'" %(filename)
-#         response['Content-Disposition'] = content
-#         return response
+class DownloadPDF(View):
+    def get(Self, request, *args, **kwargs):
+        order_id = kwargs.get('sub_order_id')
+        order_data = Invoice.objects.get(order_id=order_id)
+
+        data = {
+            'postData': {
+                'orderId': order_data.order_id,
+                'orderAmount':order_data.order_amount,
+                'referenceId':order_data.reference_id,
+                'paymentMode':order_data.payment_mode,
+                'txTime': order_data.pay_time
+
+            }
+        }
+        pdf=render_to_pdf('response.html', data)
+        response= HttpResponse(pdf, content_type='application/pdf')
+        filename= "Invoice_%s.pdf" %("12341231")
+        content = "attachment; filename='%s'" %(filename)
+        response['Content-Disposition'] = content
+        return response
 
 
 # def doc_upload(request):
@@ -703,27 +798,30 @@ def uploadfiles(request):
     stud=request.user
     if(request.method=='POST'):
         
-        idproof=request.POST.get('idproof'," ")
+        idproof=request.FILES.get('idproof'," ")
         print("*******************")
         # print(request.POST)
-        marksheet=request.POST.get('marksheet'," ")
-        photograph=request.POST.get('photograph'," ")
+        marksheet=request.FILES.get('marksheet'," ")
+        photograph=request.FILES.get('photograph'," ")
         print(marksheet)
         print(idproof)
         print(photograph)
         print("4444444444444444444444444444")
         if(idproof!=" "):
             stud.idproof=idproof
-            stud.save(update_fields=['idproof'])
+            stud.idproof_date="idproof"
+            stud.save(update_fields=['idproof','idproof_date'])
         if(marksheet!=" "):
             stud.marksheet=marksheet
-            stud.save(update_fields=['marksheet'])
+            stud.marksheet_date="marksheet"
+            stud.save(update_fields=['marksheet','marksheet_date'])
         if(photograph!=" "):
             stud.photograph=photograph
-            stud.save(update_fields=['photograph'])
+            stud.photograph_date="photograph"
+            stud.save(update_fields=['photograph','photograph_date'])
         # stud.save(update_fields=['school_id','prev_marksheet','photo'])
         messages.success(request, 'Documents successfully uploaded')
-    return render(request,"dashboard.html")
+    return render(request,"dashboard.html",{'stud':stud})
 
 
 

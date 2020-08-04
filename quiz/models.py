@@ -77,23 +77,36 @@ class Student(AbstractUser):
 
 
     idproof = models.ImageField(upload_to='idproof',blank=True,null=True)
-    idproof_date=models.CharField(max_length=50)
+    idproof_date=models.CharField(max_length=50,default=None,null=True)
     marksheet = models.ImageField(upload_to='marksheet',
                                blank=True,
                                null=True,
                                )
-    marksheet_date=models.CharField(max_length=50)
+    marksheet_date=models.CharField(max_length=50,default=None,null=True)
     photograph = models.ImageField(upload_to='photo',
                                blank=True,
                                null=True,
                                )
-    photograph_date=models.CharField(max_length=50)
+    photograph_date=models.CharField(max_length=50,default=None,null=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return str(str(self.email)+":"+self.username)
+
+class Invoice(models.Model):
+    id=models.AutoField(primary_key=True)
+    student = models.CharField(max_length=250)
+    order_id= models.CharField(max_length=50)
+    order_amount= models.CharField(max_length=50)
+    reference_id= models.CharField(max_length=50)
+    payment_mode=models.CharField(max_length=50)
+    pay_time=models.CharField(max_length=50)
+    # email=models.EmailField(max_length=254,null=True)
+
+    def __str__(self):
+        return str(self.student)+" "+str(self.reference_id)
 
 class Contact(models.Model):
     id=models.AutoField(primary_key=True)

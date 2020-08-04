@@ -104,7 +104,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
-                              <a class="dropdown-item" href="#" onclick="show('invoice')">Invoice</a>
+                              <a class="dropdown-item" href="/invoice_view" onclick="show('invoice')">Invoice</a>
                               <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
                             </div>
                           </div>
@@ -385,10 +385,66 @@
                             {% csrf_token %}
                               <div class="row mt-3">
                             <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
-                            <div class="col-md-4"><input type="file" name= "idproof"></div>
                             <div class="col-md-4">
-                               {% comment %} <input type="file" name="school_id" id="school_id"> {% endcomment %}
-                                  {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
+                            
+                            
+                        
+                            {% if stud.idproof_date %}
+                            <img src="{{stud.idproof.url}}" width="5" height="5">
+                            <br>
+                            <br>
+                        <input type="file" name= "idproof">
+                        {% else %}
+                        
+                         <input type="file" name= "idproof"></div>
+                         
+                         {% endif %}
+                            <div class="col-md-4">
+                              
+                            </div>
+                          </div>
+
+
+                          <div class="row mt-3">
+                          <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
+                          <div class="col-md-4">{% if stud.marksheet_date %}
+                          <img src="{{stud.marksheet.url}}" width="5" height="5">
+                          <br>
+                          <br>
+                        <input type="file" name = "marksheet">
+                        {% else %}
+                        
+                         <input type="file" name = "marksheet"></div>
+                         
+                         {% endif %}
+                          <div class="col-md-4">
+
+                               
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                        <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
+                        <div class="col-md-4">
+                        {% if stud.photograph_date %}
+                        <img src="{{stud.photograph.url}}" width="5" height="5">
+                        <br>
+                        <br>
+                        <input type="file" name = "photograph">
+                        {% else %}
+                        
+                         <input type="file" name = "photograph"></div>
+                         
+                         {% endif %} 
+                            
+                            
+                              
+                            
+                            
+                            
+                            {% comment %} <input type="file" name= "idproof"></div>
+                            <div class="col-md-4">
+                               <img src="{{stud.idproof.url}}" width="5" height="5">
+                                  <embed src="{{stud.idproof.url}}" width="100%" height="auto" />
                             </div>
                           </div>
 
@@ -397,21 +453,23 @@
                           <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
                           <div class="col-md-4"><input type="file" name = "marksheet"></div>
                           <div class="col-md-4">
-                          
-                                {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
+                          <img src="{{stud.marksheet.url}}" width="5" height="5">
+                                <embed src="{{stud.marksheet.url}}" width="100%" height="auto" />
                           </div>
                         </div>
                         <div class="row mt-3">
                         <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
                         <div class="col-md-4"><input type="file" name = "photograph"></div>
                         <div class="col-md-4">
-                        
-                              {% comment %} <embed src="1.jpg" width="100%" height="auto" /> {% endcomment %}
+                        <img src="{{stud.photograph.url}}" width="5" height="5">
+                              <embed src="{{stud.photograph.url}}" width="100%" height="auto" /> {% endcomment %}
                         </div>
                       </div>
 
                         <center>
                           <input type="submit" value='Upload' class="review-btn">
+                          <br>
+                          <br>
                           </center>
                         </form>
 

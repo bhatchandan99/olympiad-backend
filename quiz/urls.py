@@ -27,6 +27,8 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("home/",views.home, name="home"),
                         path("uploadfiles/",views.uploadfiles, name="uploadfiles"),
 
+                        path("invoice_view/" , view=views.invoice_view, name="invoice_view"),
+                        path("invoice_ind/<sub_order_id>/" ,view=views.invoice_ind, name="invoice_ind"),
                         path("update_student/",views.update_student, name="update_student"),
                         path("bookslot/",views.bookslot, name="bookslot"),
                         path("changeslot/",views.changeslot, name="changeslot"),
@@ -44,7 +46,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("changeafterbook/",view = views.changeafterbook , name="changeafterbook"),
                         path("response_changeslot/",view = views.response_changeslot , name="response_changeslot"),
 
-                        # path('pdf_save/' ,view=views.ViewPDF.as_view(), name='pdf_save'),
+                        path('pdf_download/<sub_order_id>/' ,view=views.DownloadPDF.as_view(), name='pdf_download'),
                         # path
 
 

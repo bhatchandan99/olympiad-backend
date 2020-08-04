@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 # Register your models here.
-from .models import Quiz, Category, Question, Progress,Student,Coordinator, Contact, School_register, Subscription, Paper
+from .models import Quiz, Category, Question, Progress,Student,Coordinator, Contact, School_register, Subscription, Paper, Invoice
 from mcq.models import MCQQuestion, Answer
 from django.utils.translation import ugettext_lazy as _
 from .models import CSVUpload
@@ -98,3 +98,4 @@ admin.site.register(Coordinator)
 admin.site.register(School_register)
 admin.site.register(Subscription)
 admin.site.register(Paper)
+admin.site.register(Invoice)
