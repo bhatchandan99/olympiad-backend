@@ -841,3 +841,12 @@ class Paper(models.Model):
 
     def __str__(self):
         return self.quiz_name
+
+class Syllabus(models.Model):
+    id = models.AutoField(primary_key=True)
+    olympiad_name = models.CharField(max_length=20)
+    std = models.CharField(max_length=2)
+    syllabus = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.olympiad_name + self.std

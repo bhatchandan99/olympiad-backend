@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basetest.html" %}
 {% load i18n%}
 {% load static %}
 
@@ -85,7 +85,7 @@
       }
       </style>
 
-{% comment %}<div class="test-title">
+  <div class="test-title">
   <div class="rows upper-bar">
       <div style="background:lightblue;transform:skewX(20deg);min-height:60px;margin-left:10px;margin-right:10px;border-left:20px double white;border-right:20px double white;">
       <div style="transform:skewX(-20deg);">
@@ -101,10 +101,7 @@
       </div>
       </div>
 </div>
-{% endcomment %}
-<div class="div" style="background-color: #0005;">
-  <br><br><br><br><br>
-</div>
+
 {% if previous.answers %}
 
   <p class="muted"><small>{% trans "The previous question" %}:</small></p>
@@ -305,13 +302,13 @@
     {{ forloop.counter  }}. )
     <br>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
      {% if i.question.figure %}
      {% comment %} {{ i.question.figure }} {% endcomment %}
         <img src="{{ i.question.figure.url }}" class="question-img"/>
           <br>
         {% endif %}
-      </div>
+      </div><br>
       <div class="col-md-6">
         {% if i.question.img1 %}
         <img src="{{ i.question.img1.url }} " class="question-img"/>

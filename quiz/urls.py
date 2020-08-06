@@ -42,12 +42,15 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("contact/",views.contact, name="contact"),
                         path("subscriptions/",view = views.subscribe , name="subscriptions"),
                         path("awards/",view = views.awards , name="awards"),
+                        path("rankingcriteria/",view = views.rankingcriteria , name="rankingcriteria"),
                         path("samplepaper/<sub>/<std>",view = views.samplepaper,name='samplepaper'),
+                        path("markingscheme/<sub>/",view = views.markingscheme,name='markingscheme'),
                         path("changeafterbook/",view = views.changeafterbook , name="changeafterbook"),
                         path("response_changeslot/",view = views.response_changeslot , name="response_changeslot"),
 
                         path('pdf_download/<sub_order_id>/' ,view=views.DownloadPDF.as_view(), name='pdf_download'),
                         # path
+                        path('syllabus/<olympiad>/<std>',view=views.syllabus,name='syllabus'),
 
 
 

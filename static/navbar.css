@@ -849,16 +849,16 @@ input[type="radio"]{
 }
 
 .q-type-1 span{
-    background-color: #676767;
+    background-color: #0000FF;
 }
 .q-type-2 span{
-    background-color: #38FF89;
+    background-color: #FF0000;
 }
 .q-type-3 span{
-    background-color: #FF67C5;
+    background-color: #00FF00;
 }
 .q-type-4 span{
-    background-color: #67c5ff;
+    background-color: #FFFF00;
 }
 
 .camera-btn{
@@ -1233,6 +1233,10 @@ input[type="radio"]{
     }
 }
 .book-modal{
+    width: 60%;
+    position: fixed;
+    top: -100%;
+    left:20%;
     box-shadow: 5px 7px 10px #0005;
     padding: 20px;
     transition: 0.7s;
@@ -1254,4 +1258,50 @@ input[type="radio"]{
 .book-btn{
     margin-left: 0;
 }
+}
+.samplepaper{
+    transform-origin: top;
+    transform: scaleY(0);
+    height: 0;
+    transition: 0.3s;
+    font-size: 15px;
+    background-color: #ff6798;
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: 2px 3px 4px #0004;
+}
+.samplepaper a{
+    width: 100%;
+    margin-left: 20px;
+    color: #FFF;
+    transition: 0.3s;
+}
+.samplepaper a:hover{
+    color: #FFF;
+    margin-left: 25px;
+    text-decoration: none;
+}
+.spshow{
+    transform: scaleY(1);
+    height: auto;
+}
+
+.sphead{
+    width: 100%;
+    background: #F50905;
+    padding: 10px 20px 10px 20px;
+    border-radius: 3px;
+    box-shadow: 2px 3px 4px #0004;
+    margin-bottom: 10px;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+.sphead a{
+    background: #F50905;
+    font-size: 1rem;
+}
+.sphead a span{
+    position: absolute;
+    right: 30px;
+    color: #FFF;
 }
