@@ -137,7 +137,7 @@
     {% csrf_token %}
     <div class="form-group row">
       <label>Order Amount:</label><br>
-      <input class="form-control" name="orderAmount" placeholder=" Amount " id="field"/>
+      <input type="text" readonly class="form-control" name="orderAmount" placeholder=" Amount " id="field"/>
     </div>
 
     <div class="row sub-row mb-3">
@@ -213,25 +213,26 @@
     </div>
 
     <div class="row instructions">
+
       <p><b>Important Instructions : </b></p>
       <ul style="list-style-type:disc">
-        <li>International Olympiads is a Summer Olympiad. It focuses on assessing the student on the basis of what he/she has studied in the last 2 classes.</li>
-        <li>International Olympiads conducts examinations in both online and pen/paper mode
+        <li>International School Olympiads is based on the combined syllabus of the CBSE, ICSE and IGCSE boards.</li>
+        <li>International School Olympiads conducts examinations in both online and offline modes.
           <ul style="list-style-type: circle;">
             <li>In case of online mode, the exam will be conducted online i.e. either on laptop or desktop. The students will have to take the exams from their residence or any other place where they have access to computer with good Internet connectivity (2 Mbps) and latest version of the browser (preferably Google Chrome). If schools have subscribed for online mode of exam, then they may decide to conduct these exams using their computer lab.</li>
             <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
           </ul>
         </li>
         <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
-        <li>The online mode of examinations will be proctored. Hence, webcam is compulsory on every laptop/desktop.</li>
-        <li>To know about the exam and answer key dates, please check the <a href="#">exam dates<a> page.</li>
-        <li>There will be 1 Mock Test provided to all the students who can attempt this test online for a maximum of 3 times.</li>
-        <li>Do read the <a href="#">Frequently Asked Questions (FAQs)</a> thoroughly.</li>
-        <li>Kindly make payment only after you have read and accepted the above statements. Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at <a href="">info@-------.com.</a></li>
+        <li>The online mode of examinations will be thoroughly invigilated. Hence, the provision of a webcam is compulsory on every laptop/desktop.</li>
+        <li>To know more about the exam and answer key dates, please check the <a href="{% url 'examdates' %}">exam dates</a> page.</li>
+        <li>Students will be provided with 3 Mock Tests which can be attempted upto 3 times by a student.</li>
+        <li>For further information, read the <a href="{% url 'faqs' %}">Frequently Asked Questions (FAQs)</a> thoroughly.        </li>
+        <li>Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at     </li>
       </ul>
       <br>
-      <input type="checkbox" name="" id="checkbox" style="width: 30px;height: 30px;" onchange="toggleDisable()">
-      <span class="" style="font-size: 1.5rem;margin-left: 10px;"> I acknowledge that I have read all the above instructions</span>
+      <input type="checkbox" name="" id="checkbox" style="width: 20px;height: 20px; transform: translateY(7px);" onchange="toggleDisable()">
+      <span class="" style="font-size: 1.5rem;margin-left: 10px;"> I acknowledge that I have read all the above instructions and comply to the same.</span>
       <br><br>
   </div>
   <center>
