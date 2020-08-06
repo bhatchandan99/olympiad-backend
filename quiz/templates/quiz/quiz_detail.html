@@ -1,9 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'basetest2.html' %}
 {% load i18n %}
 {% block body %}
-<div class="div">
-    <br><br><br><br><br>
-</div>
+{% load static %}
+<div class="test-title">
+    <div class="rows upper-bar">
+        <div style="background:lightblue;transform:skewX(20deg);min-height:60px;margin-left:10px;margin-right:10px;border-left:20px double white;border-right:20px double white;">
+        <div style="transform:skewX(-20deg);">
+        <!--upper bar with logo and menus-->
+        <div class="container-fluid">
+        <!--space for logo-->
+        <div class="col-sm-1 logo">
+            <img src="{% static 'screenshots/logo1.jpg' %}"style="height: 90px">
+  
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+  </div>
     <div class="row">
         <div class="col-md-12">
         <center>
@@ -71,7 +85,7 @@
                     <li class="ml-5">The computer available to me is in proper working condition.</li>
                     <li class="ml-5">I have read and understood the instructions given above.</li>
                     <br><br>
-            <h3>Tue Jun 16 2020 21:11:13 GMT+0530 (India Standard Time)</h3>
+                <h3 id="date"></h3>
 
                 </ol>
             </span>
@@ -96,6 +110,16 @@
 {% endblock %}
 
 {% block js %}
+<script>
+window.onload = times()
+    function times(){
+        var currentdate = new Date();
+        var days = ['Monday','Tuesday','Wednesday' , 'Thrusday' , 'Friday' , 'Saturday' , 'Sunday']
+    var datetime = days[currentdate.getDay()-1].toUpperCase() + ' ' + currentdate.getDate() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + ' ' + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds() ;
+    document.getElementById('date').innerHTML = datetime; 
+    setTimeout(times,1000);
+    }
+</script>
     <script>
         function abc(){
             var x = document.getElementById('button-abc');
