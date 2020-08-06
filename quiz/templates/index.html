@@ -106,247 +106,261 @@ School
     <div class="container text-center ">
 
 
-            <div class="container mt-2" >
-              <div class="row">
-                <div class="col-12">
-                  <div class="section-heading text-center">
-                    <h2>Exams We Provide</h2>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 col-sm-6 item">
-                  <div class="card item-card card-block">
-                    <img src="{% static 'Stock/stationary.jpg' %}"alt="Photo of sunset" class="rounded-top">
-
-                    <h5 class="card-title  mt-3 mb-3">Science</h5>
-                    <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                    <a href="{% url 'contact' %}" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 item">
-                  <div class="card item-card card-block">
-
-                    <img src="{% static 'Stock/pen2.jpg' %}" alt="Photo of sunset" class="rounded-top">
-                    <h5 class="card-title  mt-3 mb-3">English</h5>
-                    <p class="card-text">The fee per subject is Rs. 225 for students studying in India and $10 for international students</p>
-                    <a href="{% url 'contact' %}" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 item">
-                  <div class="card item-card card-block">
-                    <img src="{% static 'Stock/specs.jpg' %}" style="height: 160px" alt="Photo of sunset" class="rounded-top">
-                    <h5 class="card-title  mt-3 mb-3">Mathematics</h5>
-                    <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                    <a href="{% url 'contact' %}" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 item">
-                  <div class="card item-card card-block">
-
-                    <img src="{% static 'Stock/books.jpg' %}" style="height: 160px" alt="Photo of sunset" class="rounded-top">
-
-                    <h5 class="card-title  mt-3 mb-3">General Knowledge</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
-                    <a href="{% url 'contact' %}" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="container mt-2">
-
-              <div class="row">
-                <div class="col-md-3 col-sm-6 item">
-                 <div class="card item-card card-block">
-                  <img src="{% static 'Stock/cyber.jpg' %}" style="height: 160px" alt="Photo of sunset" class="rounded-top">
-                  <h5 class="card-title  mt-3 mb-3">Cyber</h5>
-                  <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                  <a href="{% url 'contact' %}"  class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6 item">
-               <div class="card item-card card-block">
-
-                <img src="{% static 'Stock/pen.jpg' %}" style="height : 160px" alt="Photo of sunset" class="rounded-top">
-                <h5 class="card-title  mt-3 mb-3">Critical Thinking</h5>
-                <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                <a href="{% url 'contact' %}" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-
-                <img src="{% static 'Stock/pen2.jpg' %}"alt="Photo of sunset" class="rounded-top">
-                <h5 class="card-title  mt-3 mb-3">Awards</h5>
-                <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                <a href="/awards" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-
-                <img src="{% static 'Stock/stationary.jpg' %}"alt="Photo of sunset" class="rounded-top">
-                <h5 class="card-title  mt-3 mb-3">Exam Preparation</h5>
-                <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                <a href="/contact"  class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </section>
-    <!-- =========================================================================================================================== -->
-  </section>
-
-  {% if user.is_authenticated %}
-  {% else %}
-  <section class="steps">
-    <div class="container-fluid">
       <div class="row">
-      <div class="col-md-3">
-        <div class="step">
-        <center>
-        <div class="step-count">
-          1
-        </div>
-      </center>
-        <div class="step-content">
-          After registration and payment, go to the Dashboard and book your preferred slot
-        </div>
-      </div>
-      </div>
-      <div class="col-md-3">
-        <div class="step">
-        <center>
-          <div class="step-count">
-            2
+        <div class="col-12">
+          <div class="section-heading text-center">
+            <h2 style="margin-top: 0">Exams We Provide</h2>
+            <!-- <p>We Are A Creative Digital Agency. Focused on Growing Brands Online</p> -->
           </div>
-        </center>
-        <div class="step-content">
-          Go to My Details and click Submit Documents. Then upload all the required documents
         </div>
       </div>
-      </div>
-      <div class="col-md-3">
-        <div class="step">
-        <center>
-          <div class="step-count">
-            3
-          </div>
-        </center>
-        <div class="step-content">
-          To give Mock Test, go to Take Exam and click Mock Test. You can check the performance in the Results section.
-        </div>
-      </div>
-      </div>
-      <div class="col-md-3">
-        <div class="step">
-        <center>
-          <div class="step-count">
-            4
-          </div>
-        </center>
-        <div class="step-content">
-          To give exam as per your booked slot, go to Take Exam and click Main Exam. You can check the results in the Results section.
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="step-go col-md-4">
-        <center><a href="{% url 'applyindividual' %}" class="step-btn">
-          Start Now
-        </a>
-      </center>
-
-      </div>
-    </div>
-
-    </div>
-
-  </section>
-{% endif %}
-
-    <!--  Demos -->
-    <section id="demos" style="padding: 0;  text-align: center;" >
-     <div class="container">
       <div class="row">
-        <div class="large-12 columns">
-          <div class="owl-carousel owl-theme">
-            <!-- <div class="item"> -->
-              <div class="card item-card card-block">
-                <i class="fa fa-file-text" style="font-size:46px; color: #17a2b8; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-                <h5 class="card-title  mt-3 mb-3"> Fees and Exam Dates</h5>
-                <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-                <a href="/examdates" class="btn btn-info " style="align-content: center;">Know More</a>
+        <div class="col-md-4 col-sm-6 item">
+          <div class="card item-card card-block">
+            <img src="{% static 'Stock/science_bg.jpeg' %}"style="height: 160px" alt="Science Olympiads" class="rounded-top">
 
-              </div>
-
-
-
-              <div class="card item-card card-block">
-
-               <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-               <h5 class="card-title  mt-3 mb-3"> Marking Scheme</h5>
-               <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-
-               <a href="/contact" class="btn btn-primary " style="align-content: center;">Know More</a>
-             </div><div class="card item-card card-block">
-
-               <i class="fa fa-book" style="font-size:46px; color: #6c757d; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-               <h5 class="card-title  mt-3 mb-3"> Syllabus</h5>
-               <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-
-               <a href="/contact" class="btn btn-secondary " style="align-content: center;">Know More</a>
-
-             </div><div class="card item-card card-block">
-
-              <i class="fa fa-paperclip" style="font-size:46px; color: #dc3545; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-              <h5 class="card-title  mt-3 mb-3">Sample Papers</h5>
-              <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-              <a href="/contact" class="btn btn-danger " style="align-content: center;">Know More</a>
-            </div>
-            <div class="card item-card card-block">
-
-             <i class="fa fa-list-ol" style="font-size:46px; color: #28a745; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-             <h5 class="card-title  mt-3 mb-3">Ranking Criteria</h5>
-             <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-             <a href="/contact" class="btn btn-success " style="align-content: center;">Know More</a>
-
-           </div><div class="card item-card card-block">
-
-            <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-            <h5 class="card-title  mt-3 mb-3"> Awards</h5>
-            <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-            <a href="/awards" class="btn btn-purple" style="align-content: center;">Know More</a>
+            <h5 class="card-title  mt-3 mb-3">Science</h5>
+            <p class="card-text">Science: The International School Science Olympiad (ISSO) is an online Olympiad conducted
+for classes 1-12. The exam will have three Mock Tests and one Final Exam.</p> 
+            <a href="#" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
 
           </div>
+        </div>
+        <div class="col-md-4 col-sm-6 item">
           <div class="card item-card card-block">
 
-            <i class="fa fa-rocket" style="font-size:46px; color: orange; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-            <h5 class="card-title  mt-3 mb-3"> Exam Preparation</h5>
-            <p class="card-text">ifsoiwaefijn 0wuw EU ISA Pi isfisfo 0wiefwi0w..</p>
-            <a href="/contact" class="btn btn-orange " style="align-content: center;">Know More</a>
-
+            <img src='{% static "Stock/english_bg.jpeg" %}' style="height: 160px" alt="English Olympiads" class="rounded-top">
+            <h5 class="card-title  mt-3 mb-3">English</h5>
+            <p class="card-text">The International School English Olympiad (ISEO) is the english olympiad exam for the
+year 2020. Classes 1-12 can take part in this exam comprising three mocks and one final paper.</p> 
+            <a href="#" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
           </div>
-          </div>
-          </div>
-      </div>
         </div>
-    </section>
+        <div class="col-md-4  col-sm-6 item">
+          <div class="card item-card card-block">
+            <img src="{% static 'Stock/math_bg.jpeg' %}" style="height: 160px" alt="Mathematics Olympiads" class="rounded-top">
+            <h5 class="card-title  mt-3 mb-3">Mathematics</h5>
+            <p class="card-text">The International School Mathematics Olympiad (ISMO) is an international
+competitive exam for students ranging from class 1 to 12. The exam pattern will follow three
+mock tests and one final exam.</p> 
+            <a href="#" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-2">
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6 item">
+         <div class="card item-card card-block">
+          <img src="{% static 'Stock/gk_bg.jpeg' %}" style="height: 160px" alt="GK Olympiad" class="rounded-top">
+          <h5 class="card-title  mt-3 mb-3">General Knowledge</h5>
+          <p class="card-text">The International School General Knowledge Olympiad (IGKO) is an online
+olympiad held for students of class 1- 12. Students taking part need to appear for three mock
+exams followed by one final paper upon qualification.</p> 
+          <a href="#"  class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 item">
+       <div class="card item-card card-block">
+
+        <img src="{% static 'Stock/cyber_bg.jpeg' %}" style="height : 160px" alt="Cyber Olympiad" class="rounded-top">
+        <h5 class="card-title  mt-3 mb-3">Cyber</h5>
+        <p class="card-text">The International School Cyber Olympiad (ISCO) of the year 2020 will be conducted
+online. Participants can vary from classes 1-12. Students wishing to take part have to clear
+three mock tests followed by one final test.</p> 
+        <a href="#" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
+
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 item">
+      <div class="card item-card card-block">
+
+        <img src="{% static 'Stock/CriticalT_bg.jpeg' %}" style="height: 160px" alt="Logical Reasoning Olympiads" class="rounded-top">
+        <h5 class="card-title  mt-3 mb-3">Logical Reasoning</h5>
+        <p class="card-text">The International School Logical Reasoning Olympiad (ISLRO) is based on
+forming judgements and testing Logical Reasoning skills.Classes 1-12 can take part in this
+exam comprising three mocks and one final paper.</p> 
+        <a href="#" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
+      </div>
+    </div>    
+   
+  </div>
+</div>
+</div>
+
+
+</section>
+{% if user.is_authenticated %}
+{% else %}
+<section class="steps">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3">
+  <div class="step">
+  <center>
+  <div class="step-count">
+    1
+  </div>
+</center>
+  <div class="step-content">
+    On completion of registration and payment of fees, book your preferred slot from the
+dashboard.
+  </div>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="step">
+  <center>
+    <div class="step-count">
+      2
+    </div>
+  </center>
+  <div class="step-content">
+     Go to the section marked My details and click on Submit documents under it. Upload all
+required documents over there.
+  </div>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="step">
+  <center>
+    <div class="step-count">
+      3
+    </div>
+  </center>
+  <div class="step-content">
+   For taking Mock tests, go to Take Exam and click on Mock Tests. Your performance can be checked in the Results section.        </div>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="step">
+  <center>
+    <div class="step-count">
+      4
+    </div>
+  </center>
+  <div class="step-content">
+    To give exams as per your booked slots, click on Take Exam and choose the main exam
+option coming under it. Results will be updated in the
+  </div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="step-go col-md-4">
+  <center><a href="applyindividual.html" class="step-btn">
+    Start Now
+  </a>
+</center>
+
+</div>
+</div>
+
+</div>
+
+</section>
+{% endif %}
+
+
+
+<!--  Demos -->
+<section id="demos" style="padding: 0;  text-align: center;" >
+<div class="container">
+<div class="row">
+<div class="large-12 columns">
+  <div class="owl-carousel owl-theme">
+    <!-- <div class="item"> -->
+      <div class="card item-card card-block">
+
+    <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+    <h5 class="card-title  mt-3 mb-3"> Awards</h5>
+    <p class="card-text">Apart from various awards for rank holders, students will receive merit and participation
+certificates as well</p> 
+    <a href="contact.html" class="btn btn-purple" style="align-content: center;">Know More</a>
+
+  </div>
+
+      <div class="card item-card card-block">
+        <i class="fa fa-file-text" style="font-size:46px; color: #17a2b8; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+        <h5 class="card-title  mt-3 mb-3"> Fees and Exam Dates</h5>
+        <p class="card-text">The fee per subject per student is Rs.225 for Indian students and $10 (USD) for international students. Exam dates  will be announced soon. Stay tuned!</p> 
+        <a href="contact.html" class="btn btn-info " style="align-content: center;">Know More</a>
+
+      </div>
+
+
+
+      <div class="card item-card card-block">
+
+       <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+       <h5 class="card-title  mt-3 mb-3">Marking Scheme</h5>
+       <p class="card-text"> The total marks of each exam are 40 and 60 for classes 1-4 and 5-12
+respectively.</p> 
+
+       <a href="/markingscheme/all" class="btn btn-primary " style="align-content: center;">Know More</a>
+     </div><div class="card item-card card-block">
+
+       <i class="fa fa-book" style="font-size:46px; color: #6c757d; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+       <h5 class="card-title  mt-3 mb-3"> Syllabus</h5>
+       <p class="card-text">The International School Olympiad exams follow the ICSE, CBSE and IGCSE
+syllabus’.</p> 
+
+       <a href="/syllabus/maths/1" class="btn btn-secondary " style="align-content: center;">Know More</a>
+
+     </div><div class="card item-card card-block">
+
+      <i class="fa fa-paperclip" style="font-size:46px; color: #dc3545; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+      <h5 class="card-title  mt-3 mb-3">Sample Papers</h5>
+      <p class="card-text">The sample papers provided will guide students regarding exam pattern, type
+of questions, marking scheme and give them a generalised idea of how the exam is going to be.</p> 
+      <a href="/samplepaper/maths/1" class="btn btn-danger " style="align-content: center;">Know More</a>
+    </div>
+    <div class="card item-card card-block">
+
+     <i class="fa fa-list-ol" style="font-size:46px; color: #28a745; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+     <h5 class="card-title  mt-3 mb-3">Ranking Criteria</h5>
+     <p class="card-text"> The ranking criteria is decided on the total marks secured by individuals after
+the evaluation of results.</p> 
+     <a href="{% url 'rankingcriteria' %}" class="btn btn-success " style="align-content: center;">Know More</a>
+
+   </div><div class="card item-card card-block">
+
+    <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+    <h5 class="card-title  mt-3 mb-3"> Results</h5>
+    <p class="card-text">Results of the exams will be updated on the site after thorough evaluation of papers.</p> 
+    <a href="{% url 'contact' %}" class="btn btn-purple" style="align-content: center;">Know More</a>
+
+  </div>
+  <div class="card item-card card-block">
+
+    <i class="fa fa-rocket" style="font-size:46px; color: orange; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+    <h5 class="card-title  mt-3 mb-3"> Exam Preparation</h5>
+    <p class="card-text">Join free workshops organized by us for exam preparation tips, guidance,
+book recommendations, etc.</p> 
+    <a href="{% url 'contact' %}" class="btn btn-orange " style="align-content: center;">Know More</a>
+
+  </div>
+   <div class="card item-card card-block">
+
+       <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
+       <h5 class="card-title  mt-3 mb-3">FAQs</h5>
+       <p class="card-text"> For any further doubts on any given topics, please read the FAQ section.</p> 
+
+       <a href="{% url 'faqs' %}" class="btn btn-primary " style="align-content: center;">Know More</a>
+     </div>
+  
+
+
+
+</div>
+
+</div>
+</div>
+</section>
 {% endblock %}
 {% block js %}
         <script>

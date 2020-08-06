@@ -17,7 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect
-from .models import Student, Contact, Coordinator, School_register, Invoice
+from .models import Student, Contact, Coordinator, School_register, Invoice,Syllabus
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -1467,3 +1467,31 @@ def samplepaper(request,sub,std):
 
 def awards(request):
     return render(request,'awards.html')
+
+
+def syllabus(request,olympiad,std):
+    a = Syllabus.objects.filter(olympiad_name=olympiad).filter(std=std)
+    b = {'syllabus':a}
+    if(olympiad == 'maths'):
+        name1 = 'Mathematics'
+    if(olympiad == 'gk'):
+        name1 = 'General Knowledge'
+    if(olympiad == 'ct'):
+        name1 = 'Critical Thinking'
+    if(olympiad == 'science'):
+        name1 = 'Science'
+    if(olympiad == 'english'):
+        name1 = 'English'
+    if(olympiad == 'cyber'):
+        name1 = 'Cyber'        
+    c = {'name':name1}
+    d = {'class':std}
+    response = {**b,**c,**d}
+    return render(request,'syllabus.html',response)
+
+def rankingcriteria(request):
+    return render(request,'rankingcriteria.html')
+
+def markingscheme(request,sub):
+    tem = 'ms'+sub+'.html'
+    return render(request,tem)

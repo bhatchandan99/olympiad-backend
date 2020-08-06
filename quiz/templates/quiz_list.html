@@ -4,6 +4,8 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block body %}
+<div class="d" style="background-color: #0007;"><br><br><br><br><br></div><br><br><br>
+<div class="container row">
 <h2>{% trans "List of quizzes" %}</h2>
     {% if quiz_list %}
 		<table class="table table-bordered table-striped">
@@ -39,6 +41,7 @@
 		</table>
 
 	{% else %}
-        <p>{% trans "There are no available quizzes" %}.</p>
-    {% endif %}
+        <p>{% trans "There are no available quizzes" %}.</p><br><br>
+	{% endif %}
+</div><br><br>
 {% endblock %}
