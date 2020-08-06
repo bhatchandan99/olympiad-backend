@@ -23,7 +23,7 @@
 
 
                       <!-- hero -->
-                      <dsectioniv class="container-fluid p-0" >
+                      <section class="container-fluid p-0" >
                         <div class="site-content" style="height: 450px; background-image: {% static 'Stock/download (1).jpg' %};">
                           <div class="d-flex justify-content-center" >
                             <div class="d-flex flex-column" style="padding-top: 120px">
@@ -46,159 +46,171 @@
 
             <center>
 
-              Your Subscriptions
+              <h3>Your Subscriptions</h3><br>
 
               </center>
+<div class="row">
+  
+  <table>
+    <tr>
+      <th>Quiz Name </th>
+      <th>Date & Time</th>
 
-            <table>
-            <tr>
-              <th>Quiz Name </th>
-              <th>Date & Time</th>
+    </tr>
 
-            </tr>
+      {% csrf_token %}
 
-              {% csrf_token %}
-
-            {% if request.user.final_cyberolym %}
-
-
-            <tr>
-              <td>Cyber Olympiad</td>
-              <td>{{ request.user.cybertime }}</td>
+    {% if request.user.final_cyberolym %}
 
 
-
-            </tr>
-
-            {% endif %}
-
-
-            {% if request.user.final_mathsolym %}
-
-
-            <tr>
-              <td>Maths Olympiad</td>
-              <td>{{ request.user.mathtime }}</td>
-
-            {% endif %}
-
-
-            {% if request.user.final_scienceolym %}
-
-
-            <tr>
-              <td>Science Olympiad</td>
-              <td>{{ request.user.sciencetime }}</td>
-
-            {% endif %}
-
-            {% if request.user.final_generalolym %}
-
-
-            <tr>
-
-              <td>Gk Olympiad</td>
-              <td>{{ request.user.gktime }}</td>
-
-
-            {% endif %}
-
-            {% if request.user.final_reasoningolym %}
-
-
-            <tr>
-
-              <td>Reasoning Olympiad</td>
-              <td>{{ request.user.reasoningtime }}</td>
-
-
-            {% endif %}
-
-            {% if request.user.final_englisholym %}
-
-
-            <tr>
-              <td>English Olympiad</td>
-              <td>{{ request.user.englishtime }}</td>
-
-
-            {% endif %}
+    <tr>
+      <td>Cyber Olympiad</td>
+      <td>{{ request.user.cybertime }}</td>
 
 
 
+    </tr>
 
-          </table>
+    {% endif %}
+
+
+    {% if request.user.final_mathsolym %}
+
+
+    <tr>
+      <td>Maths Olympiad</td>
+      <td>{{ request.user.mathtime }}</td>
+
+    {% endif %}
+
+
+    {% if request.user.final_scienceolym %}
+
+
+    <tr>
+      <td>Science Olympiad</td>
+      <td>{{ request.user.sciencetime }}</td>
+
+    {% endif %}
+
+    {% if request.user.final_generalolym %}
+
+
+    <tr>
+
+      <td>Gk Olympiad</td>
+      <td>{{ request.user.gktime }}</td>
+
+
+    {% endif %}
+
+    {% if request.user.final_reasoningolym %}
+
+
+    <tr>
+
+      <td>Reasoning Olympiad</td>
+      <td>{{ request.user.reasoningtime }}</td>
+
+
+    {% endif %}
+
+    {% if request.user.final_englisholym %}
+
+
+    <tr>
+      <td>English Olympiad</td>
+      <td>{{ request.user.englishtime }}</td>
+
+
+    {% endif %}
+
+
+
+
+  </table>
+</div>
             <form action="" method="post" class="third" >
 
 
 
     {% csrf_token %}
-
-    <div class="form-group">
+    <div class="form-group row">
       <label>Order Amount:</label><br>
       <input class="form-control" name="orderAmount" placeholder=" Amount " id="field"/>
     </div>
 
-    {% if stud.final_mathsolym %}
+    <div class="row sub-row mb-3">
+      {% if stud.final_mathsolym %}
 
-    <label for="mathsolym" ><p style="color: grey;"> MATHS OLYMPIAD(150)</p></label>
+    <label for="mathsolym"class='d-l' ><p> MATHS OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="mathsolym" name="mathsolym" disabled="true">
 
         {% else %}
-        <label for="mathsolym"><p style="color: black;"><strong>MATHS OLYMPIAD(150)</strong></p></label>
+        <label for="mathsolym" class="l"><p>MATHS OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="mathsolym" name="mathsolym" onchange="Update(this)">
        {% endif %}
+    </div>
 
 
-    {% if stud.final_englisholym %}
+    <div class="row sub-row mb-3">
+      {% if stud.final_englisholym %}
 
-    <label for="englisholym"><p style="color: grey;">ENGLISH OLYMPIAD(150)</p></label>
+    <label for="englisholym" class="d-l"><p>ENGLISH OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="englisholym" name="englisholym" disabled="true">
 
         {% else %}
-        <label for="englisholym"><p style="color: black;"><strong>ENGLISH OLYMPIAD(150)</strong></p></label>
+        <label for="englisholym" class='l'><p>ENGLISH OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="englisholym" name="englisholym" onchange="Update(this)">
         {% endif %}
+    </div>
 
-    {% if stud.final_scienceolym %}
+    <div class="row sub-row mb-3">
+      {% if stud.final_scienceolym %}
 
-    <label for="scienceolymm"><p style="color: grey;">SCIENCE OLYMPIAD(150)</p></label>
+    <label for="scienceolymm" class="d-l"><p>SCIENCE OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="scienceolymm" name="scienceolym" disabled="true" >
         {% else %}
-        <label for="scienceolym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
+        <label for="scienceolym" class='l'><p>SCIENCE OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="scienceolym" name="scienceolym" onchange="Update(this)">
         {% endif %}
+    </div>
 
 
-    {% if stud.final_cyberolym %}
-    <label for="cyberolymm"><p style="color: grey;">CYBER OLYMPIAD(150)</p></label>
+    <div class="row sub-row mb-3">
+      {% if stud.final_cyberolym %}
+    <label for="cyberolymm" class="d-l"><p>CYBER OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="cyberolymm" name="cyberolym" disabled="true" >
 
         {% else %}
-        <label for="cyberolym"><p style="color: black;"><strong>CYBER OLYMPIAD(150)</strong></p></label>
+        <label for="cyberolym" class='l'><p>CYBER OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="cyberolym" name="cyberolym" onchange="Update(this)">
         {% endif %}
+    </div>
 
-    {% if stud.final_reasoningolym %}
+    <div class="row sub-row mb-3">
+      {% if stud.final_reasoningolym %}
 
-      <label for="reasoningolymm"><p style="color: grey;">REASONONG OLYMPIAD(150)</p></label>
+      <label for="reasoningolymm" class="d-l"><p>REASONING OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="reasoningolymm" name="reasoningolym" disabled="true">
 
         {% else %}
-        <label for="reasoningolym"><p style="color: black;"><strong>REASONONG OLYMPIAD(150)</strong></p></label>
+        <label for="reasoningolym" class='l'><p>REASONING OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="reasoningolym" name="reasoningolym" onchange="Update(this)">
         {% endif %}
+    </div>
 
-    {% if stud.final_generalolym %}
+    <div class="row sub-row mb-3">
+      {% if stud.final_generalolym %}
 
-    <label for="generalolym"><p style="color: grey;">GENERAL OLYMPIAD(150)</p></label>
+    <label for="generalolym" class="d-l"><p>GENERAL OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="generalolym" name="generalolym" disabled="true">
 
         {% else %}
-        <label for="generalolym"><p style="color: black;"> <strong>GENERAL OLYMPIAD(150)</strong></p></label>
+        <label for="generalolym" class='l'><p> GENERAL OLYMPIAD(150)</p></label>
         <input type="checkbox" value="True" id="generalolym" name="generalolym" onchange="Update(this)">
         {% endif %}
-
+    </div>
 
     <div class="row instructions">
       <p><b>Important Instructions : </b></p>
@@ -223,7 +235,7 @@
       <br><br>
   </div>
   <center>
-<input type="submit" value='Review & Pay' class="review-btn">  </center>
+<input type="submit" value='Review & Pay' id="review-btn" disabled class="review-btn">  </center>
 </form>
 
 
@@ -282,7 +294,7 @@
                                 </div>
                             </div>
                             <center>
-                                <button class="review-btn">S U B M I T</button>
+                                <button class="review-btn" >S U B M I T</button>
                             </center>
                             <hr style="border-bottom: 1px #0009;">
                             <center>
@@ -360,6 +372,7 @@ function totalIt() {
                         <script>
                           var price = 0;
                           function Update(e){
+                            s(e);
                           var element = document.getElementById('field');
                           if(e.checked){
                               price = price + 150;
@@ -384,6 +397,11 @@ function totalIt() {
                               element.disabled = true;
                             }
                           console.log(element.disabled);
+                        }
+                      </script>
+                      <script>
+                        function s(e){
+                          e.parentElement.classList.toggle('sub-row-selected');
                         }
                       </script>
 

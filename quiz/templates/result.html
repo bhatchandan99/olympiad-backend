@@ -7,7 +7,9 @@
 {% block description %} {% trans "Exam Results for" %} {{ quiz.title }} {% endblock %}
 
 {% block body %}
-
+<div class="d" style="background-color: #0006;">
+<br><br><br><br><br></div>
+<div class="container row">
   {% if previous.answers %}
 
   <p class="muted"><small>{% trans "The previous question" %}:</small></p>
@@ -31,7 +33,7 @@
   <div>
 	<h2>{% trans "Exam results" %}</h2>
 	<p>
-	  <small class="muted">{% trans "Exam title" %}: </small>
+	  <h3 class="muted">{% trans "Exam title" %}: </h3>
 	  <strong>{{ quiz.title }}</strong></p>
 
 	<p class="lead">
@@ -94,9 +96,10 @@
   {% endfor %}
 
   {% endif %}
+</div>
   <center>
-<a href="/" >OK</a>
+<a href="/" class="btn review-btn" >OK</a>
 </center>
 <br>
-<br><br>
+
 {% endblock %}
