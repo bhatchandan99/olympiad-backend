@@ -1311,12 +1311,13 @@ input[type="radio"]{
     margin-bottom: 10px;
     padding-left: 10px;
     padding-top: 10px;
+    box-shadow: 1px 2px 3px #0003;
     transition: 0.5s;
 }
 .sub-row-selected{
     background-color: #F50905;
     box-shadow: 2px 3px 4px #0005;
-    padding-left: 25%;
+    padding-left: 5%;
     color: #fff;
 }
 @media (max-width:500px){
