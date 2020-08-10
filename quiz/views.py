@@ -17,7 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect
-from .models import Student, Contact, Coordinator, School_register, Invoice,Syllabus
+from .models import Student, Contact, Coordinator, School_register, Invoice,Syllabus,Standard
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -86,7 +86,7 @@ def invoice_view(request):
 def invoice_ind(request,sub_order_id):
     l=Invoice.objects.get(order_id=sub_order_id)
     return render(request,"invoice_ind.html",{'l':l})
-    
+
 def home(request):
     return render(request,'start.html')
 
@@ -200,7 +200,7 @@ def changeafterbook(request):
                   "notifyUrl" : 'https://github.com/'
         }
 
-        
+
         # dict_pdf={"appId" : '21845d9c06b478a19ac3040ce54812',
         #           "orderId" : temp,
         #           "orderAmount" : '30',
@@ -391,7 +391,7 @@ def bookslot(request):
         sub.reasoningolym = False;
         sub.cyberolym = False;
         sub.generalolym = False;
-        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])            
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
 
 
 
@@ -482,7 +482,7 @@ def handleresponse(request):
     "signature" : postData['signature'],
     "txTime" : postData['txTime']
     }
-    
+
     invoice(request,dict_pdf)
 
 
@@ -522,7 +522,7 @@ def handleresponse(request):
     if computedsignature==postData['signature']:
 
         context['is_paid']= True
-        
+
         """
         student = request.user
         sub=Student.objects.get(pk=student.id)
@@ -602,7 +602,7 @@ def subscribe(request):
         print('lost')
 
         temp = str(request.user.username)+str('_')+str(request.user.order_number)
-        
+
         print(temp)
         student = request.user
         sub=Student.objects.get(pk=student.id)
@@ -624,10 +624,10 @@ def subscribe(request):
                   "returnUrl" : 'http://127.0.0.1:8000/response/',
                   "notifyUrl" : 'https://github.com/'
         }
-        
-        
+
+
         print(postData)
-        
+
         # lst2=[]
         # lst.append(postData)
         sortedKeys = sorted(postData)
@@ -797,7 +797,7 @@ def uploadfiles(request):
 
     stud=request.user
     if(request.method=='POST'):
-        
+
         idproof=request.FILES.get('idproof'," ")
         print("*******************")
         # print(request.POST)
@@ -1373,7 +1373,9 @@ def paper(request):
 
 
             my = Quiz.objects.filter(title=column[2])
-            # print(my[0].category)
+            stan = Standard.objects.filter(standard=column[11])
+            print(stan[0])
+            print(my)
             # print(my[0].id)
             pap= MCQQuestion(
                 # id=column[0],
@@ -1381,6 +1383,7 @@ def paper(request):
                 category=my[0].category,
                 #quiz=my[0].title,
                 explanation=column[3],
+                standard=stan[0],
                 answer_order= "content"
             )
 
@@ -1483,7 +1486,7 @@ def syllabus(request,olympiad,std):
     if(olympiad == 'english'):
         name1 = 'English'
     if(olympiad == 'cyber'):
-        name1 = 'Cyber'        
+        name1 = 'Cyber'
     c = {'name':name1}
     d = {'class':std}
     response = {**b,**c,**d}

@@ -203,6 +203,16 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+class Standard(models.Model):
+
+    standard = models.CharField(
+        verbose_name=_("Standard"),
+        max_length=250, blank=True,
+        unique=True, null=True)
+
+    def __str__(self):
+        return self.standard
+
 
 class Quiz(models.Model):
 
@@ -222,6 +232,10 @@ class Quiz(models.Model):
     category = models.ForeignKey(
         Category, null=True, blank=True,
         verbose_name=_("Category"), on_delete=models.CASCADE)
+
+    standard = models.ForeignKey(
+            Standard, null=True, blank=True,
+            verbose_name=_("Standard"), on_delete=models.CASCADE)
 
     random_order = models.BooleanField(
         blank=False, default=False,
@@ -707,6 +721,11 @@ class Question(models.Model):
                                  verbose_name=_("Category"),
                                  blank=True,
                                  null=True, on_delete=models.CASCADE)
+    standard = models.ForeignKey(Standard,
+                                     verbose_name=_("Standard"),
+                                     blank=True,
+                                     null=True, on_delete=models.CASCADE)
+
 
     figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
                                blank=True,

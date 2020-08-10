@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 # Register your models here.
-from .models import Quiz, Category, Question, Progress,Student,Coordinator, Contact, School_register, Subscription, Paper, Invoice,Syllabus
+from .models import Quiz, Category, Question, Progress,Student,Coordinator,Standard, Contact, School_register, Subscription, Paper, Invoice,Syllabus
 from mcq.models import MCQQuestion, Answer
 from django.utils.translation import ugettext_lazy as _
 from .models import CSVUpload
@@ -54,8 +54,8 @@ class QuizAdminForm(forms.ModelForm):
 class QuizAdmin(admin.ModelAdmin):
     form = QuizAdminForm
 
-    list_display = ('title', 'category', )
-    list_filter = ('category',)
+    list_display = ('title', 'category','standard')
+    list_filter = ('category','standard')
     search_fields = ('description', 'category', )
 
 
@@ -64,10 +64,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class MCQuestionAdmin(admin.ModelAdmin):
-    list_display = ('content', 'category', )
-    list_filter = ('category',)
-    fields = ('content', 'category',
-              'figure', 'img1','img2','img3','img4','quiz', 'explanation', 'answer_order')
+    list_display = ('content', 'category','standard' )
+    list_filter = ('category','standard')
+    fields = ('content', 'category','standard',
+              'figure', 'img1','img2','img3','img4','quiz', 'explanation', 'answer_order',)
 
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
@@ -91,7 +91,7 @@ admin.site.register(MCQQuestion, MCQuestionAdmin)
 admin.site.register(Progress, ProgressAdmin)
 admin.site.register(CSVUpload, CSVUploadsAdmin)
 
-
+admin.site.register(Standard)
 admin.site.register(Student)
 admin.site.register(Contact)
 admin.site.register(Coordinator)
