@@ -59,7 +59,7 @@
  
 {% endblock %}
 {% block js %}
-              <script src="Stock/Chart.min.js">
+              <script src="{% static 'Stock/Chart.min.js %}">
               </script>
               <script>
                   new Chart(document.getElementById("doughnut-chart"), {
