@@ -42,9 +42,13 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("contact/",views.contact, name="contact"),
                         path("subscriptions/",view = views.subscribe , name="subscriptions"),
                         path("awards/",view = views.awards , name="awards"),
+                        path("workshops/",view = views.workshops , name="workshops"),
+                        path("examprep/",view = views.examprep , name="examprep"),
+                        path("career/",view = views.career , name="career"),
                         path("rankingcriteria/",view = views.rankingcriteria , name="rankingcriteria"),
                         path("samplepaper/<sub>/<std>",view = views.samplepaper,name='samplepaper'),
                         path("markingscheme/<sub>/",view = views.markingscheme,name='markingscheme'),
+                        path("subjects/<sub>/",view = views.subjectpage,name='subjects'),
                         path("changeafterbook/",view = views.changeafterbook , name="changeafterbook"),
                         path("response_changeslot/",view = views.response_changeslot , name="response_changeslot"),
 

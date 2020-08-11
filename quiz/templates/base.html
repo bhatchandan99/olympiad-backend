@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{% static 'Style.css' %}">
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{% static 'Owl/docs/assets/css/docs.theme.min.css' %}">
+  <link rel="stylesheet" href="{% static 'Stock/Chart.min.css' %}">
 
   <!-- Owl Stylesheets -->
   <link rel="stylesheet" href="{% static 'Owl/docs/assets/owlcarousel/assets/owl.carousel.min.css' %}">
@@ -131,7 +132,7 @@
                              <a><b><a href="/markingscheme/maths">Marking Scheme</b></a><br>
                              <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
                              <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
-                             <a><b><a href="">About ISMO</b></a><br>
+                             <a><b><a href="/subjects/maths">About ISMO</b></a><br>
                               <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
 
                            </div>
@@ -217,7 +218,7 @@
                                   <a><b><a href="/markingscheme/science">Marking Scheme</b></a><br>
                                   <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
                                   <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
-                                  <a><b><a href="">About ISSO</b></a><br>
+                                  <a><b><a href="/subjects/science">About ISSO</b></a><br>
                                    <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
 
                                 </div>
@@ -302,7 +303,7 @@
                                       <a><b><a href="/marlingscheme/gk">Marking Scheme</b></a><br>
                                       <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
                                       <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
-                                      <a><b><a href="">About ISGKO</b></a><br>
+                                      <a><b><a href="/subjects/gk">About ISGKO</b></a><br>
                                        <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
 
                                     </div>
@@ -387,7 +388,7 @@
                                           <a><b><a href="/markingscheme/english">Marking Scheme</b></a><br>
                                           <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
                                           <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
-                                          <a><b><a href="">About ISEO</b></a><br>
+                                          <a><b><a href="/subjects/english">About ISEO</b></a><br>
                                            <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
 
                                         </div>
@@ -473,7 +474,7 @@
                                               <a><b><a href="/markingscheme/cyber">Marking Scheme</b></a><br>
                                               <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
                                               <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
-                                              <a><b><a href="">About ISCO</b></a><br>
+                                              <a><b><a href="/subjects/english">About ISCO</b></a><br>
                                                <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
 
                                             </div>
@@ -559,12 +560,11 @@
                                                   <a><b><a href="/markingscheme/ct">Marking Scheme</b></a><br>
                                                   <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
                                                   <a><b><a href="/rankingcriteria/">Ranking Criteria</b></a><br>
-                                                  <a><b><a href="">About ISCTO</b></a><br>
+                                                  <a><b><a href="/subjects/ct">About ISCTO</b></a><br>
                                                    <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
 
                                                 </div>
                                              </div></div>
-
                                            </div>
                                          </div>
                                   <div class="dropdown nav-item">
@@ -578,10 +578,10 @@
                                       <a class="dropdown-item" href="{% url 'examdates' %}">Exam Dates</a>
                                       <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
                                       <a class="dropdown-item" href="{% url 'awards' %}">Awards</a>
-                                      <a class="dropdown-item" href="#">Scholarships</a>
-                                      <a class="dropdown-item" href="#">Career</a>
-                                      <a class="dropdown-item" href="#">Educational Workshop</a>
-                                      <a class="dropdown-item" href="#">Training Workshop</a>
+                                      <!-- <a class="dropdown-item" href="#">Scholarships</a> -->
+                                      <a class="dropdown-item" href="{% url 'career' %}">Career</a>
+                                      <a class="dropdown-item" href="{% url 'workshops' %}">Educational Workshop</a>
+                                      <a class="dropdown-item" href="{% url 'workshops' %}">Training Workshop</a>
                                     </div>
                                   </div>
 
@@ -668,7 +668,8 @@
                 <li><a href="/samplepaper/maths/1" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sample Papers</a></li>
                 <li><a href="{% url 'awards' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Awards & Recognition</a></li>
                 <li><a href="#" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Subject Rankers</a></li>
-                <li><a href="#" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Schedule</a></li>
+                <li><a href="{% url 'examdates' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Schedule</a></li>
+                <li><a href="{% url 'examprep' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Preparation</a></li>
               </ul>
             </div>
           </div>
@@ -723,7 +724,6 @@
 </div>
 </div>
 </div>
-
 
 </footer>
 <!-- Footer -->

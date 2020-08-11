@@ -1498,3 +1498,15 @@ def rankingcriteria(request):
 def markingscheme(request,sub):
     tem = 'ms'+sub+'.html'
     return render(request,tem)
+
+def subjectpage(request,sub):
+    return render(request,'sub'+sub+'.html')
+
+def workshops(request):
+    return render(request,'workshops.html')
+
+def examprep(request):
+    return render(request,'examprep.html')
+
+def career(request):
+    return render(request,'career.html')
