@@ -220,9 +220,6 @@ class Quiz(models.Model):
         verbose_name=_("Title"),
         max_length=60, blank=False)
 
-    description = models.TextField(
-        verbose_name=_("Description"),
-        blank=True, help_text=_("a description of the quiz"))
 
     url = models.SlugField(
         max_length=60, blank=False,
@@ -274,13 +271,8 @@ class Quiz(models.Model):
         help_text=_("Percentage required to pass exam."),
         validators=[MaxValueValidator(100)])
 
-    success_text = models.TextField(
-        blank=True, help_text=_("Displayed if user passes."),
-        verbose_name=_("Success Text"))
 
-    fail_text = models.TextField(
-        verbose_name=_("Fail Text"),
-        blank=True, help_text=_("Displayed if user fails."))
+
 
     draft = models.BooleanField(
         blank=True, default=False,
@@ -742,12 +734,7 @@ class Question(models.Model):
                                            "you want displayed"),
                                verbose_name=_('Question'))
 
-    explanation = models.TextField(max_length=2000,
-                                   blank=True,
-                                   help_text=_("Explanation to be shown "
-                                               "after the question has "
-                                               "been answered."),
-                                   verbose_name=_('Explanation'))
+
 
 
 
