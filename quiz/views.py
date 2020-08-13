@@ -1352,7 +1352,7 @@ def logout_user(request):
     return redirect('loginhandle')
 
 
-
+from tablib import Dataset
 @permission_required('admin.can_add_log_entry')
 def paper(request):
     # template="paper.html"
@@ -1365,11 +1365,12 @@ def paper(request):
     if(request.method=='POST'):
         print("==========================================")
         csv_file=request.FILES['file']
-        data_set=csv_file.read().decode('UTF-8')
-        io_string=io.StringIO(data_set)
+        dataset= Dataset()
+        data_set=dataset.load(csv_file.read(),format= 'xlsx')
+        #io_string=io.StringIO(data_set)
         # next(io_string)
         print(data_set)
-        for column in csv.reader(io_string,delimiter=","):
+        for column in dataset:
 
 
             my = Quiz.objects.filter(title=column[2])
@@ -1382,17 +1383,18 @@ def paper(request):
                 content=column[0],
                 category=my[0].category,
                 #quiz=my[0].title,
-                explanation=column[3],
+                #explanation=column[3],
                 standard=stan[0],
                 answer_order= "content"
             )
 
 
             #pap.quiz.set(my[0].id)
+            print(column[4],'4',column[6],'6',column[8],'8',column[10])
             pap.save()
             pap.quiz.set(my)
             is_corr = False
-            if column[4]=="TRUE":
+            if column[4]:
                 is_corr=True
 
 
@@ -1400,7 +1402,7 @@ def paper(request):
             one.save()
 
             is_corr = False
-            if column[6]=="TRUE":
+            if column[6]:
                 is_corr=True
 
 
@@ -1408,7 +1410,7 @@ def paper(request):
             two.save()
 
             is_corr = False
-            if column[8]=="TRUE":
+            if column[8]:
                 is_corr=True
 
 
@@ -1416,7 +1418,7 @@ def paper(request):
             three.save()
 
             is_corr = False
-            if column[10]=="TRUE":
+            if column[10]:
                 is_corr=True
 
 
