@@ -1373,6 +1373,7 @@ def paper(request):
         for column in dataset:
 
 
+            print(column[2])
             my = Quiz.objects.filter(title=column[2])
             stan = Standard.objects.filter(standard=column[11])
             print(stan[0])
