@@ -1492,7 +1492,8 @@ def syllabus(request,olympiad,std):
         name1 = 'Cyber'
     c = {'name':name1}
     d = {'class':std}
-    response = {**b,**c,**d}
+    e = {'name1':olympiad}
+    response = {**b,**c,**d,**e}
     return render(request,'syllabus.html',response)
 
 def rankingcriteria(request):
