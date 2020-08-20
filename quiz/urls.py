@@ -26,7 +26,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("response/",views.handleresponse, name="response"),
                         path("home/",views.home, name="home"),
                         path("uploadfiles/",views.uploadfiles, name="uploadfiles"),
-
+                        path("privacypolicy/",view = views.privacypol , name="privacypolicy"),
                         path("invoice_view/" , view=views.invoice_view, name="invoice_view"),
                         path("invoice_ind/<sub_order_id>/" ,view=views.invoice_ind, name="invoice_ind"),
                         path("update_student/",views.update_student, name="update_student"),
