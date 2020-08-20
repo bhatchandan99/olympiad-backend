@@ -29,7 +29,10 @@
       box-shadow: 0px 3px 6px #0009;
   }
   .nav-item{
-      color: #FFFFFF;
+      color: #8d8b8b;
+  }
+  .nav-item:hover a{
+      color: #F50905;
   }
   @media (max-width:991px){
       .nav-item .nav-link{
@@ -44,6 +47,9 @@
   #dropdownMenuButton:active{
       outline: none;
   }
+  #dropdownMenuButton:hover{
+    color: red;
+}
 
   table{
       border: none;
@@ -1234,13 +1240,13 @@ input[type="radio"]{
 }
 .book-modal{
     width: 60%;
-    position: fixed;
     top: -100%;
     left:20%;
     box-shadow: 5px 7px 10px #0005;
     padding: 20px;
     transition: 0.7s;
     border-radius: 5px;
+    margin-left: 20%;
 }
 .show-book-modal{
     top: 20%;
