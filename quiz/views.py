@@ -1514,3 +1514,6 @@ def examprep(request):
 
 def career(request):
     return render(request,'career.html')
+
+def privacypol(request):
+    return render(request,'privacypol.html')
