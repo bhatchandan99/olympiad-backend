@@ -723,10 +723,10 @@ class Question(models.Model):
                                blank=True,
                                null=True,
                                verbose_name=_("Figure"))
-    img1=models.ImageField(upload_to="option1/",null=True,verbose_name=_("Image1"))
-    img2=models.ImageField(upload_to="option2/",null=True,verbose_name=_("Image2"))
-    img3=models.ImageField(upload_to="option3/",null=True,verbose_name=_("Image3"))
-    img4=models.ImageField(upload_to="option4/",null=True,verbose_name=_("Image4"))
+    img1=models.ImageField(upload_to="option1/",null=True,verbose_name=_("Image1"),blank=True)
+    img2=models.ImageField(upload_to="option2/",null=True,verbose_name=_("Image2"),blank=True)
+    img3=models.ImageField(upload_to="option3/",null=True,verbose_name=_("Image3"),blank=True)
+    img4=models.ImageField(upload_to="option4/",null=True,verbose_name=_("Image4"),blank=True)
 
     content = models.CharField(max_length=1000,
                                blank=False,
