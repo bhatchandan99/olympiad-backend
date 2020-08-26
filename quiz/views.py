@@ -601,16 +601,16 @@ def subscribe(request):
 
         print('lost')
 
-        temp = str(request.user.username)+str('_')+str(request.user.order_number)
 
-        print(temp)
         student = request.user
         sub=Student.objects.get(pk=student.id)
 
         sub.order_number = sub.order_number+1
         sub.save(update_fields=['order_number'])
 
+        temp = str(request.user.username)+str('_')+str(request.user.order_number)
 
+        print(temp)
 
         postData = {
                   "appId" : '21845d9c06b478a19ac3040ce54812',
