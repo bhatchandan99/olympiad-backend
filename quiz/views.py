@@ -237,15 +237,6 @@ def changeafterbook(request):
         }
 
         return render(request,'request.html', context)
-
-
-
-
-
-
-
-
-
         print(quiz)
 
     return render(request,'changeslot.html')
@@ -833,7 +824,7 @@ def contact(request):
         phonenum=request.POST['phonenum']
         message=request.POST['message']
         coordinate=Contact(name=name,email=email,phonenum=phonenum,message=message)
-
+        messages.success(request, ('You will be contacted soon by our team'))
         coordinate.save()
 
     return render(request,"contact.html")
@@ -847,6 +838,9 @@ def coordinator(request):
         message=request.POST['message']
         coordinate=Coordinator(name=name,email=email,phonenum=phonenum,message=message)
         coordinate.save()
+        messages.success(request, ('Request for Coordinator received successfully'))
+        return render(request,"coordinator.html")
+
     return render(request,"coordinator.html")
 
 
@@ -871,7 +865,7 @@ def register_school(request):
         else:
             school_r=School_register(type=button, name=name, email=email,country=country,contact=contact, school_name=school_name,school_address=school_address, school_city=school_city, school_pincode=school_pincode,school_website=school_website,school_email=school_email, pname=pname, pmobile=pmobile, exammode=exammode)
             school_r.save()
-            messages.success(request, 'School Registered successful')
+            messages.success(request, 'School Registered successfully')
 
 
     return render(request,"applyschool.html")
@@ -952,7 +946,7 @@ class ActivateAccount(View):
                 user.email_confirmed = True
                 user.save()
                 login(request, user)
-                messages.success(request, ('Your account have been confirmed.'))
+                messages.success(request, ('Your account has been confirmed.'))
                 return redirect('/')
             else:
                 messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))

@@ -6,8 +6,9 @@
 {% block body %}
 <div class="d" style="background-color: #0007;"><br><br><br><br><br></div><br><br><br>
 <div class="container row">
-<h2>{% trans "List of quizzes" %}</h2>
+
     {% if quiz_list %}
+    <h2>{% trans "List of quizzes" %}</h2>
 		<table class="table table-bordered table-striped">
 
 		  <thead>
@@ -43,7 +44,9 @@
 		</table>
 
 	{% else %}
-        <p>{% trans "There are no available quizzes" %}.</p>
+
+    <h2>{% trans "There are no available quizzes" %}</h2>
+
 	{% endif %}
 	</div><br><br>
 {% endblock %}

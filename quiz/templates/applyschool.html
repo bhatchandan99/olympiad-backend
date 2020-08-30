@@ -193,7 +193,7 @@
             {
             function testName()
             {
-                var name = document.form5.name.value;
+                var name = document.form5.pname.value;
                 var letters = /^[a-zA-Z_ ]+$/;
                 if (!name.match(letters)){
                 alert("Name can have only letters.");
@@ -203,19 +203,41 @@
             }
             function testZip()
             {
-                var zip = document.form5.phonenum.value;
+                var zip = document.form5.pmobile.value;
 
 
                 if (!zip.match(/^\d{10}$/)){
-                alert("A number has 10 integers.");
+                alert("A contact has 10 integers.");
                 return false;
                 }
                 return true;
             }
-            return testName()&&testZip();
+            function testNum()
+            {
+                var zip = document.form5.contact.value;
+
+
+                if (!zip.match(/^\d{10}$/)){
+                alert("A contact has 10 integers.");
+                return false;
+                }
+                return true;
+            }
+            function testPin()
+            {
+                var zip = document.form5.school_pincode.value;
+
+
+                if (!zip.match(/^\d{6}$/)){
+                alert("A pincode has 10 integers.");
+                return false;
+                }
+                return true;
+            }
+            return testName()&&testZip()&&testNum()&&testPin();
 
             }
-            
+
 
 </script>
 {% endblock %}
