@@ -981,6 +981,32 @@ class QuizListView(ListView):
         print("wd2d")
         print(self)
         queryset = super(QuizListView, self).get_queryset()
+def mock(request):
+
+    all_quizzes = Quiz.objects.all()
+    print(all_quizzes)
+
+    quizlist=[]
+    for quiz in all_quizzes:
+
+        if quiz.title.find('_')!=-1:
+            _,quiz_title = quiz.title.split('_', 1)
+        else:
+            quiz_title= quiz.title
+
+        #print(quiz)
+        #print(quiz.title[0:2])
+
+        #print(quiz_title[0:2])
+        b = quiz_title[2:]
+
+        #print(request.user.b)
+        print(quiz_title[2:])
+        if str(request.user.standard)==str(quiz_title[0:2]):
+            quizlist.append(quiz)
+
+
+    return render(request, 'quiz_mock.html', {"quiz_list": quizlist})
 
 
 def myquiz(request):
