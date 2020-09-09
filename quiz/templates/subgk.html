@@ -2,11 +2,14 @@
 {% block title %}Subject{% endblock %}
 {% block body %}
 {% load static %}
+<div class="offd" id="offd"></div>
+
                             <div class="container-fluid p-0" >
+                              <img src="{% static 'Stock/gk_bg.jpeg' %}" alt="" class="bg-img">
                               <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/gk_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
                                 <div class="d-flex justify-content-center" >
                                   <div class="d-flex flex-column" style="padding-top: 120px">
-                                    <h1 class="site-title" style="text-align: center;color: red">General Knowledge
+                                    <h1 class="site-title" style="text-align: center;color: red;z-index: 100;">General Knowledge
                                     </h1>
                                     <p class="site-desc"></p>
 
@@ -48,4 +51,9 @@
                                   </div>
                                 </section>
                               </div>
+{% endblock %}
+{% block js %}
+<script>
+  $(window).scroll(function(){$('#offd').toggleClass('scro-o', $(this).scrollTop() > 0);});
+</script>
 {% endblock %}

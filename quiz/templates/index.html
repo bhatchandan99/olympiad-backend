@@ -2,6 +2,7 @@
 {% block title %} Home {% endblock %}
 {% block body %}
 {% load static %}
+<div class="offd"></div>
 <section style="padding-top: 0; margin-bottom: 0">
 
   <!-- <div id="div_left" class="d-none d-lg-block " > -->
@@ -9,17 +10,19 @@
       <div class="site-content" style="height: 640px;">
         <div class="d-flex justify-content-center" >
           <div class="d-flex flex-column" style="padding-top: 80px">
-            <h1 class="site-title" style="text-align: center;">International Student Olympiad Foundation
+            <h1 class="site-title" style="text-align: center;">International Student Olympiad Foundation 
             </h1>
             <p class="site-desc"></p>
 
-            <div class="d-flex flex-row" style="display: flex; justify-content: center;">
+            <center>
+              <div class="" style="justify-content: center;">
 
-              {% if  not request.user.is_authenticated %}
-
-              <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal"  data-target="#exampleModalLong">Login</a>
-              <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal" data-target="#exampleModala">Register</button>
-              {% endif %}
+                {% if  not request.user.is_authenticated %}
+                <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal"  data-target="#exampleModalLong">Login</a></button>
+                <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal" data-target="#exampleModala">Register</button>
+                {% endif %}
+              </div>
+            </center>
               <!-- Modal -->
               <div class="modal fade bd-example-modal-sm" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -252,7 +255,7 @@ option coming under it. Results will be updated in the
 <div class="row">
 <div class="col-md-4"></div>
 <div class="step-go col-md-4">
-  <center><a href="applyindividual.html" class="step-btn">
+  <center><a href="{% url 'applyindividual' %}" class="step-btn">
     Start Now
   </a>
 </center>

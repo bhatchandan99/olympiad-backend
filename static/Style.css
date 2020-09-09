@@ -139,11 +139,6 @@ header{
 
 
 
-@media screen and (max-width: 600px) {
-  .d-flex.site-title {
-    font-size: 35px;
-  }
-}
 
 /*=================================*/
 /*button!*/
@@ -604,11 +599,18 @@ img{
 .site-title{
 	margin-top:  30%;
 	margin-bottom: 3%;
-	font-size: 50px;
-	vertical-align: center
-	/*font-size:50px;*/
-
-
+	vertical-align: center;
+	font-size:50px;
+}
+@media (max-width:510px){
+  .site-title{
+    font-size: 35px;
+  }
+}
+@media (max-width:360px){
+  .site-title{
+    font-size: 20px;
+  }
 }
 
 .site-desc{

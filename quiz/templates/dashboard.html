@@ -66,7 +66,7 @@
                               <a class="dropdown-item" href="#">Profile</a>
                               {% comment %} <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a> {% endcomment %}
                               <a class="dropdown-item" href="#" onclick="show('submitdocuments')">Submit Documents</a>
-                              <a class="dropdown-item" href="#">Preview Certificate</a>
+                              <a class="dropdown-item" href="/cert">Preview Certificate</a>
                             </div>
                           </div>
                           {% comment %} <a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a> {% endcomment %}
@@ -75,8 +75,8 @@
                               Take Exams
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Mock Test</a>
-                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Final exam</a>
+                              <a class="dropdown-item" href="{% url 'quiz_mock' %}" onclick="show('mocktest')">Mock Test</a>
+                              <a class="dropdown-item" href="{% url 'quiz_index' %}" onclick="show('mocktest')">Final exam</a>
                             </div>
                           </div>
                           <div class="dropdown nav-item">
@@ -93,7 +93,7 @@
                               Free Trial
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" onclick="show('subjects')">Subjects</a>
+                              <a class="dropdown-item" href="{% url 'quiz_mock' %}" onclick="show('subjects')">Subjects</a>
                               <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
                             </div>
                           </div>
@@ -333,7 +333,7 @@
                           <center><br>
                             <h1 class="register-title">Submit Documents</h1>
                           </center><br>
-
+                          <div class="row">
                           <ol>
 
 
@@ -375,12 +375,8 @@
                             <li>
                               Only jpeg/jpg and png images are allowed with a maximum size of 200 KB. In case the file size is more than 200 KB, <a href="https://compressimage.toolur.com/">click here</a> to compress image. (supported format – jpeg/jpg and png)
                             </li>
-                            <li>
-
-
-
-                            </li>
-                          </ol><br>
+                          </ol>
+                        </div><br>
                           <form action="{% url 'uploadfiles' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                               <div class="row mt-3">
@@ -446,7 +442,7 @@
                                <img src="{{stud.idproof.url}}" width="5" height="5">
                                   <embed src="{{stud.idproof.url}}" width="100%" height="auto" />
                             </div>
-                          </div>
+                          
 
 
                           <div class="row mt-3">
@@ -474,7 +470,7 @@
                       </div>
                       </form>
                         </div>
-                        
+                      </div>
 
 
                         <div class="container hide" id="slot">

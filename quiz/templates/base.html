@@ -120,7 +120,7 @@
                                   <a><td><a href="/samplepaper/maths/6">Class 6</a></td></a>
                                   <td></td>
                                 </tr>
-                                <tr>/
+                                <tr>
                                   <a><td><a href="/samplepaper/maths/7">Class 7</a></td></a>
                                   <td></td>
                                 </tr>
@@ -588,11 +588,14 @@
                                   {% comment %} <li class="nav-item ml-3">
                                     <a class="nav-link" href="#">Subject Rankers</a>
                                   </li> {% endcomment %}
-
+                                  <li class="nav-item ml-3">
+                                    <a class="nav-link" href="{% url 'awards' %}">Awards</a>
+                                  </li>
+                                  
+                                  {% if user.is_authenticated %}
                                   <li class="nav-item ml-3">
                                     <a class="nav-link" href="{% url 'quiz_mock' %}">Free Trial</a>
                                   </li>
-                                  {% if user.is_authenticated %}
 
                                   <li class="nav-item ml-3">
                                     <a class="nav-link" href="{% url 'quiz_index' %}">Quizzes</a>
@@ -625,9 +628,11 @@
                                       <a class="dropdown-item" href="{% url 'changeslot' %}">Change Slot</a>
 
                                       <a class="dropdown-item" href="{% url 'profile' %}">Your Profile</a>
+                                      {% comment %}
                                       <a class="dropdown-item" href="#">My Result : Enroll for notification</a>
                                       <a class="dropdown-item" href="#">Map Your Enrollment</a>
                                       <a class="dropdown-item" href="#">View Result</a>
+                                      {% endcomment %}
                                       <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 
 
@@ -667,7 +672,9 @@
                 <li><a href="{% url 'applyschool' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Register Your School</a></li>
                 <li><a href="/samplepaper/maths/1" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sample Papers</a></li>
                 <li><a href="{% url 'awards' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Awards & Recognition</a></li>
-                <li><a href="#" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Subject Rankers</a></li>
+{% comment %}
+<li><a href="#" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Subject Rankers</a></li>
+{% endcomment %}
                 <li><a href="{% url 'examdates' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Schedule</a></li>
                 <li><a href="{% url 'examprep' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Preparation</a></li>
               </ul>
@@ -677,10 +684,9 @@
           <div class="col-12 col-sm-6 col-lg-4">
             <div class="single-footer-widget" >
               <h6 style="font-weight: bold; color: white">Contact Us</h6>
-              <p style="color: #B5AEB0">686-6688 <br>info@gmail.com
+              <p style="color: #B5AEB0">+91 88774-30444 <br>contact@schoololympiads.com
               </p>
-              <p style="color: #B5AEB0">40 Sreet 133/2 <br>India</p>
-              <p style="color: #B5AEB0">Open hours: 8.00-18.00 Mon-Fri</p>
+              <p style="color: #B5AEB0">Near Upkar Apartment, <br> Mayur Vihar Extension, <br> New Delhi ,<br>India .</p>
             </div>
           </div>
           <!-- Footer Widget -->
@@ -718,13 +724,19 @@
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>
 </div>
-</div>
-</div>
 
+</div>
+</div>
+<div class="row" style="color: #fff;">
+  <center>
+      CopyRight &#169; by International School Olympiad Foundation . For Privacy policy &nbsp <br><a href="\privacypolicy"> Click here</a>
+  </center>
+    </div>
 </footer>
 <!-- Footer -->
 </section>
