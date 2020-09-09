@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<style type="text/css">body {
+    font-family: Roboto;
+}
+
+.certificate-container {
+    padding: 50px;
+    width: 1024px;
+}
+.certificate {
+    border: 20px solid #F71F2C;
+    padding: 25px;   
+    height: 1236;
+    position: relative;
+}
+
+.certificate:after {
+    content: '';
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+    background-image: url({% static 'Stock/rsz_olympiad.png' %});
+    background-size: 100%;
+    z-index: -1;
+}
+
+.certificate-header > .logo {
+    width: 150px;
+    /*height: 30px;*/
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /*width: 50%;*/
+}
+
+.certificate-title {
+    text-align: center; 
+    font-size: 40px;  
+}
+
+.certificate-body {
+    text-align: center;
+    /*padding-top: 70px;*/
+}
+
+h1 {
+
+    font-weight: 400;
+    font-size: 48px;
+    color: red;
+}
+
+.student-name {
+    font-size: 24px;
+
+}
+
+.certificate-content {
+    margin: 0 auto;
+    width: 750px;
+}
+
+.about-certificate {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.topic-description {
+
+    text-align: center;
+}
+.d{
+background-color: #0007;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+<div class="d"><br><br><br><br><br></div>
+<div class="certificate-container">
+    <div class="certificate">
+        <div class="water-mark-overlay"></div>
+        <div class="certificate-header">
+            <img src="{% static 'Stock/logo.jpg' %}" class="logo" alt="" >
+        </div>
+        <div class="certificate-body">
+           <br>
+            <p class="certificate-title"><strong>International School Olympiad Foundation</strong></p>
+            <h1 style="padding-top: 100px">Certificate of Participation</h1>
+            <p class="topic-title">
+                    This certificate is proudly presented to {{user.username}}
+                </p>
+            <br>
+            <p class="student-name"><strong>{{user.username}}</strong></p>
+            <div class="certificate-content">
+                <div class="about-certificate" style="font-size: 25px">
+                    <p>
+                of <strong>Class 2</strong> has been awarded  ______________ in<br>  <strong><underlined>Internation School Subject Olympiad </underlined></strong>
+                </p>
+                </div>
+                <p class="topic-title">
+                    conducted on Date [Date of Completion]
+                </p>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

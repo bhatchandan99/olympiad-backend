@@ -45,6 +45,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("workshops/",view = views.workshops , name="workshops"),
                         path("examprep/",view = views.examprep , name="examprep"),
                         path("career/",view = views.career , name="career"),
+                        path("cert/",view = views.cert , name="cert"),
                         path("rankingcriteria/",view = views.rankingcriteria , name="rankingcriteria"),
                         path("samplepaper/<sub>/<std>",view = views.samplepaper,name='samplepaper'),
                         path("markingscheme/<sub>/",view = views.markingscheme,name='markingscheme'),

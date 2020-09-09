@@ -1535,5 +1535,8 @@ def examprep(request):
 def career(request):
     return render(request,'career.html')
 
+def cert(request):
+    return render(request,'cert.html')
+
 def privacypol(request):
     return render(request,'privacypol.html')

@@ -4,20 +4,7 @@
 {% load static %}
 <section style="padding:0; margin-bottom: 0;">
 
-  <div id="div_left" class="d-none d-lg-block " >
-    <div class="container-fluid p-0" >
-      <div class="site-content" style="height: 640px;background-image: url({% static 'stock/Login_bg.jpg' %})" >
-        <div class="d-flex justify-content-center"  >
-          <div class="d-flex flex-column" style="padding-top: 20px">
-            <h1 class="site-title" style="text-align: center;">Welcome back to International Student Olympiad Foundation
-            </h1>
-            <p class="site-desc"></p>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <!-- Hero right -->
@@ -25,7 +12,7 @@
     <div class="container-fluid p-0" id="div-right" >
       <div class="site-content" style="height: 640px; background-image: url({% static 'stock/Login_bg.jpg' %})">
         <div class="d-flex justify-content-center" >
-          <div class="d-flex flex-column justify-content-left justify-content-md-start d-none d-lg-block" style="box-shadow: 0px 7px 10px #0009;border-radius: 10px;">
+          <div class="" style="box-shadow: 0px 7px 10px #0009;border-radius: 10px;">
             <br><br><br><div class="container" id="form-group">
               <center><h2 style="color: white; font-family: 'sriracha',cursive;">LOGIN</h2></center>
               {% for message in messages %}
@@ -37,7 +24,7 @@
               <form action="" name="form3" method="post" onsubmit="return regEx()">
               {% csrf_token %}
 
-                <div class="form-group row" style="padding-top: 13px">
+                <div class="form-group row" >
                   <label for="staticEmail" class="col-sm-2 col-form-label"><i class="fa fa-user-circle d-none d-lg-block" style="font-size:30px; color: white; text-align: center;"></i></label>
                   <div class="col-md-10">
 
