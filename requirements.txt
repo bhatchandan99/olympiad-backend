@@ -65,7 +65,7 @@ psycopg2==2.8.5
 psycopg2-binary==2.8.5
 psycopg2-pool==1.1
 public==2019.4.13
-Pygments==2.3.1
+Pygments==2.7.4
 pyparsing==2.4.6
 python-dateutil==2.7.5
 pythonanywhere==0.8.2
